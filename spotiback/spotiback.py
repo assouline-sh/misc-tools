@@ -7,10 +7,10 @@ can be reconstructed. Each run creates a timestamped backup directory.
 
 Setup:
     1. Create an app at https://developer.spotify.com/dashboard
-    2. Set redirect URI to http://localhost:8888/callback
+    2. Set redirect URI to http://127.0.0.1:8888/callback
     3. Copy .env.example to .env and fill in your credentials
     4. Run once interactively to authorize:  python spotiback.py --auth
-    5. Add to cron:  0 3 * * 0 cd /home/kud/github/misc-tools/spotiback && python spotiback.py
+    5. Add to cron:  0 3 * * 0 cd /home/shan/github/misc-tools/spotiback && ./venv/bin/python spotiback.py
 
 Restore:
     python spotiback.py --restore <backup_dir>
@@ -54,9 +54,10 @@ def get_spotify() -> spotipy.Spotify:
     auth = SpotifyOAuth(
         client_id=os.environ["SPOTIPY_CLIENT_ID"],
         client_secret=os.environ["SPOTIPY_CLIENT_SECRET"],
-        redirect_uri=os.environ.get("SPOTIPY_REDIRECT_URI", "http://localhost:8888/callback"),
+        redirect_uri=os.environ.get("SPOTIPY_REDIRECT_URI", "http://127.0.0.1:8888/callback"),
         scope=SCOPES,
         cache_path=str(CACHE_PATH),
+        open_browser=False,
     )
     return spotipy.Spotify(auth_manager=auth)
 
@@ -78,18 +79,23 @@ def fetch_playlists(sp: spotipy.Spotify, user_id: str) -> list[dict]:
     raw = paginate(sp, sp.current_user_playlists(limit=50))
     playlists = []
     for pl in raw:
-        print(f"  [+] {pl['name']}  ({pl['tracks']['total']} tracks)")
+        if not pl or not pl.get("id"):
+            print(f"  [~] Skipping empty playlist entry")
+            continue
+        total = pl.get("tracks", {}).get("total", "?") if isinstance(pl.get("tracks"), dict) else "?"
+        print(f"  [+] {pl.get('name', '<unnamed>')}  ({total} tracks)")
         tracks = fetch_playlist_tracks(sp, pl["id"])
+        owner_id = (pl.get("owner") or {}).get("id", "")
         playlists.append({
-            "name": pl["name"],
+            "name": pl.get("name", ""),
             "id": pl["id"],
-            "uri": pl["uri"],
+            "uri": pl.get("uri", ""),
             "description": pl.get("description", ""),
             "public": pl.get("public"),
             "collaborative": pl.get("collaborative", False),
-            "owner": pl["owner"]["id"],
-            "owned_by_me": pl["owner"]["id"] == user_id,
-            "snapshot_id": pl["snapshot_id"],
+            "owner": owner_id,
+            "owned_by_me": owner_id == user_id,
+            "snapshot_id": pl.get("snapshot_id", ""),
             "track_count": len(tracks),
             "tracks": tracks,
         })
@@ -99,34 +105,38 @@ def fetch_playlists(sp: spotipy.Spotify, user_id: str) -> list[dict]:
 def fetch_playlist_tracks(sp: spotipy.Spotify, playlist_id: str) -> list[dict]:
     """Fetch all tracks from a playlist with retry on rate limit."""
     try:
-        raw = paginate(sp, sp.playlist_items(
-            playlist_id, limit=100,
-            fields="items(track(name,uri,id,artists(name,uri),album(name,uri),duration_ms,external_urls)),next",
-        ))
+        raw = paginate(sp, sp.playlist_items(playlist_id, limit=100))
     except spotipy.exceptions.SpotifyException as e:
         if e.http_status == 429:
             retry = int(e.headers.get("Retry-After", 5))
             print(f"    [~] Rate limited, waiting {retry}s...")
             time.sleep(retry + 1)
             return fetch_playlist_tracks(sp, playlist_id)
+        # 403/404 commonly hit Spotify-curated playlists (Daily Mix, etc.)
+        # and deleted-but-still-followed playlists. Skip gracefully.
+        if e.http_status in (403, 404):
+            print(f"    [~] Can't read tracks for {playlist_id} (HTTP {e.http_status}), skipping")
+            return []
         raise
 
     tracks = []
     for item in raw:
-        t = item.get("track")
+        # Spotify renamed the track payload from `track` to `item` on playlist_items.
+        t = item.get("item") or item.get("track")
         if not t or not t.get("uri"):
             continue
-        # Skip local files (they can't be restored via API)
         if t["uri"].startswith("spotify:local:"):
             continue
+        album = t.get("album") or {}
         tracks.append({
-            "name": t["name"],
+            "name": t.get("name", ""),
             "uri": t["uri"],
             "id": t.get("id"),
-            "artists": [{"name": a["name"], "uri": a["uri"]} for a in t.get("artists", [])],
-            "album": {"name": t["album"]["name"], "uri": t["album"]["uri"]} if t.get("album") else None,
+            "artists": [{"name": a.get("name", ""), "uri": a.get("uri", "")} for a in t.get("artists", [])],
+            "album": {"name": album.get("name", ""), "uri": album.get("uri", "")} if album else None,
             "duration_ms": t.get("duration_ms"),
             "url": t.get("external_urls", {}).get("spotify", ""),
+            "added_at": item.get("added_at", ""),
         })
     return tracks
 
