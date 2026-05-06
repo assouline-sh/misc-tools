@@ -37,7 +37,6 @@ SCOPES = "user-library-read playlist-read-private playlist-read-collaborative us
 
 
 def load_env():
-    """Load .env file from script directory."""
     env_file = SCRIPT_DIR / ".env"
     if not env_file.exists():
         sys.exit(f"[!] Missing {env_file} — copy .env.example and fill in your credentials.")
@@ -63,7 +62,7 @@ def get_spotify() -> spotipy.Spotify:
 
 
 def paginate(sp, results, key=None):
-    """Exhaust a Spotify paginated response."""
+    """Keep hitting 'next' until Spotify stops giving us pages."""
     page = results if key is None else results[key]
     items = list(page["items"])
     while page["next"]:
@@ -75,7 +74,6 @@ def paginate(sp, results, key=None):
 
 
 def fetch_playlists(sp: spotipy.Spotify, user_id: str) -> list[dict]:
-    """Fetch all playlists the user owns or follows."""
     raw = paginate(sp, sp.current_user_playlists(limit=50))
     playlists = []
     for pl in raw:
@@ -103,7 +101,6 @@ def fetch_playlists(sp: spotipy.Spotify, user_id: str) -> list[dict]:
 
 
 def fetch_playlist_tracks(sp: spotipy.Spotify, playlist_id: str) -> list[dict]:
-    """Fetch all tracks from a playlist with retry on rate limit."""
     try:
         raw = paginate(sp, sp.playlist_items(playlist_id, limit=100))
     except spotipy.exceptions.SpotifyException as e:
@@ -112,8 +109,8 @@ def fetch_playlist_tracks(sp: spotipy.Spotify, playlist_id: str) -> list[dict]:
             print(f"    [~] Rate limited, waiting {retry}s...")
             time.sleep(retry + 1)
             return fetch_playlist_tracks(sp, playlist_id)
-        # 403/404 commonly hit Spotify-curated playlists (Daily Mix, etc.)
-        # and deleted-but-still-followed playlists. Skip gracefully.
+        # 403/404 usually means Spotify-curated playlists (Daily Mix etc)
+        # or deleted playlists that still show up. nothing we can do
         if e.http_status in (403, 404):
             print(f"    [~] Can't read tracks for {playlist_id} (HTTP {e.http_status}), skipping")
             return []
@@ -121,10 +118,11 @@ def fetch_playlist_tracks(sp: spotipy.Spotify, playlist_id: str) -> list[dict]:
 
     tracks = []
     for item in raw:
-        # Spotify renamed the track payload from `track` to `item` on playlist_items.
+        # some API versions return 'item' instead of 'track'
         t = item.get("item") or item.get("track")
         if not t or not t.get("uri"):
             continue
+        # local files have spotify:local: URIs — can't restore those
         if t["uri"].startswith("spotify:local:"):
             continue
         album = t.get("album") or {}
@@ -142,7 +140,7 @@ def fetch_playlist_tracks(sp: spotipy.Spotify, playlist_id: str) -> list[dict]:
 
 
 def fetch_followed_artists(sp: spotipy.Spotify) -> list[dict]:
-    """Fetch all followed artists."""
+    """Uses cursor-based pagination (different from the rest of the API, of course)."""
     artists = []
     results = sp.current_user_followed_artists(limit=50)
     page = results["artists"]
@@ -162,7 +160,6 @@ def fetch_followed_artists(sp: spotipy.Spotify) -> list[dict]:
 
 
 def fetch_liked_songs(sp: spotipy.Spotify) -> list[dict]:
-    """Fetch all liked/saved tracks."""
     raw = paginate(sp, sp.current_user_saved_tracks(limit=50))
     tracks = []
     for item in raw:
@@ -182,7 +179,6 @@ def fetch_liked_songs(sp: spotipy.Spotify) -> list[dict]:
 
 
 def do_backup(sp: spotipy.Spotify):
-    """Run a full backup."""
     user = sp.current_user()
     user_id = user["id"]
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d_%H%M%S")
@@ -192,7 +188,6 @@ def do_backup(sp: spotipy.Spotify):
     print(f"[*] Backing up Spotify for user: {user['display_name']} ({user_id})")
     print(f"[*] Backup directory: {backup_dir}\n")
 
-    # Playlists
     print("[*] Fetching playlists...")
     playlists = fetch_playlists(sp, user_id)
     (backup_dir / "playlists.json").write_text(
@@ -200,7 +195,6 @@ def do_backup(sp: spotipy.Spotify):
     )
     print(f"[*] Saved {len(playlists)} playlists\n")
 
-    # Followed artists
     print("[*] Fetching followed artists...")
     artists = fetch_followed_artists(sp)
     (backup_dir / "followed_artists.json").write_text(
@@ -208,7 +202,6 @@ def do_backup(sp: spotipy.Spotify):
     )
     print(f"[*] Saved {len(artists)} followed artists\n")
 
-    # Liked songs
     print("[*] Fetching liked songs...")
     liked = fetch_liked_songs(sp)
     (backup_dir / "liked_songs.json").write_text(
@@ -216,7 +209,6 @@ def do_backup(sp: spotipy.Spotify):
     )
     print(f"[*] Saved {len(liked)} liked songs\n")
 
-    # Summary metadata
     summary = {
         "timestamp": timestamp,
         "user_id": user_id,
@@ -230,7 +222,7 @@ def do_backup(sp: spotipy.Spotify):
         json.dumps(summary, indent=2, ensure_ascii=False), encoding="utf-8"
     )
 
-    # Symlink latest
+    # point "latest" symlink at this backup so cron scripts can find it
     latest = BACKUP_ROOT / "latest"
     if latest.is_symlink() or latest.exists():
         latest.unlink()
@@ -244,7 +236,6 @@ def do_backup(sp: spotipy.Spotify):
 
 
 def do_restore(sp: spotipy.Spotify, backup_dir: Path):
-    """Restore playlists from a backup."""
     user = sp.current_user()
     user_id = user["id"]
 
@@ -256,6 +247,7 @@ def do_restore(sp: spotipy.Spotify, backup_dir: Path):
     print(f"[*] Restoring {len(playlists)} playlists for {user['display_name']}\n")
 
     for pl in playlists:
+        # can't recreate someone else's playlist, just re-follow it
         if not pl["owned_by_me"]:
             print(f"  [~] Skipping '{pl['name']}' (not owned by you, following it instead)")
             try:
@@ -275,7 +267,7 @@ def do_restore(sp: spotipy.Spotify, backup_dir: Path):
             description=pl.get("description", ""),
         )
 
-        # Add tracks in batches of 100
+        # spotify caps at 100 tracks per request
         for i in range(0, len(track_uris), 100):
             batch = track_uris[i:i + 100]
             try:
@@ -288,12 +280,13 @@ def do_restore(sp: spotipy.Spotify, backup_dir: Path):
                 else:
                     print(f"      [!] Failed to add batch: {e}")
 
-    # Restore followed artists
+    # re-follow artists
     artists_file = backup_dir / "followed_artists.json"
     if artists_file.exists():
         artists = json.loads(artists_file.read_text(encoding="utf-8"))
         print(f"\n[*] Re-following {len(artists)} artists...")
         artist_ids = [a["id"] for a in artists if a.get("id")]
+        # also capped at 50 per request
         for i in range(0, len(artist_ids), 50):
             batch = artist_ids[i:i + 50]
             try:
@@ -301,7 +294,7 @@ def do_restore(sp: spotipy.Spotify, backup_dir: Path):
             except Exception as e:
                 print(f"  [!] Failed to follow batch: {e}")
 
-    # Restore liked songs
+    # re-like songs
     liked_file = backup_dir / "liked_songs.json"
     if liked_file.exists():
         liked = json.loads(liked_file.read_text(encoding="utf-8"))

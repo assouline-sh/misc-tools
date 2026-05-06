@@ -38,19 +38,18 @@ except ImportError:
 
 
 def sanitize(name: str) -> str:
-    """Make a string safe for use as a folder/file name."""
+    """Strip anything that would break a filename on windows or linux."""
     name = re.sub(r'[<>:"/\\|?*\x00-\x1f]', "_", name).strip().strip(".")
     name = name.replace(" ", "_")
     return name[:150] or "unnamed"
 
 
 # ---------------------------------------------------------------------------
-# Platform detection
+# Platform detection — tries rCTF first since its endpoint is more distinctive
 # ---------------------------------------------------------------------------
 
 def detect_platform(session: requests.Session, base: str) -> str:
-    """Auto-detect whether the CTF is CTFd or rCTF."""
-    # Try rCTF config endpoint
+    # rCTF has a unique config endpoint that CTFd doesn't
     try:
         r = session.get(urljoin(base, "api/v1/integrations/client/config"), timeout=10)
         if r.ok:
@@ -60,7 +59,7 @@ def detect_platform(session: requests.Session, base: str) -> str:
     except Exception:
         pass
 
-    # Try CTFd endpoint
+    # check for CTFd's config endpoint
     try:
         r = session.get(urljoin(base, "api/v1/configs/ctf_name"), timeout=10)
         if r.ok:
@@ -70,7 +69,7 @@ def detect_platform(session: requests.Session, base: str) -> str:
     except Exception:
         pass
 
-    # Fallback: check homepage for clues
+    # last resort: look for rCTF/redpwn mentions in the page source
     try:
         r = session.get(base, timeout=10)
         if r.ok:
@@ -80,11 +79,12 @@ def detect_platform(session: requests.Session, base: str) -> str:
     except Exception:
         pass
 
+    # default to CTFd since it's way more common
     return "ctfd"
 
 
 # ---------------------------------------------------------------------------
-# CTFd backend
+# CTFd
 # ---------------------------------------------------------------------------
 
 def ctfd_make_session(token: str | None, cookie: str | None) -> requests.Session:
@@ -93,6 +93,7 @@ def ctfd_make_session(token: str | None, cookie: str | None) -> requests.Session
     if token:
         s.headers["Authorization"] = f"Token {token}"
     if cookie:
+        # support both "session_value" and "cookie_name:value" formats
         if ":" in cookie:
             cookie_name, cookie_value = cookie.split(":", 1)
             s.cookies.set(cookie_name, cookie_value)
@@ -149,6 +150,7 @@ def ctfd_dump(session: requests.Session, base: str, out_root: Path) -> int:
         chal_dir = out_root / sanitize(category) / sanitize(name)
         chal_dir.mkdir(parents=True, exist_ok=True)
 
+        # dump challenge info into a readme so you can browse offline
         readme = chal_dir / "README.md"
         with open(readme, "w", encoding="utf-8") as f:
             f.write(f"# {name}\n\n")
@@ -181,16 +183,15 @@ def ctfd_dump(session: requests.Session, base: str, out_root: Path) -> int:
 
 
 # ---------------------------------------------------------------------------
-# rCTF backend
+# rCTF
 # ---------------------------------------------------------------------------
 
 def rctf_make_session(token: str | None, cookie: str | None) -> requests.Session:
     s = requests.Session()
     s.headers.update({"User-Agent": "ctfdump/1.0", "Accept": "application/json"})
-    # rCTF uses Bearer auth. The token may come from the ctf_clearance cookie.
+    # rCTF uses Bearer auth. token might come from the ctf_clearance cookie
     auth_token = token
     if not auth_token and cookie:
-        # If a cookie was provided, extract the value (might be name:value format)
         if ":" in cookie:
             _, auth_token = cookie.split(":", 1)
         else:
@@ -259,11 +260,11 @@ def rctf_dump(session: requests.Session, base: str, out_root: Path) -> int:
         print(f"[+] {category}/{name}  ({len(files)} file{'s' if len(files) != 1 else ''})")
 
         for file_info in files:
+            # rCTF sometimes returns files as objects, sometimes as plain URLs
             if isinstance(file_info, dict):
                 fname = sanitize(file_info.get("name", "file"))
                 file_url = file_info.get("url", "")
             else:
-                # Fallback if files are plain strings
                 fname = _filename_from_path(str(file_info))
                 file_url = str(file_info)
 
@@ -286,6 +287,7 @@ def rctf_dump(session: requests.Session, base: str, out_root: Path) -> int:
 # ---------------------------------------------------------------------------
 
 def _get_name_from_title(session: requests.Session, base: str) -> str:
+    """Scrape the <title> tag as a last-ditch way to get the CTF name."""
     try:
         r = session.get(base, timeout=10)
         r.raise_for_status()
@@ -314,6 +316,7 @@ def _get_name_from_title(session: requests.Session, base: str) -> str:
             return parser.title.strip()
     except Exception:
         pass
+    # give up, just use the hostname
     return urlparse(base).hostname or "ctf"
 
 
@@ -328,6 +331,7 @@ def _download_file(session: requests.Session, base: str, file_path: str, dest: P
 
 
 def _download_file_url(session: requests.Session, url: str, dest: Path) -> None:
+    """Stream download to avoid loading huge files into memory."""
     with session.get(url, stream=True, timeout=60) as r:
         r.raise_for_status()
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -357,7 +361,7 @@ def main() -> int:
     parsed = urlparse(args.url)
     base = f"{parsed.scheme}://{parsed.netloc}/"
 
-    # Create a basic session for platform detection
+    # throwaway session just for sniffing the platform
     detect_session = requests.Session()
     detect_session.headers.update({"User-Agent": "ctfdump/1.0", "Accept": "application/json"})
 
