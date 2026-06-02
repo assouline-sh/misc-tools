@@ -8,7 +8,7 @@ struct QuickFlagWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: QuickFlagTimelineProvider()) { entry in
             QuickFlagWidgetView(entry: entry)
-                .containerBackground(.clear, for: .widget)
+                .containerBackground(.ultraThinMaterial, for: .widget)
         }
         .configurationDisplayName("Quick Flag")
         .description("Flag messages for reply reminders")

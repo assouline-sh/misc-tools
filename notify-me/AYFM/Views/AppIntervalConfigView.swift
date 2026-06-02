@@ -24,7 +24,7 @@ struct AppIntervalConfigView: View {
                         .foregroundStyle(.secondary)
                 }
             } else {
-                Section("apps") {
+                Section {
                     ForEach(platforms) { platform in
                         Picker(platform.name, selection: binding(for: platform.name)) {
                             Text("global (\(globalLabel))").tag(useGlobalTag)
@@ -38,6 +38,7 @@ struct AppIntervalConfigView: View {
             }
         }
         .scrollContentBackground(.hidden)
+        .contentMargins(.top, 8, for: .scrollContent)
         .background(Theme.background.ignoresSafeArea())
         .navigationTitle("app-specific intervals")
         .navigationBarTitleDisplayMode(.inline)

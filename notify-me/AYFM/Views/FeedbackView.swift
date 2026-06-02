@@ -11,7 +11,7 @@ struct FeedbackView: View {
     @State private var showingMail = false
 
     private let limit = 500
-    private let recipient = "kud3t4@proton.me"
+    private let recipient = "ayfm.feedback@proton.me"
     private let subject = "AYFM Feedback"
 
     /// When the last feedback was sent, if ever.
@@ -65,11 +65,10 @@ struct FeedbackView: View {
                         .monospacedDigit()
                 }
                 .font(.caption)
-            } header: {
-                sectionHeader("feature requests appreciated!")
             }
         }
         .scrollContentBackground(.hidden)
+        .contentMargins(.top, 8, for: .scrollContent)
         .background(Theme.background.ignoresSafeArea())
         .navigationTitle("feedback")
         .navigationBarTitleDisplayMode(.inline)
@@ -86,14 +85,6 @@ struct FeedbackView: View {
                 if result == .sent { markSent() }
             }
         }
-    }
-
-    private func sectionHeader(_ title: String) -> some View {
-        Text(title)
-            .font(.system(.footnote, design: .monospaced))
-            .textCase(nil)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .listRowInsets(EdgeInsets(top: 14, leading: 0, bottom: 6, trailing: 0))
     }
 
     private func send() {

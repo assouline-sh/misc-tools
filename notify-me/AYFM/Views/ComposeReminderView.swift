@@ -28,7 +28,7 @@ struct ComposeReminderView: View {
     /// included so the pre-filled interval is selectable even when it isn't a standard
     /// choice (e.g. a 1-minute global default).
     private var intervalOptions: [Int] {
-        Set([15, 30, 60, 120, 240, 480, 1440]).union([intervalMinutes]).sorted()
+        Set([15, 30, 60, 120, 240, 480, 720, 1440, 2880]).union([intervalMinutes]).sorted()
     }
 
     init(sourceApp: String?) {
@@ -165,11 +165,14 @@ struct ComposeReminderView: View {
             ?? AppIconStore.cachedData(for: app).flatMap { UIImage(data: $0) }
     }
 
-    /// Apps offered in the picker: the full catalog, plus the current one if it's custom.
+    /// Apps offered in the picker, sorted alphabetically: the full catalog, the user's
+    /// custom apps, plus the current one if it's not otherwise listed.
     private var appChoices: [String] {
         var names = PlatformCatalog.all.map(\.name)
-        if let sourceApp, !names.contains(sourceApp) { names.insert(sourceApp, at: 0) }
-        return names
+        names.append(contentsOf: CustomAppStore.load().map(\.name))
+        if let sourceApp { names.append(sourceApp) }
+        // De-dupe, then sort case-insensitively.
+        return Array(Set(names)).sorted { $0.localizedCaseInsensitiveCompare($1) == .orderedAscending }
     }
 
     /// Section header in the app's monospaced font, left-aligned with the section box's
@@ -187,6 +190,7 @@ struct ComposeReminderView: View {
         case ..<60:  return "\(minutes) min"
         case 60:     return "1 hour"
         case 1440:   return "1 day"
+        case 2880:   return "every other day"
         default:     return "\(minutes / 60) hours"
         }
     }

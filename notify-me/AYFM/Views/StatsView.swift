@@ -118,6 +118,7 @@ struct StatsView: View {
                 .font(.caption)
                 .foregroundStyle(Theme.dim)
             chart()
+                .chartXScale(domain: weekDomain)
                 .chartXAxis {
                     AxisMarks(values: .stride(by: .day)) { _ in
                         AxisValueLabel(format: .dateTime.weekday(.narrow))
@@ -177,6 +178,16 @@ struct StatsView: View {
         let replyCount: Int
         let avgResponseHours: Double?
         var id: Date { date }
+    }
+
+    /// Fixed 7-day X range [oldest day 00:00 ... tomorrow 00:00) so both charts always
+    /// show all weekday labels, even on days with no data point.
+    private var weekDomain: ClosedRange<Date> {
+        let days = last7Days.map(\.date)
+        let start = days.first ?? calendar.startOfDay(for: Date())
+        let last = days.last ?? start
+        let end = calendar.date(byAdding: .day, value: 1, to: last) ?? last
+        return start...end
     }
 
     private var last7Days: [DayStat] {
