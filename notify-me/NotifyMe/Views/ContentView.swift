@@ -1,22 +1,44 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var fly = FlyCoordinator()
+
     var body: some View {
-        TabView {
-            ReminderListView()
-                .tabItem {
-                    Label("Pending", systemImage: "bell.badge")
-                }
+        ZStack {
+            TabView {
+                ReminderListView()
+                    .tabItem {
+                        Label("shit to do", systemImage: "tray.full")
+                    }
 
-            AnsweredListView()
-                .tabItem {
-                    Label("Answered", systemImage: "checkmark.circle")
-                }
+                StatsView()
+                    .tabItem {
+                        Label("stats", systemImage: "chart.bar")
+                    }
 
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gear")
+                SettingsView()
+                    .tabItem {
+                        Label("settings", systemImage: "slider.horizontal.3")
+                    }
+            }
+            .environmentObject(fly)
+
+            if let flight = fly.flight {
+                GeometryReader { geo in
+                    FlyingLogoView(
+                        flight: flight,
+                        target: CGPoint(x: geo.size.width / 2, y: geo.size.height - 10),
+                        screen: geo.size,
+                        onDone: { fly.clear() }
+                    )
+                    .id(flight.id)
                 }
+                .ignoresSafeArea()
+                .allowsHitTesting(false)
+            }
         }
+        .tint(Theme.accent)
+        .fontDesign(.monospaced)
+        .preferredColorScheme(.dark)
     }
 }

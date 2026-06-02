@@ -1,6 +1,7 @@
 import Foundation
 import UserNotifications
 import SwiftData
+import UIKit
 
 final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationManager()
@@ -47,13 +48,13 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
 
     // MARK: - Scheduling
 
-    func scheduleReminder(id: UUID, messageText: String, senderName: String?, intervalMinutes: Int) {
+    func scheduleReminder(id: UUID, messageText: String, senderName: String?, sourceApp: String?, intervalMinutes: Int) {
         let content = UNMutableNotificationContent()
-        content.title = "Respond to \(senderName ?? "message")"
+        content.title = "Respond to \(senderName ?? sourceApp ?? "message")"
         content.body = String(messageText.prefix(150))
         content.sound = .default
         content.categoryIdentifier = AppConstants.notificationCategoryID
-        content.userInfo = ["reminderId": id.uuidString]
+        content.userInfo = ["reminderId": id.uuidString, "sourceApp": sourceApp ?? ""]
 
         let trigger = UNTimeIntervalNotificationTrigger(
             timeInterval: TimeInterval(intervalMinutes * 60),
@@ -85,6 +86,7 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                 id: item.id,
                 messageText: item.messageText,
                 senderName: item.senderName,
+                sourceApp: item.sourceApp,
                 intervalMinutes: item.notificationIntervalMinutes
             )
         }
@@ -131,6 +133,11 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
             try? await UNUserNotificationCenter.current().add(request)
 
         default:
+            // Tapping the notification opens the source app so you can reply right away.
+            let sourceApp = response.notification.request.content.userInfo["sourceApp"] as? String
+            if let url = AppLinks.url(for: sourceApp) {
+                await UIApplication.shared.open(url)
+            }
             NotificationCenter.default.post(
                 name: .reminderTapped,
                 object: nil,

@@ -32,6 +32,15 @@ struct NotifyMeApp: App {
                 let context = container.mainContext
                 SharedDataManager.importPendingReminders(context: context)
                 SharedDataManager.rescheduleAll(context: context)
+
+                Task { @MainActor in
+                    LiveActivityManager.shared.startIfNeeded()
+
+                    let predicate = #Predicate<ReminderItem> { !$0.isAnswered }
+                    if let count = try? context.fetchCount(FetchDescriptor(predicate: predicate)) {
+                        await LiveActivityManager.shared.updateCount(count)
+                    }
+                }
             }
         }
     }
