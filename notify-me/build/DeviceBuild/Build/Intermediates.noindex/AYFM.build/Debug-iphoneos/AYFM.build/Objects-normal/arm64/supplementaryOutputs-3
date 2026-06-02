@@ -1,0 +1,24 @@
+"/Users/shanz/misc-tools/notify-me/AYFM/Intents/CreateReminderIntent.swift":
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/CreateReminderIntent.d"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/CreateReminderIntent.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/CreateReminderIntent.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/CreateReminderIntent.dia"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/CreateReminderIntent.swiftconstvalues"
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/ContentView.swift":
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ContentView.swiftconstvalues"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ContentView.swiftdeps"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ContentView.o"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ContentView.d"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ContentView.dia"
+"/Users/shanz/misc-tools/notify-me/Shared/Constants.swift":
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/Constants.swiftconstvalues"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/Constants.d"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/Constants.dia"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/Constants.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/Constants.swiftdeps"
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/ComposeReminderView.swift":
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ComposeReminderView.o"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ComposeReminderView.dia"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ComposeReminderView.swiftdeps"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ComposeReminderView.d"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ComposeReminderView.swiftconstvalues"

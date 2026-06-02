@@ -1,0 +1,24 @@
+"/Users/shanz/misc-tools/notify-me/Shared/AppLinks.swift":
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppLinks.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppLinks.o"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppLinks.dia"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppLinks.swiftdeps"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppLinks.d"
+"/Users/shanz/misc-tools/notify-me/AYFM/Intents/AppShortcuts.swift":
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppShortcuts.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppShortcuts.swiftdeps"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppShortcuts.d"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppShortcuts.dia"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppShortcuts.swiftconstvalues"
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/AppIntervalConfigView.swift":
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIntervalConfigView.swiftconstvalues"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIntervalConfigView.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIntervalConfigView.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIntervalConfigView.d"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIntervalConfigView.o"
+"/Users/shanz/misc-tools/notify-me/Shared/ComposeReminderIntent.swift":
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ComposeReminderIntent.d"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ComposeReminderIntent.o"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ComposeReminderIntent.swiftconstvalues"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ComposeReminderIntent.dia"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/ComposeReminderIntent.swiftdeps"

@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'AYFM' in project 'AYFM'
+➜ Explicit dependency on target 'AYFMWidgetExtension' in project 'AYFM'
+Target 'AYFMWidgetExtension' in project 'AYFM' (no dependencies)

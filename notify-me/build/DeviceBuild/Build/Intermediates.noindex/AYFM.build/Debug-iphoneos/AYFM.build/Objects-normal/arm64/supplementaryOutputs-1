@@ -1,0 +1,24 @@
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/AnswerSwipeRow.swift":
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AnswerSwipeRow.swiftdeps"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AnswerSwipeRow.o"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AnswerSwipeRow.d"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AnswerSwipeRow.dia"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AnswerSwipeRow.swiftconstvalues"
+"/Users/shanz/misc-tools/notify-me/AYFM/AYFMApp.swift":
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AYFMApp.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AYFMApp.swiftdeps"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AYFMApp.swiftconstvalues"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AYFMApp.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AYFMApp.d"
+"/Users/shanz/misc-tools/notify-me/AYFM/Services/AppIconCache.swift":
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIconCache.d"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIconCache.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIconCache.o"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIconCache.dia"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIconCache.swiftdeps"
+"/Users/shanz/misc-tools/notify-me/Shared/AppIconStore.swift":
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIconStore.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIconStore.o"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIconStore.d"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIconStore.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/AppIconStore.dia"

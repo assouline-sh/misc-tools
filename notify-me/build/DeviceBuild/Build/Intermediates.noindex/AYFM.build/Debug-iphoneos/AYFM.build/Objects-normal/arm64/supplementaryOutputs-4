@@ -1,0 +1,24 @@
+"/Users/shanz/misc-tools/notify-me/Shared/FlagPlatform.swift":
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/FlagPlatform.d"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/FlagPlatform.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/FlagPlatform.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/FlagPlatform.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/FlagPlatform.dia"
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/FlyingLogo.swift":
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/FlyingLogo.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/FlyingLogo.d"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/FlyingLogo.swiftconstvalues"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/FlyingLogo.swiftdeps"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/FlyingLogo.o"
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/CustomTabBar.swift":
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/CustomTabBar.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/CustomTabBar.dia"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/CustomTabBar.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/CustomTabBar.o"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/CustomTabBar.d"
+"/Users/shanz/misc-tools/notify-me/AYFM/Services/NotificationManager.swift":
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/NotificationManager.d"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/NotificationManager.dia"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/NotificationManager.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/NotificationManager.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphoneos/AYFM.build/Objects-normal/arm64/NotificationManager.swiftdeps"

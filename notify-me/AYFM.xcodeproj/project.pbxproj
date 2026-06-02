@@ -1,0 +1,677 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01CD17E134B14D6A135F23BD /* FlagPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937B6750C29D7BCFF041902 /* FlagPlatform.swift */; };
+		08B358EA758FDE6EFB3679BD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9FA3121A23B5C903CFCFB2A /* Assets.xcassets */; };
+		1DE24C80585C66340C56FDC7 /* QuickFlagPageIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9869918AB5E7975BBCE41656 /* QuickFlagPageIntent.swift */; };
+		200E1D8FB22275604A6A0D9E /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF3FB7B9998E5BDA3AE7C84 /* AppIntents.framework */; };
+		2355C27E31A26F705C2C2647 /* AppIconStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516ADDD52EE464DBA4D74A5B /* AppIconStore.swift */; };
+		2D35E97F4974D51473406031 /* CreateReminderIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 291FDA0F2828F55B5B7CC2DD /* CreateReminderIntent.swift */; };
+		2D37A64ECA5EC30E3E42633A /* AYFMWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A77ACD8CF0EBBC16D78AB0B /* AYFMWidgetBundle.swift */; };
+		2E659BCF0E31F224CCEC7333 /* PlatformConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C702973B30C2A9969B5A16F9 /* PlatformConfigView.swift */; };
+		33A5E1AC9B63E22C2669717E /* FlyingLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F388683FDC8F268538DD8E /* FlyingLogo.swift */; };
+		3DCF994C31A985065C5D6EB2 /* ReminderRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0774DB4DE48E225CC77A0FC1 /* ReminderRow.swift */; };
+		4293E1C1CFAD7356A0B87F16 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150DCCD257127E1D819DE023 /* Constants.swift */; };
+		430720A07B26329E61BA79A2 /* SharedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E07DE04830E160F2319411E9 /* SharedDataManager.swift */; };
+		435F1D947647C595DB1EF613 /* AYFMWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 728334F6BBB52F25F47FDB36 /* AYFMWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4D72E49C62B2AF7EBE8DFA9E /* PendingReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD7BCDD5886D4DE0DEC2558 /* PendingReminder.swift */; };
+		4E647D675772FA6ED570E84E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150DCCD257127E1D819DE023 /* Constants.swift */; };
+		4E7437B66984E55E39C89602 /* AYFMApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAACDF5AD7F23DFB01AEFAD /* AYFMApp.swift */; };
+		51B0D921B2B55EED1EF71A86 /* ComposeReminderIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0F02368403148C372C1BD1 /* ComposeReminderIntent.swift */; };
+		525215C4D0970D53B6FD7935 /* AppIconStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516ADDD52EE464DBA4D74A5B /* AppIconStore.swift */; };
+		5413E72749440E0ADF98D20D /* QuickFlagIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539642AF56BC2C24F1591337 /* QuickFlagIntent.swift */; };
+		5523D56C3E4DB1FF07DF3732 /* AppIconCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525E91FE256278396A24DE99 /* AppIconCache.swift */; };
+		61C50E6967558D6F04C5618E /* AppShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = C42F54E22A2C05913EB88A39 /* AppShortcuts.swift */; };
+		687C015BCB65A1E768DBCBCB /* ComposeReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BD87197F607BDBE653C80EB /* ComposeReminderView.swift */; };
+		6BFF651492DCA799D0A27C3D /* FlagPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6937B6750C29D7BCFF041902 /* FlagPlatform.swift */; };
+		81EA0D424F41E1E75E02F3EE /* AppLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECD754712E82A6DCEB5DDD /* AppLinks.swift */; };
+		851F1A6A64D1424EFF5E5338 /* AppLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83ECD754712E82A6DCEB5DDD /* AppLinks.swift */; };
+		8B12E153078094654BF7F633 /* ComposeReminderIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B0F02368403148C372C1BD1 /* ComposeReminderIntent.swift */; };
+		8C9F61347E2BBBF14597366E /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E34CEE1FE0E9261BA9BE36 /* CustomTabBar.swift */; };
+		8D0F0A46BA7A49B5C93B59A3 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC52084BF86FA57A26C47198 /* NotificationManager.swift */; };
+		9F3C9616FD7580C3122FE487 /* AppIntents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABF3FB7B9998E5BDA3AE7C84 /* AppIntents.framework */; };
+		A317B31214C1E76FD82EF5F0 /* AnswerSwipeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FE3E72702AF21BFE75326D7 /* AnswerSwipeRow.swift */; };
+		A791FB92FC8FA532E1AA0140 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B71ED9E11A2C846DA707708 /* ContentView.swift */; };
+		B128BBC8929781160451DD67 /* PendingReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD7BCDD5886D4DE0DEC2558 /* PendingReminder.swift */; };
+		B2F1A089F8396203A5836B6A /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6137F786995C15D47BDB4E23 /* WidgetKit.framework */; };
+		B6E2AEB0F4D710D2460B0FA8 /* QuickFlagControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9747FDDB469989FE6870D9D /* QuickFlagControl.swift */; };
+		B8C87B0C784728E313BD080F /* QuickFlagPageIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9869918AB5E7975BBCE41656 /* QuickFlagPageIntent.swift */; };
+		BDA63E67AEB9D00AD50D89E0 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326A452D1A69A25E8930992E /* StatsView.swift */; };
+		C41793D436B53DD91C85C82F /* QuickFlagWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870958F45A069A0AB7D503BE /* QuickFlagWidget.swift */; };
+		CCD403183788D4A2D5DF6F7B /* ReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E418B2769BD409FF67C9456 /* ReminderListView.swift */; };
+		E0D940466B0678F1DA7393FF /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97B8FAAD6E06CE859EBAAF77 /* Theme.swift */; };
+		E161D28CBC8E0D8A50009ED3 /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A86B1AA42A3901F5677DB75 /* ActivityKit.framework */; };
+		E41B8B266F73320761516236 /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A86B1AA42A3901F5677DB75 /* ActivityKit.framework */; };
+		E93D2CBE4298CB41B0C75039 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FAC53DBFD12C7F1227862B4 /* SettingsView.swift */; };
+		EADBD61A9BE426EBE2A5152E /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB02E893FE369C9E50D45EA /* ReminderItem.swift */; };
+		F1A623B3415DB7CE22787676 /* QuickFlagIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 539642AF56BC2C24F1591337 /* QuickFlagIntent.swift */; };
+		FECD6B93D14D8BDB73B55C5E /* AppIntervalConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9D6FDBA3EB59A24D9AC3AE /* AppIntervalConfigView.swift */; };
+		FEED0001CCCC0001DDDD0001 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEED0003CCCC0003DDDD0003 /* FeedbackView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FF1767EF055C996B0A1C9023 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9CE6ECDA2328FAA301669118 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F721D90A186DB3786F439A1;
+			remoteInfo = AYFMWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3F0094056A5F9F0BC0EE021A /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				435F1D947647C595DB1EF613 /* AYFMWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		04F388683FDC8F268538DD8E /* FlyingLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyingLogo.swift; sourceTree = "<group>"; };
+		0655E7A3806CB60B0A941BC8 /* AYFM.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AYFM.entitlements; sourceTree = "<group>"; };
+		0774DB4DE48E225CC77A0FC1 /* ReminderRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderRow.swift; sourceTree = "<group>"; };
+		0BD87197F607BDBE653C80EB /* ComposeReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReminderView.swift; sourceTree = "<group>"; };
+		12E34CEE1FE0E9261BA9BE36 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		150DCCD257127E1D819DE023 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		1E418B2769BD409FF67C9456 /* ReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListView.swift; sourceTree = "<group>"; };
+		291FDA0F2828F55B5B7CC2DD /* CreateReminderIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderIntent.swift; sourceTree = "<group>"; };
+		2A77ACD8CF0EBBC16D78AB0B /* AYFMWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AYFMWidgetBundle.swift; sourceTree = "<group>"; };
+		2FAC53DBFD12C7F1227862B4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		326A452D1A69A25E8930992E /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		3A86B1AA42A3901F5677DB75 /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ActivityKit.framework; sourceTree = "<group>"; };
+		3B71ED9E11A2C846DA707708 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		516ADDD52EE464DBA4D74A5B /* AppIconStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconStore.swift; sourceTree = "<group>"; };
+		525E91FE256278396A24DE99 /* AppIconCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCache.swift; sourceTree = "<group>"; };
+		539642AF56BC2C24F1591337 /* QuickFlagIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFlagIntent.swift; sourceTree = "<group>"; };
+		6137F786995C15D47BDB4E23 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = WidgetKit.framework; sourceTree = "<group>"; };
+		6937B6750C29D7BCFF041902 /* FlagPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagPlatform.swift; sourceTree = "<group>"; };
+		6B0F02368403148C372C1BD1 /* ComposeReminderIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReminderIntent.swift; sourceTree = "<group>"; };
+		6DD7BCDD5886D4DE0DEC2558 /* PendingReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingReminder.swift; sourceTree = "<group>"; };
+		6FE3E72702AF21BFE75326D7 /* AnswerSwipeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerSwipeRow.swift; sourceTree = "<group>"; };
+		728334F6BBB52F25F47FDB36 /* AYFMWidgetExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = AYFMWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EB02E893FE369C9E50D45EA /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
+		83ECD754712E82A6DCEB5DDD /* AppLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinks.swift; sourceTree = "<group>"; };
+		870958F45A069A0AB7D503BE /* QuickFlagWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFlagWidget.swift; sourceTree = "<group>"; };
+		97B8FAAD6E06CE859EBAAF77 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		9869918AB5E7975BBCE41656 /* QuickFlagPageIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFlagPageIntent.swift; sourceTree = "<group>"; };
+		9AAACDF5AD7F23DFB01AEFAD /* AYFMApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AYFMApp.swift; sourceTree = "<group>"; };
+		A9FA3121A23B5C903CFCFB2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ABF3FB7B9998E5BDA3AE7C84 /* AppIntents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AppIntents.framework; sourceTree = "<group>"; };
+		AC52084BF86FA57A26C47198 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		B9747FDDB469989FE6870D9D /* QuickFlagControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFlagControl.swift; sourceTree = "<group>"; };
+		C42F54E22A2C05913EB88A39 /* AppShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcuts.swift; sourceTree = "<group>"; };
+		C702973B30C2A9969B5A16F9 /* PlatformConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformConfigView.swift; sourceTree = "<group>"; };
+		D8AB1FD57308C4ABD1EC365A /* AYFM.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = AYFM.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E07DE04830E160F2319411E9 /* SharedDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataManager.swift; sourceTree = "<group>"; };
+		F75ADCD0AEDB0E549DFC3050 /* AYFMWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AYFMWidgetExtension.entitlements; sourceTree = "<group>"; };
+		FB9D6FDBA3EB59A24D9AC3AE /* AppIntervalConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntervalConfigView.swift; sourceTree = "<group>"; };
+		FEED0003CCCC0003DDDD0003 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A82700689E1A57E59B8314F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F3C9616FD7580C3122FE487 /* AppIntents.framework in Frameworks */,
+				E161D28CBC8E0D8A50009ED3 /* ActivityKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ED51B3475532F3CADD3FA9ED /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B2F1A089F8396203A5836B6A /* WidgetKit.framework in Frameworks */,
+				E41B8B266F73320761516236 /* ActivityKit.framework in Frameworks */,
+				200E1D8FB22275604A6A0D9E /* AppIntents.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1C7540D643E516BEBE719DE9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A86B1AA42A3901F5677DB75 /* ActivityKit.framework */,
+				ABF3FB7B9998E5BDA3AE7C84 /* AppIntents.framework */,
+				6137F786995C15D47BDB4E23 /* WidgetKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		453BB633ACC9DA14A76E345E /* Intents */ = {
+			isa = PBXGroup;
+			children = (
+				C42F54E22A2C05913EB88A39 /* AppShortcuts.swift */,
+				291FDA0F2828F55B5B7CC2DD /* CreateReminderIntent.swift */,
+			);
+			path = Intents;
+			sourceTree = "<group>";
+		};
+		882552BC15BCF629FC2B08E7 = {
+			isa = PBXGroup;
+			children = (
+				C25E7E20CA115E3CE2C0D017 /* AYFM */,
+				C6F2D673D34D53B1A6B28995 /* AYFMWidgetExtension */,
+				9DFCA01C5E44C13813923DD7 /* Shared */,
+				1C7540D643E516BEBE719DE9 /* Frameworks */,
+				E89C89B8B45DA0B77EA7FCD1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		91BF79201DE4E1E1EFD979D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7EB02E893FE369C9E50D45EA /* ReminderItem.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9DFCA01C5E44C13813923DD7 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				516ADDD52EE464DBA4D74A5B /* AppIconStore.swift */,
+				83ECD754712E82A6DCEB5DDD /* AppLinks.swift */,
+				6B0F02368403148C372C1BD1 /* ComposeReminderIntent.swift */,
+				150DCCD257127E1D819DE023 /* Constants.swift */,
+				6937B6750C29D7BCFF041902 /* FlagPlatform.swift */,
+				6DD7BCDD5886D4DE0DEC2558 /* PendingReminder.swift */,
+				539642AF56BC2C24F1591337 /* QuickFlagIntent.swift */,
+				9869918AB5E7975BBCE41656 /* QuickFlagPageIntent.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		C25E7E20CA115E3CE2C0D017 /* AYFM */ = {
+			isa = PBXGroup;
+			children = (
+				A9FA3121A23B5C903CFCFB2A /* Assets.xcassets */,
+				0655E7A3806CB60B0A941BC8 /* AYFM.entitlements */,
+				9AAACDF5AD7F23DFB01AEFAD /* AYFMApp.swift */,
+				97B8FAAD6E06CE859EBAAF77 /* Theme.swift */,
+				453BB633ACC9DA14A76E345E /* Intents */,
+				91BF79201DE4E1E1EFD979D0 /* Models */,
+				C464BEF740ECFFD5F12BBF02 /* Services */,
+				CE40CA9B826D298AE79C9E5E /* Views */,
+			);
+			path = AYFM;
+			sourceTree = "<group>";
+		};
+		C464BEF740ECFFD5F12BBF02 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				525E91FE256278396A24DE99 /* AppIconCache.swift */,
+				AC52084BF86FA57A26C47198 /* NotificationManager.swift */,
+				E07DE04830E160F2319411E9 /* SharedDataManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C6F2D673D34D53B1A6B28995 /* AYFMWidgetExtension */ = {
+			isa = PBXGroup;
+			children = (
+				2A77ACD8CF0EBBC16D78AB0B /* AYFMWidgetBundle.swift */,
+				F75ADCD0AEDB0E549DFC3050 /* AYFMWidgetExtension.entitlements */,
+				B9747FDDB469989FE6870D9D /* QuickFlagControl.swift */,
+				870958F45A069A0AB7D503BE /* QuickFlagWidget.swift */,
+			);
+			path = AYFMWidgetExtension;
+			sourceTree = "<group>";
+		};
+		CE40CA9B826D298AE79C9E5E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6FE3E72702AF21BFE75326D7 /* AnswerSwipeRow.swift */,
+				FB9D6FDBA3EB59A24D9AC3AE /* AppIntervalConfigView.swift */,
+				FEED0003CCCC0003DDDD0003 /* FeedbackView.swift */,
+				0BD87197F607BDBE653C80EB /* ComposeReminderView.swift */,
+				3B71ED9E11A2C846DA707708 /* ContentView.swift */,
+				12E34CEE1FE0E9261BA9BE36 /* CustomTabBar.swift */,
+				04F388683FDC8F268538DD8E /* FlyingLogo.swift */,
+				C702973B30C2A9969B5A16F9 /* PlatformConfigView.swift */,
+				1E418B2769BD409FF67C9456 /* ReminderListView.swift */,
+				0774DB4DE48E225CC77A0FC1 /* ReminderRow.swift */,
+				2FAC53DBFD12C7F1227862B4 /* SettingsView.swift */,
+				326A452D1A69A25E8930992E /* StatsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E89C89B8B45DA0B77EA7FCD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D8AB1FD57308C4ABD1EC365A /* AYFM.app */,
+				728334F6BBB52F25F47FDB36 /* AYFMWidgetExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9F721D90A186DB3786F439A1 /* AYFMWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4A1D3B1B3208EAFF60C06259 /* Build configuration list for PBXNativeTarget "AYFMWidgetExtension" */;
+			buildPhases = (
+				2084E80041AB885ED81AAC94 /* Sources */,
+				ED51B3475532F3CADD3FA9ED /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AYFMWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = AYFMWidgetExtension;
+			productReference = 728334F6BBB52F25F47FDB36 /* AYFMWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		C226C9C12D887F5AA5ABC007 /* AYFM */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1EA6A9FA30DA4AB7023F5D26 /* Build configuration list for PBXNativeTarget "AYFM" */;
+			buildPhases = (
+				150A6B611AF8F2EE46762431 /* Sources */,
+				103ABDA072C5449C76077D26 /* Resources */,
+				A82700689E1A57E59B8314F6 /* Frameworks */,
+				3F0094056A5F9F0BC0EE021A /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3F48B42B82BD1ABEFE406E5B /* PBXTargetDependency */,
+			);
+			name = AYFM;
+			packageProductDependencies = (
+			);
+			productName = AYFM;
+			productReference = D8AB1FD57308C4ABD1EC365A /* AYFM.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9CE6ECDA2328FAA301669118 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					9F721D90A186DB3786F439A1 = {
+						DevelopmentTeam = FLY4PRP79P;
+						ProvisioningStyle = Automatic;
+					};
+					C226C9C12D887F5AA5ABC007 = {
+						DevelopmentTeam = FLY4PRP79P;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = FAD860377F712615E880783A /* Build configuration list for PBXProject "AYFM" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 882552BC15BCF629FC2B08E7;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = E89C89B8B45DA0B77EA7FCD1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C226C9C12D887F5AA5ABC007 /* AYFM */,
+				9F721D90A186DB3786F439A1 /* AYFMWidgetExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		103ABDA072C5449C76077D26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				08B358EA758FDE6EFB3679BD /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		150A6B611AF8F2EE46762431 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E7437B66984E55E39C89602 /* AYFMApp.swift in Sources */,
+				A317B31214C1E76FD82EF5F0 /* AnswerSwipeRow.swift in Sources */,
+				5523D56C3E4DB1FF07DF3732 /* AppIconCache.swift in Sources */,
+				2355C27E31A26F705C2C2647 /* AppIconStore.swift in Sources */,
+				FECD6B93D14D8BDB73B55C5E /* AppIntervalConfigView.swift in Sources */,
+				FEED0001CCCC0001DDDD0001 /* FeedbackView.swift in Sources */,
+				851F1A6A64D1424EFF5E5338 /* AppLinks.swift in Sources */,
+				61C50E6967558D6F04C5618E /* AppShortcuts.swift in Sources */,
+				51B0D921B2B55EED1EF71A86 /* ComposeReminderIntent.swift in Sources */,
+				687C015BCB65A1E768DBCBCB /* ComposeReminderView.swift in Sources */,
+				4E647D675772FA6ED570E84E /* Constants.swift in Sources */,
+				A791FB92FC8FA532E1AA0140 /* ContentView.swift in Sources */,
+				2D35E97F4974D51473406031 /* CreateReminderIntent.swift in Sources */,
+				8C9F61347E2BBBF14597366E /* CustomTabBar.swift in Sources */,
+				01CD17E134B14D6A135F23BD /* FlagPlatform.swift in Sources */,
+				33A5E1AC9B63E22C2669717E /* FlyingLogo.swift in Sources */,
+				8D0F0A46BA7A49B5C93B59A3 /* NotificationManager.swift in Sources */,
+				4D72E49C62B2AF7EBE8DFA9E /* PendingReminder.swift in Sources */,
+				2E659BCF0E31F224CCEC7333 /* PlatformConfigView.swift in Sources */,
+				F1A623B3415DB7CE22787676 /* QuickFlagIntent.swift in Sources */,
+				1DE24C80585C66340C56FDC7 /* QuickFlagPageIntent.swift in Sources */,
+				EADBD61A9BE426EBE2A5152E /* ReminderItem.swift in Sources */,
+				CCD403183788D4A2D5DF6F7B /* ReminderListView.swift in Sources */,
+				3DCF994C31A985065C5D6EB2 /* ReminderRow.swift in Sources */,
+				E93D2CBE4298CB41B0C75039 /* SettingsView.swift in Sources */,
+				430720A07B26329E61BA79A2 /* SharedDataManager.swift in Sources */,
+				BDA63E67AEB9D00AD50D89E0 /* StatsView.swift in Sources */,
+				E0D940466B0678F1DA7393FF /* Theme.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2084E80041AB885ED81AAC94 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D37A64ECA5EC30E3E42633A /* AYFMWidgetBundle.swift in Sources */,
+				525215C4D0970D53B6FD7935 /* AppIconStore.swift in Sources */,
+				81EA0D424F41E1E75E02F3EE /* AppLinks.swift in Sources */,
+				8B12E153078094654BF7F633 /* ComposeReminderIntent.swift in Sources */,
+				4293E1C1CFAD7356A0B87F16 /* Constants.swift in Sources */,
+				6BFF651492DCA799D0A27C3D /* FlagPlatform.swift in Sources */,
+				B128BBC8929781160451DD67 /* PendingReminder.swift in Sources */,
+				B6E2AEB0F4D710D2460B0FA8 /* QuickFlagControl.swift in Sources */,
+				5413E72749440E0ADF98D20D /* QuickFlagIntent.swift in Sources */,
+				B8C87B0C784728E313BD080F /* QuickFlagPageIntent.swift in Sources */,
+				C41793D436B53DD91C85C82F /* QuickFlagWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3F48B42B82BD1ABEFE406E5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F721D90A186DB3786F439A1 /* AYFMWidgetExtension */;
+			targetProxy = FF1767EF055C996B0A1C9023 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		32B8A3C686D27A77C3BF548C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AYFMWidgetExtension/AYFMWidgetExtension.entitlements;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AYFMWidgetExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "kud.remindreply.widget-extension";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		53693C10089FC1A3F4BD8B5A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AYFM/AYFM.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = AYFM;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kud.remindreply;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		996B6BE9A3F90A71C5430836 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = AYFMWidgetExtension/AYFMWidgetExtension.entitlements;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AYFMWidgetExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "kud.remindreply.widget-extension";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A99629493E11D94B02E5A0A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = FLY4PRP79P;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Release;
+		};
+		C140E11AC9D7EEE525110382 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = FLY4PRP79P;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.9;
+			};
+			name = Debug;
+		};
+		DA56ED91AAC30F308F816905 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = AYFM/AYFM.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\".\"",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = AYFM;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kud.remindreply;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1EA6A9FA30DA4AB7023F5D26 /* Build configuration list for PBXNativeTarget "AYFM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DA56ED91AAC30F308F816905 /* Debug */,
+				53693C10089FC1A3F4BD8B5A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		4A1D3B1B3208EAFF60C06259 /* Build configuration list for PBXNativeTarget "AYFMWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				996B6BE9A3F90A71C5430836 /* Debug */,
+				32B8A3C686D27A77C3BF548C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		FAD860377F712615E880783A /* Build configuration list for PBXProject "AYFM" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C140E11AC9D7EEE525110382 /* Debug */,
+				A99629493E11D94B02E5A0A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9CE6ECDA2328FAA301669118 /* Project object */;
+}
