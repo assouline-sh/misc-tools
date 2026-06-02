@@ -19,6 +19,7 @@ schemes:
       targets:
         AYFM: all
         AYFMWidgetExtension: all
+        AYFMShareExtension: all
     run:
       config: Debug
     profile:
@@ -32,23 +33,35 @@ targets:
     platform: iOS
     sources:
       - path: AYFM
+        excludes:
+          - Info.plist
       - path: Shared
     dependencies:
       - target: AYFMWidgetExtension
+      - target: AYFMShareExtension
       - framework: AppIntents.framework
         embed: false
       - framework: ActivityKit.framework
         embed: false
+    info:
+      path: AYFM/Info.plist
+      properties:
+        CFBundleDisplayName: AYFM
+        UIApplicationSupportsIndirectInputEvents: true
+        UILaunchScreen: {}
+        UIRequiresFullScreen: false
+        UISupportedInterfaceOrientations~iphone:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        NSSupportsLiveActivities: true
+        CFBundleURLTypes:
+          - CFBundleURLName: kud.remindreply
+            CFBundleURLSchemes:
+              - ayfm
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: kud.remindreply
-        GENERATE_INFOPLIST_FILE: YES
-        INFOPLIST_KEY_CFBundleDisplayName: AYFM
-        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
-        INFOPLIST_KEY_UILaunchScreen_Generation: YES
-        INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone: "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight"
-        INFOPLIST_KEY_UIRequiresFullScreen: NO
-        INFOPLIST_KEY_NSSupportsLiveActivities: YES
         CODE_SIGN_ENTITLEMENTS: AYFM/AYFM.entitlements
 
   AYFMWidgetExtension:
@@ -72,3 +85,18 @@ targets:
         GENERATE_INFOPLIST_FILE: NO
         INFOPLIST_FILE: AYFMWidgetExtension/Info.plist
         CODE_SIGN_ENTITLEMENTS: AYFMWidgetExtension/AYFMWidgetExtension.entitlements
+
+  AYFMShareExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: AYFMShareExtension
+        excludes:
+          - Info.plist
+      - path: Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: kud.remindreply.share-extension
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: AYFMShareExtension/Info.plist
+        CODE_SIGN_ENTITLEMENTS: AYFMShareExtension/AYFMShareExtension.entitlements

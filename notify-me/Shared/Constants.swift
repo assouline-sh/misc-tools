@@ -7,6 +7,8 @@ enum AppConstants {
     static let snoozeActionID = "SNOOZE_ACTION"
     static let defaultIntervalKey = "defaultIntervalMinutes"   // the global fallback interval
     static let appIntervalsKey = "appSpecificIntervals"        // per-app interval overrides
+    static let defaultStrengthKey = "defaultStrength"          // default notification strength (true = ignore Do Not Disturb)
+    static let appStrengthsKey = "appSpecificStrengths"        // per-app strength overrides (true = ignore Do Not Disturb)
     static let selectedPlatformsKey = "selectedPlatforms"
     static let customPlatformsKey = "customPlatforms"          // user-added apps (persist independently of slots)
     static let lastFeedbackDateKey = "lastFeedbackDate"        // throttles feedback to once per 24h
@@ -15,6 +17,8 @@ enum AppConstants {
     static let widgetFlashDateKey = "quickFlagFlashDate"
     static let composeAppKey = "composeReminderApp"
     static let composeDateKey = "composeReminderDate"
+    static let globalSnoozeUntilKey = "globalSnoozeUntil"      // timestamp until which all reminders are paused (0 = off)
+    static let globalSnoozeOptionKey = "globalSnoozeOption"    // last-picked snooze duration (slider index)
 
     /// App Group shared between the app, share extension, and widget extension.
     /// Must match the `com.apple.security.application-groups` entitlement in all three targets.
@@ -49,15 +53,18 @@ enum ComposeHandoff {
     struct Request: Codable {
         let app: String?
         let date: Date
+        /// Optional text to pre-fill the "about" field (e.g. a shared link/text).
+        var about: String?
     }
 
     private static var fileURL: URL {
         AppConstants.sharedContainerURL.appendingPathComponent("compose-request.json")
     }
 
-    /// Records a request to compose for `app` (nil = no specific app).
-    static func write(app: String?) {
-        guard let data = try? JSONEncoder().encode(Request(app: app, date: Date())) else { return }
+    /// Records a request to compose for `app` (nil = no specific app), optionally
+    /// pre-filling the "about" field.
+    static func write(app: String?, about: String? = nil) {
+        guard let data = try? JSONEncoder().encode(Request(app: app, date: Date(), about: about)) else { return }
         try? data.write(to: fileURL, options: .atomic)
     }
 

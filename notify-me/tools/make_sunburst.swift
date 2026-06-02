@@ -129,12 +129,12 @@ case "fine":
 case "emanate":
     // Fewer, thicker rays running all the way to the center (behind the bubble) — no
     // halo gap, so the bubble sits directly on top of the sun.
-    let n = 12
+    let n = 8
     let slot = 2 * CGFloat.pi / CGFloat(n)
     for i in 0..<n {
         ray(angle: CGFloat(i) * slot, half: slot * 0.34, innerR: 0, outerR: outerR)
     }
-    dotBubble(rect: bubble, rad: bubbleRad, keyline: 18)
+    dotBubble(rect: bubble, rad: bubbleRad, keyline: 36)
 
 default:
     fatalError("unknown style \(style)")

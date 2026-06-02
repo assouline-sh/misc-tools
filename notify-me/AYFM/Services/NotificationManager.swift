@@ -46,9 +46,39 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         return settings.authorizationStatus
     }
 
+    // MARK: - Global snooze
+
+    /// The instant until which every reminder is paused, or nil when not snoozing.
+    /// Stored as a timestamp in the shared defaults so every target honours it.
+    /// `.distantFuture` represents an indefinite snooze.
+    var snoozeUntil: Date? {
+        let timestamp = AppConstants.sharedDefaults.double(forKey: AppConstants.globalSnoozeUntilKey)
+        guard timestamp > 0 else { return nil }
+        let until = Date(timeIntervalSince1970: timestamp)
+        return until > Date() ? until : nil
+    }
+
+    var isSnoozed: Bool { snoozeUntil != nil }
+
+    /// Pause every reminder until `date` (pass `.distantFuture` for indefinitely), or pass
+    /// nil to lift the snooze. Pausing immediately clears all pending notifications; lifting
+    /// reschedules nothing here — the caller reschedules the active reminders.
+    func setGlobalSnooze(until date: Date?) {
+        let defaults = AppConstants.sharedDefaults
+        if let date {
+            defaults.set(date.timeIntervalSince1970, forKey: AppConstants.globalSnoozeUntilKey)
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        } else {
+            defaults.removeObject(forKey: AppConstants.globalSnoozeUntilKey)
+        }
+    }
+
     // MARK: - Scheduling
 
     func scheduleReminder(id: UUID, messageText: String, senderName: String?, sourceApp: String?, intervalMinutes: Int, createdAt: Date) {
+        // Honour a global snooze — no new notifications fire while paused.
+        guard !isSnoozed else { return }
+
         let content = UNMutableNotificationContent()
         let text = ReminderNotification.text(senderName: senderName, sourceApp: sourceApp, messageText: messageText, createdAt: createdAt)
         content.title = text.title
@@ -57,6 +87,9 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         content.sound = .default
         content.categoryIdentifier = AppConstants.notificationCategoryID
         content.userInfo = ["reminderId": id.uuidString, "sourceApp": sourceApp ?? ""]
+        content.threadIdentifier = ReminderNotification.threadIdentifier(sourceApp: sourceApp)
+        // Time-sensitive reminders punch through Do Not Disturb / Focus; "weak" ones respect it.
+        content.interruptionLevel = StrengthStore.ignoresDoNotDisturb(for: sourceApp) ? .timeSensitive : .active
 
         let trigger = UNTimeIntervalNotificationTrigger(
             timeInterval: TimeInterval(intervalMinutes * 60),
@@ -82,6 +115,9 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     func rescheduleAllActive(items: [ReminderItem]) {
         let center = UNUserNotificationCenter.current()
         center.removeAllPendingNotificationRequests()
+
+        // While globally snoozed, leave everything cancelled — don't reschedule.
+        guard !isSnoozed else { return }
 
         for item in items where !item.isAnswered {
             scheduleReminder(
@@ -127,6 +163,8 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
             snoozeContent.sound = content.sound
             snoozeContent.categoryIdentifier = content.categoryIdentifier
             snoozeContent.userInfo = content.userInfo
+            snoozeContent.threadIdentifier = content.threadIdentifier
+            snoozeContent.interruptionLevel = content.interruptionLevel
 
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3600, repeats: false)
             let request = UNNotificationRequest(

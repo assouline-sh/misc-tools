@@ -1,22 +1,22 @@
 {
   "tables" : {
-    "Localizable" : [
-      {
-        "key" : "Create a reply reminder"
-      }
-    ],
     "AppShortcuts" : [
       {
+        "location" : {
+          "startingColumn" : 0,
+          "startingLine" : 4
+        },
+        "key" : "Remind me to reply in ${applicationName}",
         "values" : [
           "Remind me to reply in ${applicationName}",
           "Create a reminder in ${applicationName}",
           "${applicationName} remind me to reply"
-        ],
-        "key" : "Remind me to reply in ${applicationName}",
-        "location" : {
-          "startingColumn" : 0,
-          "startingLine" : 4
-        }
+        ]
+      }
+    ],
+    "Localizable" : [
+      {
+        "key" : "Create a reply reminder"
       }
     ]
   },

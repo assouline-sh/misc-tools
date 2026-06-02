@@ -53,6 +53,7 @@ enum PlatformCatalog {
         FlagPlatform(name: "Airbnb",    icon: "house.circle.fill"),
         FlagPlatform(name: "Venmo",     icon: "dollarsign.circle.fill"),
         FlagPlatform(name: "PayPal",    icon: "p.circle.fill"),
+        FlagPlatform(name: "Link",      icon: "link"),
         FlagPlatform(name: "Voicemail", icon: "recordingtape"),
     ]
 
@@ -123,5 +124,40 @@ enum IntervalStore {
         if let minutes { all[app] = minutes } else { all.removeValue(forKey: app) }
         guard let data = try? JSONEncoder().encode(all) else { return }
         AppConstants.sharedDefaults.set(data, forKey: AppConstants.appIntervalsKey)
+    }
+}
+
+/// Notification "strength": whether a reminder breaks through Do Not Disturb / Focus
+/// (delivered time-sensitive) or quietly respects it. One default plus optional per-app
+/// overrides, stored in the shared App Group so the app, widget, and intents all resolve
+/// the same value. `true` = ignore Do Not Disturb, which is the app's default.
+enum StrengthStore {
+    /// The default strength used by any app without its own override. Defaults to `true`
+    /// (ignore Do Not Disturb) until the user turns it off.
+    static var global: Bool {
+        AppConstants.sharedDefaults.object(forKey: AppConstants.defaultStrengthKey) as? Bool ?? true
+    }
+
+    /// Per-app overrides, keyed by app name. Apps absent here use the default strength.
+    static func overrides() -> [String: Bool] {
+        guard let data = AppConstants.sharedDefaults.data(forKey: AppConstants.appStrengthsKey),
+              let dict = try? JSONDecoder().decode([String: Bool].self, from: data)
+        else { return [:] }
+        return dict
+    }
+
+    /// Whether reminders for an app should ignore Do Not Disturb: its override if set,
+    /// otherwise the default strength.
+    static func ignoresDoNotDisturb(for app: String?) -> Bool {
+        if let app, let value = overrides()[app] { return value }
+        return global
+    }
+
+    /// Sets (or, with nil, clears) an app's override.
+    static func setOverride(_ ignore: Bool?, for app: String) {
+        var all = overrides()
+        if let ignore { all[app] = ignore } else { all.removeValue(forKey: app) }
+        guard let data = try? JSONEncoder().encode(all) else { return }
+        AppConstants.sharedDefaults.set(data, forKey: AppConstants.appStrengthsKey)
     }
 }

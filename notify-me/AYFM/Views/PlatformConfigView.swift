@@ -40,7 +40,7 @@ struct PlatformConfigView: View {
         ("email", ["Gmail", "Outlook", "Mail"]),
         ("shopping", ["eBay", "Etsy", "Depop", "Airbnb"]),
         ("payments", ["Venmo", "PayPal"]),
-        ("other", ["Voicemail"]),
+        ("other", ["Link", "Voicemail"]),
     ]
 
     /// Available apps grouped by category (empty groups dropped), with anything

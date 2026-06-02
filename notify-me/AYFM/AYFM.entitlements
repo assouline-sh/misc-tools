@@ -6,5 +6,12 @@
 	<array>
 		<string>group.kud.remindreply</string>
 	</array>
+	<!-- Time Sensitive Notifications — activate once the paid Apple Developer Program
+	     enrollment is approved (purchased, pending approval as of 2026-06-02). To enable:
+	     uncomment here AND in AYFMWidgetExtension.entitlements, then rebuild with
+	     `xcodebuild ... -allowProvisioningUpdates`. Powers the "strength" feature.
+	<key>com.apple.developer.usernotifications.time-sensitive</key>
+	<true/>
+	-->
 </dict>
 </plist>

@@ -29,6 +29,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E64F2810A558A697CACA57A8"
+               BuildableName = "AYFMShareExtension.appex"
+               BlueprintName = "AYFMShareExtension"
+               ReferencedContainer = "container:AYFM.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "9F721D90A186DB3786F439A1"
                BuildableName = "AYFMWidgetExtension.appex"
                BlueprintName = "AYFMWidgetExtension"

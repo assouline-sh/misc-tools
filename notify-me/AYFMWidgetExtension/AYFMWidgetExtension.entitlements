@@ -6,5 +6,10 @@
 	<array>
 		<string>group.kud.remindreply</string>
 	</array>
+	<!-- See AYFM.entitlements: enable together once enrollment is approved (the widget
+	     schedules reminders via QuickFlagIntent, so it needs the entitlement too).
+	<key>com.apple.developer.usernotifications.time-sensitive</key>
+	<true/>
+	-->
 </dict>
 </plist>

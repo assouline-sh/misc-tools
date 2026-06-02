@@ -14,6 +14,9 @@ struct ReminderListView: View {
     @ObservedObject private var icons = AppIconCache.shared
     @EnvironmentObject private var fly: FlyCoordinator
 
+    /// The reminder whose edit sheet is open (long-press → "edit"), or nil when none.
+    @State private var editingItem: ReminderItem?
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             ScreenTitle("answer your f****** messages", accent: "f******")
@@ -41,6 +44,9 @@ struct ReminderListView: View {
                                     openURL(url)
                                 }
                             }
+                            .onLongPressGesture {
+                                editingItem = item
+                            }
                             .transition(.move(edge: .trailing).combined(with: .opacity))
                         }
                     }
@@ -53,6 +59,9 @@ struct ReminderListView: View {
         .background(Theme.background.ignoresSafeArea())
         .onAppear(perform: loadIcons)
         .onChange(of: reminders.count) { _, _ in loadIcons() }
+        .sheet(item: $editingItem) { item in
+            ComposeReminderView(editing: item)
+        }
     }
 
     /// Hand the row's logo + frame + swipe velocity to the fling overlay, stop nagging,

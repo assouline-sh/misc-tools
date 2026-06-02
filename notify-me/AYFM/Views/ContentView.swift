@@ -7,6 +7,7 @@ struct ContentView: View {
     @State private var selection = 0
     @State private var statsIconFrame: CGRect = .zero  // global frame of the stats icon
     @State private var composeApp: String?
+    @State private var composeAbout: String?
     @State private var showCompose = false
     /// Whether notifications are usable. Starts true to avoid flashing the warning before
     /// we've checked; flipped false only once we confirm permission is missing.
@@ -61,7 +62,7 @@ struct ContentView: View {
         // Keep the whole UI (esp. the tab bar) from riding up over the keyboard.
         .ignoresSafeArea(.keyboard, edges: .bottom)
         .sheet(isPresented: $showCompose) {
-            ComposeReminderView(sourceApp: composeApp)
+            ComposeReminderView(sourceApp: composeApp, prefillAbout: composeAbout)
         }
         .onAppear(perform: checkPendingCompose)
         .task { await refreshNotificationStatus() }
@@ -74,6 +75,7 @@ struct ContentView: View {
                 // in-progress form, so returning lands on the main screen.
                 showCompose = false
                 composeApp = nil
+                composeAbout = nil
             }
         }
         .onReceive(NotificationCenter.default.publisher(
@@ -90,6 +92,7 @@ struct ContentView: View {
     private var addButton: some View {
         Button {
             composeApp = nil
+            composeAbout = nil
             showCompose = true
         } label: {
             Image(systemName: "plus")
@@ -147,6 +150,7 @@ struct ContentView: View {
     private func checkPendingCompose() {
         guard !showCompose, let request = ComposeHandoff.consume() else { return }
         composeApp = request.app
+        composeAbout = request.about
         showCompose = true
     }
 

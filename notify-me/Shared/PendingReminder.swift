@@ -65,6 +65,14 @@ enum ReminderNotification {
         }
     }
 
+    /// Groups notifications in Notification Center per source app. Reminders with no app
+    /// fall into a single "ungrouped" thread so they don't each form their own group.
+    static func threadIdentifier(sourceApp: String?) -> String {
+        let app = sourceApp?.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let app, !app.isEmpty else { return "reminders-no-app" }
+        return "reminders-app-\(app.lowercased())"
+    }
+
     /// The real "about" text, or nil if it's empty or just the auto-generated flag stamp.
     static func about(_ messageText: String?) -> String? {
         guard let text = messageText?.trimmingCharacters(in: .whitespacesAndNewlines),

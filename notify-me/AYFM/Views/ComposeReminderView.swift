@@ -20,6 +20,10 @@ struct ComposeReminderView: View {
     private let nameLimit = 25
     private let aboutLimit = 100
 
+    /// The existing reminder being edited, or nil when composing a new one. In edit mode
+    /// `save()` updates this item in place and reschedules it instead of inserting a new one.
+    private let editingItem: ReminderItem?
+
     /// Drives the tapped-app badge's pop-in, so opening the form clearly confirms which
     /// app you tapped in the widget.
     @State private var badgeIn = false
@@ -28,13 +32,26 @@ struct ComposeReminderView: View {
     /// included so the pre-filled interval is selectable even when it isn't a standard
     /// choice (e.g. a 1-minute global default).
     private var intervalOptions: [Int] {
-        Set([15, 30, 60, 120, 240, 480, 720, 1440, 2880]).union([intervalMinutes]).sorted()
+        Set([30, 60, 120, 240, 480, 720, 1440, 2880]).union([intervalMinutes]).sorted()
     }
 
-    init(sourceApp: String?) {
+    init(sourceApp: String?, prefillAbout: String? = nil) {
+        editingItem = nil
         _sourceApp = State(initialValue: sourceApp)
+        _messageText = State(initialValue: prefillAbout ?? "")
         // Default to this app's own interval if it has one, else the global interval.
         _intervalMinutes = State(initialValue: IntervalStore.interval(for: sourceApp))
+    }
+
+    /// Edit an existing reminder: pre-fill every field from it and update it in place on
+    /// save. The auto-generated "Flagged at …" stamp is shown as an empty message so it
+    /// isn't presented as editable text.
+    init(editing item: ReminderItem) {
+        editingItem = item
+        _sourceApp = State(initialValue: item.sourceApp)
+        _senderName = State(initialValue: item.senderName ?? "")
+        _messageText = State(initialValue: item.messageText.hasPrefix("Flagged at") ? "" : item.messageText)
+        _intervalMinutes = State(initialValue: item.notificationIntervalMinutes)
     }
 
     var body: some View {
@@ -94,7 +111,7 @@ struct ComposeReminderView: View {
             }
             .scrollContentBackground(.hidden)
             .background(Theme.background.ignoresSafeArea())
-            .navigationTitle("new notification")
+            .navigationTitle(editingItem == nil ? "new notification" : "edit notification")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -202,12 +219,39 @@ struct ComposeReminderView: View {
         let trimmedSender = String(senderName.prefix(nameLimit))
             .replacingOccurrences(of: "\n", with: " ")
             .trimmingCharacters(in: .whitespacesAndNewlines)
+        let resolvedSender = trimmedSender.isEmpty ? nil : trimmedSender
+
+        if let item = editingItem {
+            // Keep the original "Flagged at …" stamp (tied to createdAt) when the message
+            // is left blank, so an edited flag still reads sensibly.
+            item.messageText = trimmedMessage.isEmpty
+                ? "Flagged at \(Self.timeFormatter.string(from: item.createdAt))"
+                : trimmedMessage
+            item.senderName = resolvedSender
+            item.sourceApp = sourceApp
+            item.notificationIntervalMinutes = intervalMinutes
+            try? context.save()
+
+            // Re-arm the repeating notification so the new text / app / interval / strength
+            // take effect immediately.
+            NotificationManager.shared.cancelReminder(id: item.id)
+            NotificationManager.shared.scheduleReminder(
+                id: item.id,
+                messageText: item.messageText,
+                senderName: item.senderName,
+                sourceApp: item.sourceApp,
+                intervalMinutes: item.notificationIntervalMinutes,
+                createdAt: item.createdAt
+            )
+            dismiss()
+            return
+        }
 
         let item = ReminderItem(
             messageText: trimmedMessage.isEmpty
                 ? "Flagged at \(Self.timeFormatter.string(from: Date()))"
                 : trimmedMessage,
-            senderName: trimmedSender.isEmpty ? nil : trimmedSender,
+            senderName: resolvedSender,
             sourceApp: sourceApp,
             intervalMinutes: intervalMinutes
         )

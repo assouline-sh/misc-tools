@@ -38,6 +38,8 @@ struct QuickFlagIntent: AppIntent {
         content.sound = .default
         content.categoryIdentifier = AppConstants.notificationCategoryID
         content.userInfo = ["reminderId": reminder.id.uuidString, "sourceApp": sourceApp ?? ""]
+        content.threadIdentifier = ReminderNotification.threadIdentifier(sourceApp: sourceApp)
+        content.interruptionLevel = StrengthStore.ignoresDoNotDisturb(for: sourceApp) ? .timeSensitive : .active
 
         let trigger = UNTimeIntervalNotificationTrigger(
             timeInterval: TimeInterval(interval * 60),

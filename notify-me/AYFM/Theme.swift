@@ -22,15 +22,21 @@ enum Theme {
         return accent
     }
 
-    /// Coarse age label: under an hour, under 12 hours, otherwise whole days.
+    /// Coarse age label bucketed to the same thresholds as the reminder intervals
+    /// (30 min, 1/2/4/8/12 hours, 1/2/3 days), capped at "> 3 days".
     static func ageLabel(_ seconds: TimeInterval) -> String {
-        let hour: TimeInterval = 3_600
-        if seconds < hour { return "< 1 hour" }
-        if seconds < 6 * hour { return "< 6 hours" }
-        if seconds < 12 * hour { return "< 12 hours" }
-        if seconds < 24 * hour { return "< 1 day" }
-        let days = max(1, Int(seconds / 86_400))
-        return days == 1 ? "1 day" : "\(days) days"
+        let minute: TimeInterval = 60
+        let day: TimeInterval = 86_400
+        if seconds < 30 * minute { return "< 30 min" }
+        if seconds < 60 * minute { return "< 1 hour" }
+        if seconds < 120 * minute { return "< 2 hours" }
+        if seconds < 240 * minute { return "< 4 hours" }
+        if seconds < 480 * minute { return "< 8 hours" }
+        if seconds < 720 * minute { return "< 12 hours" }
+        if seconds < day { return "< 1 day" }
+        if seconds < 2 * day { return "< 2 days" }
+        if seconds < 3 * day { return "< 3 days" }
+        return "> 3 days"
     }
 }
 
@@ -75,6 +81,7 @@ extension Theme {
         "Airbnb": Color(hex: 0xFF5A5F),
         "Venmo": Color(hex: 0x3D95CE),
         "PayPal": Color(hex: 0x003087),
+        "Link": Color(hex: 0x3B82F6),
         "iMessage": Color(hex: 0x0A84FF),
         "Mail": Color(hex: 0x2D7DF6),
     ]
