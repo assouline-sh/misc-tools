@@ -9,7 +9,7 @@ struct AnswerSwipeRow<Content: View>: View {
     private let content: Content
     private let logo: UIImage?
     private let color: Color
-    private let onAnswer: (CGRect) -> Void
+    private let onAnswer: (CGRect, CGSize) -> Void
 
     @State private var offset: CGFloat = 0
     @State private var detented = false
@@ -21,7 +21,7 @@ struct AnswerSwipeRow<Content: View>: View {
     init(
         logo: UIImage?,
         color: Color,
-        onAnswer: @escaping (CGRect) -> Void,
+        onAnswer: @escaping (CGRect, CGSize) -> Void,
         @ViewBuilder content: () -> Content
     ) {
         self.logo = logo
@@ -77,7 +77,7 @@ struct AnswerSwipeRow<Content: View>: View {
                 let flung = value.predictedEndTranslation.width >= commitWidth * 1.3
                 if x >= commitWidth || flung {
                     UIImpactFeedbackGenerator(style: .rigid).impactOccurred()
-                    onAnswer(frame)
+                    onAnswer(frame, value.velocity)
                 } else {
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) { offset = 0 }
                     detented = false

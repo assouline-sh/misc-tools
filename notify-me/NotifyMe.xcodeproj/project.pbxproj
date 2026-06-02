@@ -47,6 +47,7 @@
 		CCF7E7160BECE7E8B7EE2C12 /* LiveActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400F22149D715C9AD5DCFC20 /* LiveActivityAttributes.swift */; };
 		DFB6FA9621AE75A9C7BC4831 /* AppIconStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CAFC0C8003B17E9635FA98 /* AppIconStore.swift */; };
 		E54EB7C306198AD2A7A8476A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0569CBC1E39B667708B68 /* Constants.swift */; };
+		E865D55DD8D4A21C70CE8804 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D67B2D145BF4BA80820E2 /* CustomTabBar.swift */; };
 		EC407ABBB23A3ABFCA52FF3A /* AppLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43165A58F69A012AD8D803F /* AppLinks.swift */; };
 		FFE5CCC0FFBB3652A8B810D9 /* QuickFlagIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAEBAC0B06B16E136F114D7 /* QuickFlagIntent.swift */; };
 /* End PBXBuildFile section */
@@ -103,6 +104,7 @@
 		C64C956FCC400A0ED60C3F57 /* NotifyMe.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NotifyMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83C7F640DBE40C19E3DD6FA /* AnswerSwipeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerSwipeRow.swift; sourceTree = "<group>"; };
 		CFAEBAC0B06B16E136F114D7 /* QuickFlagIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFlagIntent.swift; sourceTree = "<group>"; };
+		D06D67B2D145BF4BA80820E2 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		D48997C3CC321915638FE839 /* CreateReminderIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderIntent.swift; sourceTree = "<group>"; };
 		E1932284F5FD9110C8C08CE3 /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
 		E43165A58F69A012AD8D803F /* AppLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinks.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			children = (
 				C83C7F640DBE40C19E3DD6FA /* AnswerSwipeRow.swift */,
 				F634E10E76EAA624126DCAE9 /* ContentView.swift */,
+				D06D67B2D145BF4BA80820E2 /* CustomTabBar.swift */,
 				066C5DA747E2533F6C4DC868 /* FlyingLogo.swift */,
 				B83AECDBAEE0BA6AEE70BACF /* PlatformConfigView.swift */,
 				4D28FA4186C25B87BCA06EED /* ReminderListView.swift */,
@@ -356,6 +359,7 @@
 				0B6B00C0B8C9AE210FD23ABD /* Constants.swift in Sources */,
 				8FAAE71BD4C979FDE31F9560 /* ContentView.swift in Sources */,
 				09314B49586BEF57532D1552 /* CreateReminderIntent.swift in Sources */,
+				E865D55DD8D4A21C70CE8804 /* CustomTabBar.swift in Sources */,
 				17089A375F35FAAB5700A745 /* FlagPlatform.swift in Sources */,
 				8B4B5DAF63D819DED5CEA9A1 /* FlyingLogo.swift in Sources */,
 				019DE583CD436333C5E67810 /* LiveActivityAttributes.swift in Sources */,

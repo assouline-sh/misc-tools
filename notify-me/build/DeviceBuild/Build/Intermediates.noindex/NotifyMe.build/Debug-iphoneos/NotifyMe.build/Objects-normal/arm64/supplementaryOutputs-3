@@ -1,0 +1,18 @@
+"/Users/shanz/misc-tools/notify-me/NotifyMe/Intents/CreateReminderIntent.swift":
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/CreateReminderIntent.swiftdeps"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/CreateReminderIntent.swiftconstvalues"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/CreateReminderIntent.d"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/CreateReminderIntent.o"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/CreateReminderIntent.dia"
+"/Users/shanz/misc-tools/notify-me/NotifyMe/Views/FlyingLogo.swift":
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/FlyingLogo.o"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/FlyingLogo.swiftconstvalues"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/FlyingLogo.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/FlyingLogo.d"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/FlyingLogo.swiftdeps"
+"/Users/shanz/misc-tools/notify-me/Shared/FlagPlatform.swift":
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/FlagPlatform.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/FlagPlatform.o"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/FlagPlatform.dia"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/FlagPlatform.swiftdeps"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/FlagPlatform.d"

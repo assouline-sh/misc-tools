@@ -37,7 +37,7 @@ struct ReminderListView: View {
                             AnswerSwipeRow(
                                 logo: icons.images[item.sourceApp ?? ""],
                                 color: Theme.brand(for: item.sourceApp),
-                                onAnswer: { frame in answer(item, from: frame) }
+                                onAnswer: { frame, velocity in answer(item, from: frame, velocity: velocity) }
                             ) {
                                 ReminderRow(item: item)
                             }
@@ -61,12 +61,14 @@ struct ReminderListView: View {
         .onChange(of: reminders.count) { _, _ in loadIcons() }
     }
 
-    /// Hand the row's logo + frame to the fling overlay, stop nagging, then mark answered.
-    private func answer(_ item: ReminderItem, from frame: CGRect) {
+    /// Hand the row's logo + frame + swipe velocity to the fling overlay, stop nagging,
+    /// then mark answered.
+    private func answer(_ item: ReminderItem, from frame: CGRect, velocity: CGSize) {
         fly.launch(
             image: icons.images[item.sourceApp ?? ""],
             color: Theme.brand(for: item.sourceApp),
-            from: frame
+            from: frame,
+            velocity: velocity
         )
         NotificationManager.shared.cancelReminder(id: item.id)
         withAnimation(.spring(response: 0.35, dampingFraction: 0.85)) {

@@ -1,8 +1,9 @@
 import SwiftUI
 import UIKit
 
-/// Drives the "fling the answered row across the screen and into the stats tab" flourish.
-/// A row hands off its logo + global frame; ContentView renders the flight as an overlay.
+/// Drives the "answered row drops out and falls into the stats tab" flourish.
+/// A row hands off its logo + global frame; ContentView renders the fall as an overlay
+/// and lights up the stats tab icon as the logo lands.
 @MainActor
 final class FlyCoordinator: ObservableObject {
     struct Flight: Identifiable {
@@ -10,48 +11,112 @@ final class FlyCoordinator: ObservableObject {
         let image: UIImage?
         let color: Color
         let start: CGRect   // global coordinates
+        let velocity: CGSize  // swipe velocity at release, points/sec
     }
 
     @Published var flight: Flight?
 
-    func launch(image: UIImage?, color: Color, from start: CGRect) {
-        flight = Flight(image: image, color: color, start: start)
+    func launch(image: UIImage?, color: Color, from start: CGRect, velocity: CGSize) {
+        flight = Flight(image: image, color: color, start: start, velocity: velocity)
     }
 
     func clear() { flight = nil }
 }
 
-/// The condensed logo that flings to a random spot, then homes into the stats tab.
+/// The condensed logo that falls from the row, arcing down into the stats tab.
 struct FlyingLogoView: View {
     let flight: FlyCoordinator.Flight
     let target: CGPoint
     let screen: CGSize
     let onDone: () -> Void
 
-    @State private var position: CGPoint
-    @State private var side: CGFloat
-    @State private var angle: Double = 0
-    @State private var opacity: Double = 1
+    // KeyframeAnimator snaps its content back to the initial value when it finishes;
+    // this hard-hides the whole flight once it's landed so that revert never shows.
+    @State private var done = false
 
-    init(flight: FlyCoordinator.Flight, target: CGPoint, screen: CGSize, onDone: @escaping () -> Void) {
-        self.flight = flight
-        self.target = target
-        self.screen = screen
-        self.onDone = onDone
-        _position = State(initialValue: CGPoint(x: flight.start.midX, y: flight.start.midY))
-        _side = State(initialValue: max(36, flight.start.height))
+    /// Animatable bundle interpolated by the keyframe tracks below.
+    private struct Values {
+        var x: CGFloat
+        var y: CGFloat
+        var side: CGFloat
+        var angle: Double
+        var opacity: Double
+    }
+
+    private var start: CGPoint { CGPoint(x: flight.start.midX, y: flight.start.midY) }
+    private var startSide: CGFloat { max(36, flight.start.height) }
+
+    /// The top of the throw's arc: the icon launches along the swipe velocity to here,
+    /// then gravity bends it down toward the stats tab. Travel scales with fling speed.
+    private var apex: CGPoint {
+        let v = flight.velocity
+        // Swipe-to-answer is a rightward fling, so always carry a little to the right.
+        let throwX = min(max(v.width * 0.13, 60), screen.width * 0.6)
+        let throwY = min(max(v.height * 0.13, -screen.height * 0.22), screen.height * 0.10)
+        let x = min(max(start.x + throwX, 28), screen.width - 28)
+        let y = min(max(start.y + throwY, 80), target.y - 50)
+        return CGPoint(x: x, y: y)
+    }
+
+    /// Spin scales with how hard it was flung; direction follows the swipe.
+    private var tumble: Double {
+        let v = flight.velocity
+        let speed = (v.width * v.width + v.height * v.height).squareRoot()
+        return min(max(speed * 0.35, 160), 540) * (v.width >= 0 ? 1 : -1)
     }
 
     var body: some View {
-        logo
-            .frame(width: side, height: side)
-            .clipShape(RoundedRectangle(cornerRadius: side * 0.24, style: .continuous))
-            .rotationEffect(.degrees(angle))
-            .opacity(opacity)
-            .shadow(color: .black.opacity(0.45), radius: 10, y: 5)
-            .position(position)
-            .allowsHitTesting(false)
-            .onAppear(perform: fling)
+        KeyframeAnimator(
+            initialValue: Values(x: start.x, y: start.y, side: startSide, angle: 0, opacity: 1)
+        ) { v in
+            logo
+                .frame(width: v.side, height: v.side)
+                .clipShape(RoundedRectangle(cornerRadius: v.side * 0.24, style: .continuous))
+                .rotationEffect(.degrees(v.angle))
+                .opacity(v.opacity)
+                .shadow(color: .black.opacity(0.45), radius: 10, y: 5)
+                .position(x: v.x, y: v.y)
+                // Pin `.position` to an explicit full-screen frame so it resolves in
+                // global coords (KeyframeAnimator otherwise collapses it to icon size).
+                .frame(width: screen.width, height: screen.height)
+        } keyframes: { _ in
+            // Horizontal: punchy launch along the swipe, then curve in toward the stats tab.
+            KeyframeTrack(\.x) {
+                LinearKeyframe(apex.x, duration: 0.22)
+                CubicKeyframe(target.x, duration: 0.56)
+            }
+            // Vertical: thrown out to the apex, then an accelerating gravity fall (two
+            // segments — slower near the top, faster as it drops into the tab).
+            KeyframeTrack(\.y) {
+                LinearKeyframe(apex.y, duration: 0.22)
+                CubicKeyframe(apex.y + (target.y - apex.y) * 0.45, duration: 0.32)
+                CubicKeyframe(target.y, duration: 0.24)
+            }
+            // Hold size through the throw, then shrink to tab-icon size as it lands.
+            KeyframeTrack(\.side) {
+                LinearKeyframe(startSide, duration: 0.22)
+                CubicKeyframe(24, duration: 0.56)
+            }
+            // Tumble through the whole flight.
+            KeyframeTrack(\.angle) {
+                CubicKeyframe(tumble, duration: 0.78)
+            }
+            // Fade out as it sinks into the stats icon (fully gone before it lands).
+            KeyframeTrack(\.opacity) {
+                LinearKeyframe(1, duration: 0.54)
+                LinearKeyframe(0, duration: 0.16)
+            }
+        }
+        // Once landed, force-hide outside the animator so its end-of-run revert to the
+        // initial value (icon back at the row) never flashes on screen.
+        .opacity(done ? 0 : 1)
+        .allowsHitTesting(false)
+        .onAppear {
+            // Hard-hide just as the fade completes...
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.70) { done = true }
+            // ...then tear the overlay down.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.82) { onDone() }
+        }
     }
 
     @ViewBuilder private var logo: some View {
@@ -60,27 +125,5 @@ struct FlyingLogoView: View {
         } else {
             RoundedRectangle(cornerRadius: 10, style: .continuous).fill(flight.color)
         }
-    }
-
-    private func fling() {
-        let randomSpot = CGPoint(
-            x: CGFloat.random(in: 50...max(60, screen.width - 50)),
-            y: CGFloat.random(in: 90...max(120, screen.height * 0.5))
-        )
-        // 1) fling out to a random spot with a tumble
-        withAnimation(.easeOut(duration: 0.38)) {
-            position = randomSpot
-            angle = Double.random(in: -540...540)
-            side = 54
-        }
-        // 2) home into the stats tab, shrinking away
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.34) {
-            withAnimation(.easeIn(duration: 0.5)) {
-                position = target
-                side = 22
-                opacity = 0
-            }
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) { onDone() }
     }
 }

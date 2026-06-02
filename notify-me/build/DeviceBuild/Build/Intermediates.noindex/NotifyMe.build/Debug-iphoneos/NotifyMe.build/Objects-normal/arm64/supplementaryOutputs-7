@@ -1,0 +1,18 @@
+"/Users/shanz/misc-tools/notify-me/NotifyMe/Services/SharedDataManager.swift":
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/SharedDataManager.d"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/SharedDataManager.dia"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/SharedDataManager.swiftdeps"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/SharedDataManager.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/SharedDataManager.o"
+"/Users/shanz/misc-tools/notify-me/NotifyMe/Views/SettingsView.swift":
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/SettingsView.swiftdeps"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/SettingsView.o"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/SettingsView.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/SettingsView.d"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/SettingsView.swiftconstvalues"
+"/Users/shanz/misc-tools/notify-me/NotifyMe/Views/ReminderRow.swift":
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ReminderRow.o"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ReminderRow.swiftconstvalues"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ReminderRow.swiftdeps"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ReminderRow.d"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ReminderRow.dia"

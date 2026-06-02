@@ -1,0 +1,18 @@
+"/Users/shanz/misc-tools/notify-me/NotifyMe/Services/NotificationManager.swift":
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/NotificationManager.o"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/NotificationManager.d"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/NotificationManager.swiftconstvalues"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/NotificationManager.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/NotificationManager.dia"
+"/Users/shanz/misc-tools/notify-me/Shared/LiveActivityAttributes.swift":
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/LiveActivityAttributes.d"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/LiveActivityAttributes.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/LiveActivityAttributes.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/LiveActivityAttributes.dia"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/LiveActivityAttributes.swiftconstvalues"
+"/Users/shanz/misc-tools/notify-me/NotifyMe/Services/LiveActivityManager.swift":
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/LiveActivityManager.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/LiveActivityManager.d"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/LiveActivityManager.swiftdeps"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/LiveActivityManager.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/LiveActivityManager.o"
