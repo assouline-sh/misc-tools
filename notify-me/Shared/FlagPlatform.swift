@@ -78,6 +78,22 @@ enum PlatformStore {
     }
 }
 
+/// User-added apps that aren't in the catalog. Persisted on their own (separate from the
+/// chosen widget slots) so they stick around in the palette even when not slotted.
+enum CustomAppStore {
+    static func load() -> [FlagPlatform] {
+        guard let data = AppConstants.sharedDefaults.data(forKey: AppConstants.customPlatformsKey),
+              let list = try? JSONDecoder().decode([FlagPlatform].self, from: data)
+        else { return [] }
+        return list
+    }
+
+    static func save(_ apps: [FlagPlatform]) {
+        guard let data = try? JSONEncoder().encode(apps) else { return }
+        AppConstants.sharedDefaults.set(data, forKey: AppConstants.customPlatformsKey)
+    }
+}
+
 /// Reminder intervals (in minutes). One global fallback plus optional per-app overrides,
 /// stored in the shared App Group so the app, widget, and intents all resolve the same value.
 enum IntervalStore {

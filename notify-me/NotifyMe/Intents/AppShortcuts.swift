@@ -1,6 +1,6 @@
 import AppIntents
 
-struct NotifyMeShortcuts: AppShortcutsProvider {
+struct AYFMShortcuts: AppShortcutsProvider {
     static var appShortcuts: [AppShortcut] {
         AppShortcut(
             intent: CreateReminderIntent(),

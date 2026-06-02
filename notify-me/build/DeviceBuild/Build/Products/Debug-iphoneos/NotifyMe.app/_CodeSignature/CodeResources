@@ -4,21 +4,33 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>AppIcon60x60@2x.png</key>
+		<data>
+		G8hb0KCAUmbTVitJK/mtejQ1qqI=
+		</data>
+		<key>AppIcon76x76@2x~ipad.png</key>
+		<data>
+		Zi0xPre5CnyEIOl2Rc1WlY73Hbc=
+		</data>
+		<key>Assets.car</key>
+		<data>
+		JLDNNNgiezPPIvBjq9qB1NwysMw=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		kc+6DFhHAae47C845sWufeLPzkM=
+		w89bHtdAFckmZmKmRuMoJQrFKFM=
 		</data>
 		<key>Metadata.appintents/extract.actionsdata</key>
 		<data>
-		43aQuh2mmy2PKzhC+RpKaH4ZwXw=
+		4tLCgMAdYG7oyDeEWEXKS53GM94=
 		</data>
 		<key>Metadata.appintents/version.json</key>
 		<data>
-		+UZz/z5iOYpisP9mi6xHzCIu2qM=
+		Aal8VBywJxgVuGW1TEx1MOOFgyk=
 		</data>
 		<key>NotifyMe.debug.dylib</key>
 		<data>
-		hwvs3ZOtMvA5SMWzTuQxDW6D45s=
+		+SIOaF2YXMsREH0OXFas/2VHL9k=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -30,27 +42,27 @@
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/Metadata.appintents/extract.actionsdata</key>
 		<data>
-		tZv7ecnUe2VRVT1itE5FVisAPkk=
+		AYEGeaAZCnfmPz/9flFLhKnuhkg=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/Metadata.appintents/version.json</key>
 		<data>
-		Aal8VBywJxgVuGW1TEx1MOOFgyk=
+		+UZz/z5iOYpisP9mi6xHzCIu2qM=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/NotifyMeWidgetExtension</key>
 		<data>
-		xE8LL3ALzbug6l+0buPBlXZdBrE=
+		K7/wB73XJ7JRCvIRNWxn+E6vBfc=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/NotifyMeWidgetExtension.debug.dylib</key>
 		<data>
-		qrqkNMAfq95iWMpNI4xTuyGPxAY=
+		EuBJ5NHH45N80B3yd5eaTxUzUAM=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<data>
-		21wES0+XpiJW3vLJ9oAfOuGHBys=
+		7WihD4sxePLDiAgL/FbmMaSS0cU=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/__preview.dylib</key>
 		<data>
-		RflCf3jyxLTYDioMUdAGwIo/T7g=
+		Qn+mlYj1jaC2COqAfRgJu1g1mv8=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/embedded.mobileprovision</key>
 		<data>
@@ -58,7 +70,7 @@
 		</data>
 		<key>__preview.dylib</key>
 		<data>
-		ONYanu64ZqC5pmeCmEWpNkIhncM=
+		mBx1UYbdq5Veqpm8UeKkRCYDP3w=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -67,25 +79,46 @@
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>AppIcon60x60@2x.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			A7a+kYRJRLcB08d87zaGETCgS4K/v9Z7xevCeKyQPv8=
+			</data>
+		</dict>
+		<key>AppIcon76x76@2x~ipad.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			8D7IjtQsKumoJBA0K5glky/ykq+uKT2JjJBUViqx1WM=
+			</data>
+		</dict>
+		<key>Assets.car</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			OTL76N3leHn4W342hg88UP+n9IiW63vI8T20aPeVynA=
+			</data>
+		</dict>
 		<key>Metadata.appintents/extract.actionsdata</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RINBIVBOq0Jp2USlUk7cm1RgcpheG20r8QbL6eLxD24=
+			k3XSOEJIuZP1Wx6b0BCHxje6G21QxM69UO3CcLk99G8=
 			</data>
 		</dict>
 		<key>Metadata.appintents/version.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			F5xTX3ZY6f6x6ruFf3wRtDVFQb25gm08B6fI8izWcHk=
+			A0QDVV1SRCF+5P9o3nmoma7n1IbHGr9zxr26V81Z6b0=
 			</data>
 		</dict>
 		<key>NotifyMe.debug.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ppAqp6K+4FGv5H0i4UuJmkDsVkFdcF21oUC1Ch/wjmU=
+			mdoQQRkBqb+89R2r/zTe/T88+B4aJAC8yOZTPAawe8I=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/Info.plist</key>
@@ -99,42 +132,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7xfGjmri9SHjhZpWFhLWD5oSkcw/RWlC1ajM+nRMakE=
+			dlsWwbCLYjcbxY00pcwbhe6DStYIILUCsNrn+LjXzZ8=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/Metadata.appintents/version.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			A0QDVV1SRCF+5P9o3nmoma7n1IbHGr9zxr26V81Z6b0=
+			F5xTX3ZY6f6x6ruFf3wRtDVFQb25gm08B6fI8izWcHk=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/NotifyMeWidgetExtension</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xx0XSja1HhNJn+e1lvixiQ8nBU5wu98RUvW/8VJehxM=
+			q//ji7oZScjzfM/Eh7x12laA8x96f5Sf5fYJcraVm2M=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/NotifyMeWidgetExtension.debug.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VqSJOC8jzaWm79p/JrxjplSBO6IyjClq2iCxxN38jRM=
+			s+sc/e6IVNZQNfigPl10KtbYMvRwcj21o2+fL+Hzv9s=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			opC3w8wVgg8S3csAY9BK/X1pDRwRWGsproho+FaYB40=
+			7NuMIsYfYeMwZu9hS4OjQq22LrA4UEdDvZMHUuVteuE=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/__preview.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			o82MSp0b9ArbUXhPdq3PfBOAtEBzQfWjUM4Gg19u8yI=
+			uJ5ctxSBQihX0ezdJrbCkEIjr2wsz2IUJbN5883tawg=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/embedded.mobileprovision</key>
@@ -148,7 +181,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			HSHOUTJk+kzy1mwE2C3fNyGggPEvMi/y7psjbEfGgBk=
+			MA3W0x3U6dWwpLAquQmcY6+Sv1ULLPrMKUuJb/6MwfE=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>

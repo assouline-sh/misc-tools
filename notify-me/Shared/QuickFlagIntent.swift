@@ -31,8 +31,10 @@ struct QuickFlagIntent: AppIntent {
         try reminder.write()
 
         let content = UNMutableNotificationContent()
-        content.title = "Reply to \(sourceApp ?? "message")"
-        content.body = reminder.messageText
+        let text = ReminderNotification.text(senderName: nil, sourceApp: sourceApp, messageText: reminder.messageText, createdAt: reminder.createdAt)
+        content.title = text.title
+        if let subtitle = text.subtitle { content.subtitle = String(subtitle.prefix(150)) }
+        if let body = text.body { content.body = String(body.prefix(150)) }
         content.sound = .default
         content.categoryIdentifier = AppConstants.notificationCategoryID
         content.userInfo = ["reminderId": reminder.id.uuidString, "sourceApp": sourceApp ?? ""]

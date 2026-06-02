@@ -12,18 +12,34 @@ let bg     = NSColor(red: 0.043, green: 0.043, blue: 0.051, alpha: 1)  // #0B0B0
 let amber  = NSColor(red: 0.961, green: 0.651, blue: 0.137, alpha: 1)  // #F5A623
 
 // ---- tunables ----
-let stroke: CGFloat   = 70          // arrow line thickness
-let rightX: CGFloat   = 752         // centerline x of the vertical segment (right side)
-let bottomY: CGFloat  = 286         // centerline y of the horizontal segment (bottom)
-let topY: CGFloat     = 792         // top of the vertical segment
-let headTipX: CGFloat = 300         // x of the arrowhead tip (pointing left)
-let headHalf: CGFloat = 96          // arrowhead half-height
-let headLen: CGFloat  = 120         // arrowhead length
+let stroke: CGFloat   = 42          // arrow line thickness
+let rightX: CGFloat   = 840         // centerline x of the vertical segment (right side)
+let bottomY: CGFloat  = 196         // centerline y of the horizontal segment (bottom)
+let headTipX: CGFloat = 196         // x of the arrowhead tip (pointing left)
+let headHalf: CGFloat = 62          // arrowhead half-height
+let headLen: CGFloat  = 82          // arrowhead length
 
-let fontSize: CGFloat = 264
+let fontSize: CGFloat = 360
+let rowGapFactor: CGFloat = 0.86    // vertical spacing between the two letter rows
 let letterTracking: CGFloat = 0
-let lettersCenterX: CGFloat = 420   // center of the 2x2 letter block
-let lettersCenterY: CGFloat = 612
+let lettersCenterX: CGFloat = 500   // center of the 2x2 letter block
+let lettersCenterY: CGFloat = 512
+
+// ---- font + metrics ----
+// Derive the row baselines and the M's cap-top up front so the arrow's vertical
+// segment can start exactly at the top of the bottom-row letters.
+let font = NSFont.monospacedSystemFont(ofSize: fontSize, weight: .bold)
+let attrs: [NSAttributedString.Key: Any] = [
+    .font: font,
+    .foregroundColor: amber,
+    .kern: letterTracking,
+]
+let rowGap = fontSize * rowGapFactor
+let topRowCY = lettersCenterY + rowGap / 2     // AY
+let botRowCY = lettersCenterY - rowGap / 2     // FM
+// Baseline of a row visually centered at cy (descender is negative).
+func baseline(_ cy: CGFloat) -> CGFloat { cy - (font.ascender + font.descender) / 2 }
+let topY = baseline(botRowCY) + font.capHeight  // cap-top of the FM row = top of "M"
 
 // ---- canvas ----
 let img = NSImage(size: NSSize(width: S, height: S))
@@ -60,27 +76,17 @@ ctx.setFillColor(amber.cgColor)
 ctx.fillPath()
 
 // ---- AYFM letters (2x2, SF Mono bold) ----
-let font = NSFont.monospacedSystemFont(ofSize: fontSize, weight: .bold)
-let attrs: [NSAttributedString.Key: Any] = [
-    .font: font,
-    .foregroundColor: amber,
-    .kern: letterTracking,
-]
-
 func draw(_ s: String, cx: CGFloat, cy: CGFloat) {
     let str = NSAttributedString(string: s, attributes: attrs)
     let line = CTLineCreateWithAttributedString(str)
     var ascent: CGFloat = 0, descent: CGFloat = 0, leading: CGFloat = 0
     let w = CGFloat(CTLineGetTypographicBounds(line, &ascent, &descent, &leading))
-    let x = cx - w / 2
-    let y = cy - (ascent - descent) / 2   // visually center the glyphs
-    ctx.textPosition = CGPoint(x: x, y: y)
+    ctx.textPosition = CGPoint(x: cx - w / 2, y: baseline(cy))
     CTLineDraw(line, ctx)
 }
 
-let rowGap: CGFloat = fontSize * 0.92
-draw("AY", cx: lettersCenterX, cy: lettersCenterY + rowGap / 2)
-draw("FM", cx: lettersCenterX, cy: lettersCenterY - rowGap / 2)
+draw("AY", cx: lettersCenterX, cy: topRowCY)
+draw("FM", cx: lettersCenterX, cy: botRowCY)
 
 img.unlockFocus()
 

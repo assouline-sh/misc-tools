@@ -16,6 +16,10 @@ struct ComposeReminderView: View {
     @State private var messageText = ""
     @State private var intervalMinutes: Int
 
+    /// Input caps so the notification title/subtitle stay legible and don't get truncated.
+    private let nameLimit = 25
+    private let aboutLimit = 100
+
     /// Drives the tapped-app badge's pop-in, so opening the form clearly confirms which
     /// app you tapped in the widget.
     @State private var badgeIn = false
@@ -58,6 +62,10 @@ struct ComposeReminderView: View {
                 Section {
                     TextField("name", text: $senderName)
                         .textInputAutocapitalization(.words)
+                        .onChange(of: senderName) { _, value in
+                            let cleaned = String(value.replacingOccurrences(of: "\n", with: " ").prefix(nameLimit))
+                            if cleaned != value { senderName = cleaned }
+                        }
                 } header: {
                     sectionHeader("from who?")
                 }
@@ -65,6 +73,9 @@ struct ComposeReminderView: View {
                 Section {
                     TextField("message", text: $messageText, axis: .vertical)
                         .lineLimit(2...5)
+                        .onChange(of: messageText) { _, value in
+                            if value.count > aboutLimit { messageText = String(value.prefix(aboutLimit)) }
+                        }
                 } header: {
                     sectionHeader("about what?")
                 }
@@ -87,10 +98,10 @@ struct ComposeReminderView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("nvm") { dismiss() }
+                    Button("cancel") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("help me", action: save).fontWeight(.bold)
+                    Button("submit", action: save).fontWeight(.bold)
                 }
             }
         }
@@ -181,8 +192,12 @@ struct ComposeReminderView: View {
     }
 
     private func save() {
-        let trimmedMessage = messageText.trimmingCharacters(in: .whitespacesAndNewlines)
-        let trimmedSender = senderName.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedMessage = String(messageText.prefix(aboutLimit))
+            .replacingOccurrences(of: "\n", with: " ")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedSender = String(senderName.prefix(nameLimit))
+            .replacingOccurrences(of: "\n", with: " ")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
 
         let item = ReminderItem(
             messageText: trimmedMessage.isEmpty
@@ -200,7 +215,8 @@ struct ComposeReminderView: View {
             messageText: item.messageText,
             senderName: item.senderName,
             sourceApp: item.sourceApp,
-            intervalMinutes: item.notificationIntervalMinutes
+            intervalMinutes: item.notificationIntervalMinutes,
+            createdAt: item.createdAt
         )
 
         dismiss()

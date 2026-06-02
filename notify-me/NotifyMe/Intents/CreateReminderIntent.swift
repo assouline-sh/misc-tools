@@ -40,8 +40,10 @@ struct CreateReminderIntent: AppIntent {
 
         // Schedule notification directly
         let content = UNMutableNotificationContent()
-        content.title = "Respond to \(senderName ?? "message")"
-        content.body = reminder.messageText
+        let text = ReminderNotification.text(senderName: senderName, sourceApp: sourceApp, messageText: reminder.messageText, createdAt: reminder.createdAt)
+        content.title = text.title
+        if let subtitle = text.subtitle { content.subtitle = String(subtitle.prefix(150)) }
+        if let body = text.body { content.body = String(body.prefix(150)) }
         content.sound = .default
         content.categoryIdentifier = AppConstants.notificationCategoryID
         content.userInfo = ["reminderId": reminder.id.uuidString, "sourceApp": sourceApp ?? ""]

@@ -25,6 +25,12 @@ struct ContentView: View {
                 .opacity(selection == 2 ? 1 : 0)
                 .allowsHitTesting(selection == 2)
         }
+        // Applied before the tab-bar inset so it sits above the tab bar, not over it.
+        .overlay(alignment: .bottomTrailing) {
+            if selection == 0 {
+                addButton
+            }
+        }
         .environmentObject(fly)
         .safeAreaInset(edge: .bottom, spacing: 0) {
             VStack(spacing: 8) {
@@ -52,6 +58,8 @@ struct ContentView: View {
         .tint(Theme.accent)
         .fontDesign(.monospaced)
         .preferredColorScheme(.dark)
+        // Keep the whole UI (esp. the tab bar) from riding up over the keyboard.
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .sheet(isPresented: $showCompose) {
             ComposeReminderView(sourceApp: composeApp)
         }
@@ -75,6 +83,24 @@ struct ContentView: View {
             // the scene reports active, so re-check shortly after becoming active too.
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { checkPendingCompose() }
         }
+    }
+
+    /// Floating "+" on the reminders tab that opens the new-notification form with no
+    /// app preselected (you pick one in the form).
+    private var addButton: some View {
+        Button {
+            composeApp = nil
+            showCompose = true
+        } label: {
+            Image(systemName: "plus")
+                .font(.system(size: 22, weight: .bold))
+                .foregroundStyle(.white)
+                .frame(width: 50, height: 50)
+                .background(Circle().fill(Theme.accent))
+                .shadow(color: Theme.accent.opacity(0.5), radius: 7, y: 3)
+        }
+        .padding(.trailing, 18)
+        .padding(.bottom, 12)
     }
 
     /// Small amber bar shown above the tab bar when notifications can't fire — taps open

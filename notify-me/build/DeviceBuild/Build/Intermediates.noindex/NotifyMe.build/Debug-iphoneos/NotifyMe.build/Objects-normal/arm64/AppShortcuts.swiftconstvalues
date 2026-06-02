@@ -1,7 +1,7 @@
 [
   {
-    "typeName": "NotifyMe.NotifyMeShortcuts",
-    "mangledTypeName": "8NotifyMe0aB9ShortcutsV",
+    "typeName": "NotifyMe.AYFMShortcuts",
+    "mangledTypeName": "8NotifyMe13AYFMShortcutsV",
     "kind": "struct",
     "file": "/Users/shanz/misc-tools/notify-me/NotifyMe/Intents/AppShortcuts.swift",
     "line": 3,

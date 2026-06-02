@@ -2,7 +2,7 @@ import WidgetKit
 import SwiftUI
 
 @main
-struct NotifyMeWidgetBundle: WidgetBundle {
+struct AYFMWidgetBundle: WidgetBundle {
     var body: some Widget {
         QuickFlagWidget()
         if #available(iOSApplicationExtension 18.0, *) {

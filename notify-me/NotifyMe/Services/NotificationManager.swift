@@ -48,10 +48,12 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
 
     // MARK: - Scheduling
 
-    func scheduleReminder(id: UUID, messageText: String, senderName: String?, sourceApp: String?, intervalMinutes: Int) {
+    func scheduleReminder(id: UUID, messageText: String, senderName: String?, sourceApp: String?, intervalMinutes: Int, createdAt: Date) {
         let content = UNMutableNotificationContent()
-        content.title = "Respond to \(senderName ?? sourceApp ?? "message")"
-        content.body = String(messageText.prefix(150))
+        let text = ReminderNotification.text(senderName: senderName, sourceApp: sourceApp, messageText: messageText, createdAt: createdAt)
+        content.title = text.title
+        if let subtitle = text.subtitle { content.subtitle = String(subtitle.prefix(150)) }
+        if let body = text.body { content.body = String(body.prefix(150)) }
         content.sound = .default
         content.categoryIdentifier = AppConstants.notificationCategoryID
         content.userInfo = ["reminderId": id.uuidString, "sourceApp": sourceApp ?? ""]
@@ -87,7 +89,8 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
                 messageText: item.messageText,
                 senderName: item.senderName,
                 sourceApp: item.sourceApp,
-                intervalMinutes: item.notificationIntervalMinutes
+                intervalMinutes: item.notificationIntervalMinutes,
+                createdAt: item.createdAt
             )
         }
     }
@@ -119,6 +122,7 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
             let content = response.notification.request.content
             let snoozeContent = UNMutableNotificationContent()
             snoozeContent.title = content.title
+            snoozeContent.subtitle = content.subtitle
             snoozeContent.body = content.body
             snoozeContent.sound = content.sound
             snoozeContent.categoryIdentifier = content.categoryIdentifier

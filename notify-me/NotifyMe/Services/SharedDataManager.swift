@@ -20,7 +20,8 @@ struct SharedDataManager {
                     messageText: item.messageText,
                     senderName: item.senderName,
                     sourceApp: item.sourceApp,
-                    intervalMinutes: item.notificationIntervalMinutes
+                    intervalMinutes: item.notificationIntervalMinutes,
+                    createdAt: item.createdAt
                 )
             }
 

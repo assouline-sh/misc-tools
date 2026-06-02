@@ -11,6 +11,10 @@ struct PlatformConfigView: View {
     @State private var customs: [FlagPlatform] = PlatformConfigView.initialCustoms()
     @State private var customName: String = ""
     @State private var paletteTargeted = false
+    @FocusState private var customFieldFocused: Bool
+
+    /// Max length for a custom app name, so it fits the slot/widget label.
+    private let customNameLimit = 10
     /// Index of the slot a dragged app is currently hovering over (nil = none).
     @State private var targetedSlot: Int?
 
@@ -52,6 +56,7 @@ struct PlatformConfigView: View {
             if !apps.isEmpty { groups.append((title, apps)) }
         }
 
+        // Custom / uncategorized apps live under their own "custom" group.
         let leftovers = available.filter { !categorized.contains($0.name) }
         if !leftovers.isEmpty { groups.append(("custom", leftovers)) }
         return groups
@@ -152,15 +157,11 @@ struct PlatformConfigView: View {
                     Text("\(index + 1)").font(.headline).foregroundStyle(.tertiary)
                 }
             }
-            .dropDestination(for: String.self) { items, _ in
-                targetedSlot = nil
-                guard let name = items.first else { return false }
-                drop(name: name, into: index)
-                return true
-            } isTargeted: { isOver in
-                if isOver { targetedSlot = index }
-                else if targetedSlot == index { targetedSlot = nil }
-            }
+            .onDrop(of: [.text], delegate: SlotDropDelegate(
+                onEnter: { targetedSlot = index },
+                onExit: { if targetedSlot == index { targetedSlot = nil } },
+                onDrop: { name in drop(name: name, into: index) }
+            ))
     }
 
     // MARK: - Palette
@@ -191,16 +192,17 @@ struct PlatformConfigView: View {
             RoundedRectangle(cornerRadius: 16)
                 .fill(paletteTargeted ? Color.accentColor.opacity(0.12) : Color.secondary.opacity(0.06))
         )
-        .dropDestination(for: String.self) { items, _ in
-            guard let name = items.first else { return false }
-            removeFromSlots(name)
-            return true
-        } isTargeted: { paletteTargeted = $0 }
+        .onDrop(of: [.text], delegate: SlotDropDelegate(
+            onEnter: { paletteTargeted = true },
+            onExit: { paletteTargeted = false },
+            onDrop: { removeFromSlots($0) }
+        ))
     }
 
-    /// A single draggable app tile in the palette.
+    /// A single draggable app tile in the palette. Custom apps get a long-press delete.
+    @ViewBuilder
     private func paletteCell(_ platform: FlagPlatform) -> some View {
-        VStack(spacing: 4) {
+        let tile = VStack(spacing: 4) {
             platformIcon(platform, size: 30)
             Text(platform.name).font(.caption2).lineLimit(1).minimumScaleFactor(0.7)
         }
@@ -210,12 +212,32 @@ struct PlatformConfigView: View {
         )
         .contentShape(RoundedRectangle(cornerRadius: 12))
         .draggable(platform.name)
+
+        if isCustom(platform) {
+            tile.contextMenu {
+                Button(role: .destructive) {
+                    deleteCustom(platform)
+                } label: {
+                    Label("delete", systemImage: "trash")
+                }
+            }
+        } else {
+            tile
+        }
     }
 
     private var customAddField: some View {
         HStack {
             TextField("Add a custom app…", text: $customName)
                 .textInputAutocapitalization(.words)
+                .focused($customFieldFocused)
+                .submitLabel(.done)
+                .onSubmit(addCustom)
+                .onChange(of: customName) { _, value in
+                    // Strip line breaks and cap the length as the user types.
+                    let cleaned = String(value.replacingOccurrences(of: "\n", with: "").prefix(customNameLimit))
+                    if cleaned != value { customName = cleaned }
+                }
             Button("Add", action: addCustom)
                 .disabled(trimmedCustom.isEmpty)
         }
@@ -250,18 +272,35 @@ struct PlatformConfigView: View {
     }
 
     private func addCustom() {
-        let name = trimmedCustom
+        customFieldFocused = false
+        // Sanitize: collapse line breaks, trim, and cap the length.
+        let name = String(
+            trimmedCustom.replacingOccurrences(of: "\n", with: " ").prefix(customNameLimit)
+        ).trimmingCharacters(in: .whitespacesAndNewlines)
         let allKnown = PlatformCatalog.all + customs
         guard !name.isEmpty,
               !allKnown.contains(where: { $0.name.lowercased() == name.lowercased() })
         else { customName = ""; return }
 
-        let platform = FlagPlatform(name: name, icon: "bell.fill")
-        customs.append(platform)
-        if let empty = slots.firstIndex(where: { $0 == nil }) {
-            slots[empty] = platform
-        }
+        // Add to the palette (it shows under "custom") rather than auto-filling a slot —
+        // the user drags it into a slot when they want it. Persisted independently.
+        customs.append(FlagPlatform(name: name, icon: "bell.fill"))
+        CustomAppStore.save(customs)
         customName = ""
+    }
+
+    /// Returns true if an app was user-added (not part of the built-in catalog).
+    private func isCustom(_ platform: FlagPlatform) -> Bool {
+        !PlatformCatalog.all.contains { $0.name == platform.name }
+    }
+
+    /// Removes a custom app from the palette, any slot it occupies, and storage.
+    private func deleteCustom(_ platform: FlagPlatform) {
+        customs.removeAll { $0.name == platform.name }
+        CustomAppStore.save(customs)
+        if let index = slots.firstIndex(where: { $0?.name == platform.name }) {
+            slots[index] = nil   // triggers persist() via onChange(of: slots)
+        }
     }
 
     private func persist() {
@@ -279,6 +318,38 @@ struct PlatformConfigView: View {
 
     private static func initialCustoms() -> [FlagPlatform] {
         let catalogNames = Set(PlatformCatalog.all.map { $0.name })
-        return PlatformStore.load().filter { !catalogNames.contains($0.name) }
+        var result = CustomAppStore.load()
+        let known = Set(result.map { $0.name })
+        // Migrate any previously-slotted custom apps that predate independent storage.
+        for app in PlatformStore.load()
+        where !catalogNames.contains(app.name) && !known.contains(app.name) {
+            result.append(app)
+        }
+        return result
+    }
+}
+
+/// Drop handling for a slot. Proposes a `.move` operation so the system doesn't draw the
+/// green "+" copy badge while dragging an app over the slot.
+private struct SlotDropDelegate: DropDelegate {
+    let onEnter: () -> Void
+    let onExit: () -> Void
+    let onDrop: (String) -> Void
+
+    func dropEntered(info: DropInfo) { onEnter() }
+    func dropExited(info: DropInfo) { onExit() }
+
+    func dropUpdated(info: DropInfo) -> DropProposal? {
+        DropProposal(operation: .move)
+    }
+
+    func performDrop(info: DropInfo) -> Bool {
+        onExit()
+        guard let provider = info.itemProviders(for: [.text]).first else { return false }
+        _ = provider.loadObject(ofClass: NSString.self) { object, _ in
+            guard let name = object as? String else { return }
+            DispatchQueue.main.async { onDrop(name) }
+        }
+        return true
     }
 }

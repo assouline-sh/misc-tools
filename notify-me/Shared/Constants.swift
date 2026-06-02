@@ -8,6 +8,7 @@ enum AppConstants {
     static let defaultIntervalKey = "defaultIntervalMinutes"   // the global fallback interval
     static let appIntervalsKey = "appSpecificIntervals"        // per-app interval overrides
     static let selectedPlatformsKey = "selectedPlatforms"
+    static let customPlatformsKey = "customPlatforms"          // user-added apps (persist independently of slots)
     static let widgetPageKey = "quickFlagWidgetPage"
     static let widgetFlashAppKey = "quickFlagFlashApp"
     static let widgetFlashDateKey = "quickFlagFlashDate"

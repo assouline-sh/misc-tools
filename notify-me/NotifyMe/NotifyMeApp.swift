@@ -3,7 +3,7 @@ import SwiftData
 import UIKit
 
 @main
-struct NotifyMeApp: App {
+struct AYFMApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
     let container: ModelContainer
