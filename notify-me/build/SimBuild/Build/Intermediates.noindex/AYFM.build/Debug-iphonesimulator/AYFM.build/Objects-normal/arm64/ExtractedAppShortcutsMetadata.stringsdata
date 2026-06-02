@@ -1,0 +1,25 @@
+{
+  "tables" : {
+    "Localizable" : [
+      {
+        "key" : "Track a reply to ${senderName} on ${sourceApp}"
+      }
+    ],
+    "AppShortcuts" : [
+      {
+        "location" : {
+          "startingColumn" : 0,
+          "startingLine" : 8
+        },
+        "key" : "Track a reply in ${applicationName}",
+        "values" : [
+          "Track a reply in ${applicationName}",
+          "Remind me to reply in ${applicationName}",
+          "${applicationName} remind me to reply"
+        ]
+      }
+    ]
+  },
+  "version" : 1,
+  "source" : "\/Users\/shanz\/misc-tools\/notify-me\/AYFM\/Intents\/AYFMShortcuts.swift"
+}

@@ -1,0 +1,24 @@
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/FlyingLogo.swift":
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/FlyingLogo.swiftdeps"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/FlyingLogo.swiftconstvalues"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/FlyingLogo.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/FlyingLogo.d"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/FlyingLogo.o"
+"/Users/shanz/misc-tools/notify-me/Shared/PendingReminder.swift":
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/PendingReminder.dia"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/PendingReminder.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/PendingReminder.o"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/PendingReminder.d"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/PendingReminder.swiftdeps"
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/PlatformConfigView.swift":
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/PlatformConfigView.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/PlatformConfigView.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/PlatformConfigView.swiftdeps"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/PlatformConfigView.d"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/PlatformConfigView.dia"
+"/Users/shanz/misc-tools/notify-me/AYFM/Services/NotificationManager.swift":
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/NotificationManager.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/NotificationManager.swiftdeps"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/NotificationManager.d"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/NotificationManager.dia"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/NotificationManager.swiftconstvalues"

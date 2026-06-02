@@ -24,7 +24,14 @@ struct PendingReminder: Codable {
         return files.compactMap { fileURL in
             guard fileURL.pathExtension == "json",
                   let data = try? Data(contentsOf: fileURL) else { return nil }
-            return try? JSONDecoder().decode(PendingReminder.self, from: data)
+            do {
+                return try JSONDecoder().decode(PendingReminder.self, from: data)
+            } catch {
+                // Don't silently drop a queued reminder. Surface the failure (e.g. a schema
+                // change) and leave the file in place so a later build could still read it.
+                AppLog.storage.error("Failed to decode pending reminder \(fileURL.lastPathComponent, privacy: .public): \(error.localizedDescription, privacy: .public)")
+                return nil
+            }
         }
     }
 

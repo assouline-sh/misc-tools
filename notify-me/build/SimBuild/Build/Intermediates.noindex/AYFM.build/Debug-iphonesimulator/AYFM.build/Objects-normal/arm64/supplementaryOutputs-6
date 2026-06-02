@@ -1,0 +1,18 @@
+"/Users/shanz/misc-tools/notify-me/Shared/QuickFlagPageIntent.swift":
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/QuickFlagPageIntent.dia"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/QuickFlagPageIntent.swiftdeps"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/QuickFlagPageIntent.o"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/QuickFlagPageIntent.swiftconstvalues"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/QuickFlagPageIntent.d"
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/ReminderListView.swift":
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ReminderListView.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ReminderListView.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ReminderListView.d"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ReminderListView.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ReminderListView.o"
+"/Users/shanz/misc-tools/notify-me/AYFM/Models/ReminderItem.swift":
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ReminderItem.o"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ReminderItem.swiftconstvalues"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ReminderItem.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ReminderItem.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ReminderItem.d"

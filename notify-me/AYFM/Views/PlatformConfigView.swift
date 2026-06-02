@@ -35,12 +35,13 @@ struct PlatformConfigView: View {
     private static let categories: [(title: String, names: [String])] = [
         ("messaging", ["WhatsApp", "Telegram", "Signal", "Discord", "Messenger", "Snapchat", "WeChat", "Line", "Viber", "KakaoTalk", "Teams"]),
         ("work", ["Slack"]),
-        ("social", ["Instagram", "X", "TikTok", "Reddit", "Facebook", "Threads", "Mastodon", "BeReal", "Twitch", "YouTube", "Pinterest", "Tumblr", "LinkedIn"]),
+        ("social", ["Instagram", "X", "TikTok", "Reddit", "Facebook", "Threads", "Mastodon", "YouTube", "Pinterest", "Tumblr", "LinkedIn"]),
         ("dating", ["Hinge", "Bumble", "Tinder", "Grindr"]),
         ("email", ["Gmail", "Outlook", "Mail"]),
         ("shopping", ["eBay", "Etsy", "Depop", "Airbnb"]),
         ("payments", ["Venmo", "PayPal"]),
-        ("other", ["Link", "Voicemail"]),
+        ("web browsers", ["Safari", "Chrome", "Firefox", "Edge", "Brave", "DuckDuckGo"]),
+        ("other", ["Voicemail"]),
     ]
 
     /// Available apps grouped by category (empty groups dropped), with anything
@@ -136,7 +137,7 @@ struct PlatformConfigView: View {
                 if let platform {
                     VStack(spacing: 4) {
                         platformIcon(platform, size: 32)
-                        Text(platform.name).font(.caption2).lineLimit(1).minimumScaleFactor(0.7)
+                        Text(platform.name).font(.caption2).textCase(.lowercase).lineLimit(1).minimumScaleFactor(0.7)
                     }
                     .padding(6)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -204,7 +205,7 @@ struct PlatformConfigView: View {
     private func paletteCell(_ platform: FlagPlatform) -> some View {
         let tile = VStack(spacing: 4) {
             platformIcon(platform, size: 30)
-            Text(platform.name).font(.caption2).lineLimit(1).minimumScaleFactor(0.7)
+            Text(platform.name).font(.caption2).textCase(.lowercase).lineLimit(1).minimumScaleFactor(0.7)
         }
         .frame(width: 68, height: 60)
         .background(

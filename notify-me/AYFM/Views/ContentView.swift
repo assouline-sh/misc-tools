@@ -85,6 +85,12 @@ struct ContentView: View {
             // the scene reports active, so re-check shortly after becoming active too.
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { checkPendingCompose() }
         }
+        .onOpenURL { url in
+            // The share extension opens `ayfm://compose`. Handle it explicitly — consume the
+            // hand-off it wrote — instead of relying only on scene-activation timing.
+            guard url.scheme == "ayfm" else { return }
+            checkPendingCompose()
+        }
     }
 
     /// Floating "+" on the reminders tab that opens the new-notification form with no

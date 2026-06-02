@@ -6,6 +6,11 @@ import UIKit
 final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationManager()
 
+    /// The app's live SwiftData container, set at launch. Notification actions write through
+    /// this so changes (e.g. marking answered) appear immediately in the running app's
+    /// `@Query` views, instead of through a separate container the UI never observes.
+    var modelContainer: ModelContainer?
+
     private override init() {
         super.init()
     }
@@ -49,27 +54,70 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     // MARK: - Global snooze
 
     /// The instant until which every reminder is paused, or nil when not snoozing.
-    /// Stored as a timestamp in the shared defaults so every target honours it.
+    /// Backed by `SnoozeStore` so the app, widget, and intents all read the same value.
     /// `.distantFuture` represents an indefinite snooze.
-    var snoozeUntil: Date? {
-        let timestamp = AppConstants.sharedDefaults.double(forKey: AppConstants.globalSnoozeUntilKey)
-        guard timestamp > 0 else { return nil }
-        let until = Date(timeIntervalSince1970: timestamp)
-        return until > Date() ? until : nil
-    }
+    var snoozeUntil: Date? { SnoozeStore.snoozeUntil }
 
-    var isSnoozed: Bool { snoozeUntil != nil }
+    var isSnoozed: Bool { SnoozeStore.isSnoozed }
 
     /// Pause every reminder until `date` (pass `.distantFuture` for indefinitely), or pass
     /// nil to lift the snooze. Pausing immediately clears all pending notifications; lifting
     /// reschedules nothing here — the caller reschedules the active reminders.
     func setGlobalSnooze(until date: Date?) {
         let defaults = AppConstants.sharedDefaults
+        let wasSnoozed = SnoozeStore.isSnoozed   // capture prior state before mutating
         if let date {
             defaults.set(date.timeIntervalSince1970, forKey: AppConstants.globalSnoozeUntilKey)
             UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            // Log the pause window so the nag counter can exclude this paused time.
+            SnoozeStore.beginPause(until: date, wasPaused: wasSnoozed)
         } else {
             defaults.removeObject(forKey: AppConstants.globalSnoozeUntilKey)
+            if wasSnoozed { SnoozeStore.endPause(at: Date()) }
+        }
+    }
+
+    /// For a *finite* pause, re-arm each active reminder so it stays silent for the whole
+    /// pause and then resumes its repeating cadence on its own — no app reopen required.
+    /// Each reminder gets a repeating notification whose first fire is no earlier than the
+    /// pause's end (we use the longer of its interval and the time remaining), under the live
+    /// `reminder-<id>` identifier so opening the app later cleanly replaces it. Indefinite
+    /// pauses pass `date == .distantFuture` and are skipped — there's nothing to resume to.
+    func scheduleResume(items: [ReminderItem], at date: Date) {
+        let pauseRemaining = date.timeIntervalSinceNow
+        guard pauseRemaining > 0, date < .distantFuture else { return }
+
+        let center = UNUserNotificationCenter.current()
+        for item in items where !item.isAnswered {
+            let interval = TimeInterval(item.notificationIntervalMinutes * 60)
+            guard interval > 0 else { continue }
+            // Hold the first fire until the pause ends, then repeat. When the interval is
+            // longer than the remaining pause, its own schedule already clears the pause.
+            let firstInterval = max(interval, pauseRemaining)
+
+            let text = ReminderNotification.text(
+                senderName: item.senderName,
+                sourceApp: item.sourceApp,
+                messageText: item.messageText,
+                createdAt: item.createdAt
+            )
+            let content = UNMutableNotificationContent()
+            content.title = text.title
+            if let subtitle = text.subtitle { content.subtitle = String(subtitle.prefix(150)) }
+            if let body = text.body { content.body = String(body.prefix(150)) }
+            content.sound = .default
+            content.categoryIdentifier = AppConstants.notificationCategoryID
+            content.userInfo = ["reminderId": item.id.uuidString, "sourceApp": item.sourceApp ?? ""]
+            content.threadIdentifier = ReminderNotification.threadIdentifier(sourceApp: item.sourceApp)
+            content.interruptionLevel = StrengthStore.ignoresDoNotDisturb(for: item.sourceApp) ? .timeSensitive : .active
+
+            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: firstInterval, repeats: true)
+            let request = UNNotificationRequest(
+                identifier: "reminder-\(item.id.uuidString)",
+                content: content,
+                trigger: trigger
+            )
+            center.add(request)
         }
     }
 
@@ -105,11 +153,32 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         UNUserNotificationCenter.current().add(request)
     }
 
-    func cancelReminder(id: UUID) {
+    /// Schedule a reminder only if one isn't already armed for it. Used by the import path:
+    /// a widget/Shortcuts flag already scheduled its repeating notification, so re-scheduling
+    /// on the next app launch would silently reset the countdown. This checks first and only
+    /// schedules when nothing is pending (e.g. a flag made while paused that now needs arming).
+    func scheduleReminderIfNeeded(id: UUID, messageText: String, senderName: String?, sourceApp: String?, intervalMinutes: Int, createdAt: Date) {
         let identifier = "reminder-\(id.uuidString)"
+        UNUserNotificationCenter.current().getPendingNotificationRequests { [weak self] requests in
+            guard !requests.contains(where: { $0.identifier == identifier }) else { return }
+            self?.scheduleReminder(
+                id: id,
+                messageText: messageText,
+                senderName: senderName,
+                sourceApp: sourceApp,
+                intervalMinutes: intervalMinutes,
+                createdAt: createdAt
+            )
+        }
+    }
+
+    func cancelReminder(id: UUID) {
+        // Clear both the repeating reminder and any one-hour "snooze" follow-up; otherwise
+        // a snoozed notification keeps firing for a message you've already answered/edited.
+        let identifiers = ["reminder-\(id.uuidString)", "snooze-\(id.uuidString)"]
         let center = UNUserNotificationCenter.current()
-        center.removePendingNotificationRequests(withIdentifiers: [identifier])
-        center.removeDeliveredNotifications(withIdentifiers: [identifier])
+        center.removePendingNotificationRequests(withIdentifiers: identifiers)
+        center.removeDeliveredNotifications(withIdentifiers: identifiers)
     }
 
     func rescheduleAllActive(items: [ReminderItem]) {
@@ -154,6 +223,9 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
 
         case AppConstants.snoozeActionID:
             cancelReminder(id: reminderId)
+            // If "pause all" is on, honour it — don't re-arm a 1-hour follow-up that would
+            // fire while everything is supposed to be paused. (Reschedule happens on resume.)
+            guard !isSnoozed else { break }
             // Reschedule with a 1-hour delay
             let content = response.notification.request.content
             let snoozeContent = UNMutableNotificationContent()
@@ -190,12 +262,15 @@ final class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
 
     @MainActor
     private func markAsAnswered(id: UUID) async {
-        guard let container = try? ModelContainer(
+        // Prefer the app's live container so the change is observed by the UI; fall back to
+        // opening the shared store directly if the app hasn't registered one yet.
+        let container = modelContainer ?? (try? ModelContainer(
             for: ReminderItem.self,
             configurations: ModelConfiguration(
                 url: AppConstants.sharedContainerURL.appendingPathComponent("AYFM.store")
             )
-        ) else { return }
+        ))
+        guard let container else { return }
 
         let context = container.mainContext
         let predicate = #Predicate<ReminderItem> { $0.id == id }

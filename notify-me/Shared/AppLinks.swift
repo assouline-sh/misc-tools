@@ -45,6 +45,9 @@ enum AppLinks {
         "Venmo": "venmo://",
         "PayPal": "paypal://",
         "iMessage": "messages://",
+        // Apple's Messages opens to the most recent thread via the SMS scheme; "Mail" uses
+        // Mail's (private but long-stable) message scheme. These back the auto-flag sources.
+        "Messages": "sms:",
         "Mail": "message://",
     ]
 

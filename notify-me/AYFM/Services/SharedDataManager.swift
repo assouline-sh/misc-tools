@@ -15,7 +15,9 @@ struct SharedDataManager {
                 let item = ReminderItem(from: reminder)
                 context.insert(item)
 
-                NotificationManager.shared.scheduleReminder(
+                // The intent that wrote this pending reminder already scheduled its
+                // notification, so only arm one if none exists (avoids resetting the timer).
+                NotificationManager.shared.scheduleReminderIfNeeded(
                     id: item.id,
                     messageText: item.messageText,
                     senderName: item.senderName,
@@ -37,6 +39,17 @@ struct SharedDataManager {
 
         if let items = try? context.fetch(descriptor) {
             NotificationManager.shared.rescheduleAllActive(items: items)
+        }
+    }
+
+    /// Queue every active reminder to resume nagging when a finite pause ends, so the
+    /// break self-lifts without the app having to be reopened. See `scheduleResume`.
+    static func scheduleResume(context: ModelContext, at date: Date) {
+        let predicate = #Predicate<ReminderItem> { !$0.isAnswered }
+        let descriptor = FetchDescriptor(predicate: predicate)
+
+        if let items = try? context.fetch(descriptor) {
+            NotificationManager.shared.scheduleResume(items: items, at: date)
         }
     }
 }

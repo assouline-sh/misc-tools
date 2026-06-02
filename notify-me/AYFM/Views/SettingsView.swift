@@ -4,18 +4,9 @@ import UserNotifications
 
 struct SettingsView: View {
     @AppStorage(AppConstants.defaultIntervalKey, store: AppConstants.sharedDefaults)
-    private var intervalMinutes: Int = 60
+    private var intervalMinutes: Int = IntervalStore.defaultMinutes
 
-    private let intervalOptions: [(label: String, minutes: Int)] = [
-        ("30 min", 30),
-        ("1 hour", 60),
-        ("2 hours", 120),
-        ("4 hours", 240),
-        ("8 hours", 480),
-        ("12 hours", 720),
-        ("1 day", 1440),
-        ("every other day", 2880),
-    ]
+    private let intervalOptions = IntervalStore.options
 
     var body: some View {
         NavigationStack {
@@ -55,10 +46,26 @@ struct SettingsView: View {
                     NavigationLink {
                         AppStrengthConfigView()
                     } label: {
-                        Label("app-specific strength", systemImage: "bolt")
+                        Label("app-specific respect", systemImage: "bolt")
                     }
 
                     SnoozeSection()
+                }
+
+                Section {
+                    NavigationLink {
+                        AutoFlagSetupView()
+                    } label: {
+                        Label("set it up", systemImage: "wand.and.stars")
+                    }
+
+                    NavigationLink {
+                        IgnoredSendersView()
+                    } label: {
+                        Label("ignored senders", systemImage: "nosign")
+                    }
+                } header: {
+                    sectionHeader("auto-flag imessage & mail")
                 }
 
                 Section {
@@ -192,6 +199,10 @@ private struct SnoozeSection: View {
     @AppStorage(AppConstants.globalSnoozeOptionKey, store: AppConstants.sharedDefaults)
     private var snoozeOptionRaw: Int = SnoozeOption.active.rawValue
 
+    /// Bumped on a timer so the slider re-evaluates `isSnoozing` and snaps back to "active"
+    /// on its own the moment a finite pause's end time passes while this screen is open.
+    @State private var refreshTick = Date()
+
     private let haptics = UISelectionFeedbackGenerator()
 
     private var isSnoozing: Bool {
@@ -238,6 +249,11 @@ private struct SnoozeSection: View {
         }
         .padding(.vertical, 2)
         .onAppear { haptics.prepare() }
+        .onReceive(Timer.publish(every: 20, on: .main, in: .common).autoconnect()) { now in
+            // Re-render so the slider returns to "active" once a finite pause expires,
+            // without the user having to leave and reopen the screen.
+            refreshTick = now
+        }
     }
 
     /// Slider position maps to a `SnoozeOption`. Moving it fires a haptic at each detent
@@ -261,6 +277,9 @@ private struct SnoozeSection: View {
         if let until = option.snoozeUntil(from: Date()) {
             snoozeUntilTS = until.timeIntervalSince1970
             NotificationManager.shared.setGlobalSnooze(until: until)
+            // Queue active reminders to start nagging again the instant a finite break
+            // ends, so the pause self-lifts without needing the app reopened.
+            SharedDataManager.scheduleResume(context: modelContext, at: until)
         } else {
             // "active" — lift the snooze and bring active reminders' notifications back.
             snoozeUntilTS = 0
@@ -282,5 +301,130 @@ private struct SnoozeSection: View {
         case .oneDay:       return "day off? until \(time)"
         case .indefinitely: return "stopped (for now). set active to resume"
         }
+    }
+}
+
+// MARK: - Ignored senders
+
+/// An editable list of senders the auto-flag intent drops (a spam email account, the
+/// shortcodes/bots that send 2FA codes, etc.). Backed by `IgnoredSenderStore` in the shared
+/// App Group, so `CreateReminderIntent` reads the same list when an automation fires.
+private struct IgnoredSendersView: View {
+    @State private var entries: [String] = IgnoredSenderStore.load()
+    @State private var newEntry: String = ""
+    @FocusState private var fieldFocused: Bool
+
+    var body: some View {
+        Form {
+            Section {
+                HStack {
+                    TextField("number, email, @domain, or name", text: $newEntry)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                        .focused($fieldFocused)
+                        .onSubmit(add)
+                    Button(action: add) {
+                        Image(systemName: "plus.circle.fill")
+                    }
+                    .disabled(newEntry.trimmingCharacters(in: .whitespaces).isEmpty)
+                    .tint(Theme.accent)
+                }
+            } footer: {
+                Text("auto-flagged messages from these are dropped — nothing gets tracked or nags you. matches a phone number/shortcode (ignoring formatting), a full email, an @domain, or an exact sender name.")
+                    .font(.footnote)
+            }
+
+            if !entries.isEmpty {
+                Section {
+                    ForEach(entries, id: \.self) { entry in
+                        Text(entry)
+                            .font(.system(.body, design: .monospaced))
+                    }
+                    .onDelete(perform: delete)
+                }
+            }
+        }
+        .scrollContentBackground(.hidden)
+        .contentMargins(.top, 8, for: .scrollContent)
+        .background(Theme.background.ignoresSafeArea())
+        .navigationTitle("ignored senders")
+        .navigationBarTitleDisplayMode(.inline)
+        .tint(Theme.accent)
+        .toolbar { EditButton().tint(Theme.accent) }
+    }
+
+    private func add() {
+        let trimmed = newEntry.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty,
+              !entries.contains(where: { $0.caseInsensitiveCompare(trimmed) == .orderedSame })
+        else { newEntry = ""; return }
+        entries.append(trimmed)
+        IgnoredSenderStore.save(entries)
+        // Re-read so the stored, de-duplicated/trimmed form is what's shown.
+        entries = IgnoredSenderStore.load()
+        newEntry = ""
+        fieldFocused = false
+    }
+
+    private func delete(at offsets: IndexSet) {
+        entries.remove(atOffsets: offsets)
+        IgnoredSenderStore.save(entries)
+    }
+}
+
+// MARK: - Auto-flag setup instructions
+
+/// Walks the user through creating the two iOS Personal Automations that drive auto-flagging.
+/// The app can't install automations itself, so this explains the steps and offers a button
+/// to jump to the Shortcuts app.
+private struct AutoFlagSetupView: View {
+    var body: some View {
+        Form {
+            Section {
+                Text("ios can auto-track messages for apple's own apps only — imessage/sms and mail. everything else you flag yourself from the widget or share sheet.")
+                    .font(.footnote)
+                    .foregroundStyle(.secondary)
+            }
+
+            Section {
+                step(1, "open the shortcuts app → automation tab → + → create personal automation.")
+                step(2, "pick “message” (or “email”). for mail, point it at the account(s) you want — leave your spam account out.")
+                step(3, "choose “run immediately”, then add action → search “track a reply reminder”.")
+                step(4, "set which app to “messages” (or “mail”), and pass the sender in as “from who?”.")
+                step(5, "done. exclude 2fa bots and other noise under “ignored senders”.")
+            } header: {
+                sectionHeader("set up the automation")
+            }
+
+            Section {
+                Link(destination: URL(string: "shortcuts://")!) {
+                    Label("open shortcuts", systemImage: "arrow.up.forward.app")
+                }
+                .tint(Theme.accent)
+            }
+        }
+        .scrollContentBackground(.hidden)
+        .contentMargins(.top, 8, for: .scrollContent)
+        .background(Theme.background.ignoresSafeArea())
+        .navigationTitle("auto-flag setup")
+        .navigationBarTitleDisplayMode(.inline)
+        .tint(Theme.accent)
+    }
+
+    private func step(_ number: Int, _ text: String) -> some View {
+        HStack(alignment: .firstTextBaseline, spacing: 10) {
+            Text("\(number)")
+                .font(.system(.footnote, design: .monospaced).bold())
+                .foregroundStyle(Theme.accent)
+            Text(text)
+                .font(.footnote)
+        }
+        .padding(.vertical, 2)
+    }
+
+    private func sectionHeader(_ text: String) -> some View {
+        Text(text)
+            .font(.system(.footnote, design: .monospaced))
+            .textCase(nil)
     }
 }

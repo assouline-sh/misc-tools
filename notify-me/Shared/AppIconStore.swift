@@ -63,6 +63,13 @@ enum AppIconStore {
         "Airbnb": "Airbnb",
         "Venmo": "Venmo",
         "PayPal": "PayPal",
+        "Safari": "Safari",
+        "Chrome": "Google Chrome",
+        "Firefox": "Firefox Private Web Browser",
+        "Edge": "Microsoft Edge",
+        "Brave": "Brave Private Web Browser",
+        "DuckDuckGo": "DuckDuckGo Private Browser",
+        "Opera": "Opera Browser",
         "Voicemail": "",
     ]
 

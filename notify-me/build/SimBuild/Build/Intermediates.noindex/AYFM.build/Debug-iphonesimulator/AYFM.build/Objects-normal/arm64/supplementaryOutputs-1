@@ -1,0 +1,24 @@
+"/Users/shanz/misc-tools/notify-me/AYFM/Intents/CreateReminderIntent.swift":
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/CreateReminderIntent.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/CreateReminderIntent.o"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/CreateReminderIntent.d"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/CreateReminderIntent.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/CreateReminderIntent.dia"
+"/Users/shanz/misc-tools/notify-me/AYFM/Intents/AYFMShortcuts.swift":
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AYFMShortcuts.dia"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AYFMShortcuts.swiftconstvalues"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AYFMShortcuts.d"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AYFMShortcuts.swiftdeps"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AYFMShortcuts.o"
+"/Users/shanz/misc-tools/notify-me/AYFM/AYFMApp.swift":
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AYFMApp.dia"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AYFMApp.swiftdeps"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AYFMApp.o"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AYFMApp.d"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AYFMApp.swiftconstvalues"
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/AnswerSwipeRow.swift":
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AnswerSwipeRow.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AnswerSwipeRow.o"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AnswerSwipeRow.d"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AnswerSwipeRow.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AnswerSwipeRow.dia"

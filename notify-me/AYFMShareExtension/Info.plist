@@ -24,13 +24,12 @@
 	<dict>
 		<key>NSExtensionAttributes</key>
 		<dict>
+			<!-- Show AYFM for every share. A scoped URL/text predicate failed to match the
+			     YouTube app's share payload (it packages the link differently than Safari);
+			     TRUEPREDICATE guarantees the extension always appears, and the form handles
+			     a share with no extractable link gracefully (empty "about", pick the app). -->
 			<key>NSExtensionActivationRule</key>
-			<dict>
-				<key>NSExtensionActivationSupportsWebURLWithMaxCount</key>
-				<integer>1</integer>
-				<key>NSExtensionActivationSupportsText</key>
-				<true/>
-			</dict>
+			<string>TRUEPREDICATE</string>
 		</dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.share-services</string>

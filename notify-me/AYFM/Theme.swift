@@ -84,11 +84,35 @@ extension Theme {
         "Link": Color(hex: 0x3B82F6),
         "iMessage": Color(hex: 0x0A84FF),
         "Mail": Color(hex: 0x2D7DF6),
+        "Safari": Color(hex: 0x1A88FF),
+        "Chrome": Color(hex: 0x4285F4),
+        "Firefox": Color(hex: 0xFF7139),
+        "Edge": Color(hex: 0x0C59A4),
+        "Brave": Color(hex: 0xFB542B),
+        "DuckDuckGo": Color(hex: 0xDE5833),
+        "Opera": Color(hex: 0xFF1B2D),
     ]
 
+    /// Neutral gray for apps with no recognizable brand (and no fetched logo). Kept well
+    /// clear of the amber accent so an unknown row never reads as the "answered" state.
+    static let neutral = Color(red: 0.33, green: 0.33, blue: 0.37)
+
+    /// A soft gray sweep for unknown-app row backgrounds — the gradient counterpart to
+    /// `neutral`, styled like the logo-derived gradients so the rows feel consistent.
+    static let neutralGradient: [Color] = [
+        Color(red: 0.62, green: 0.62, blue: 0.67),
+        Color(red: 0.30, green: 0.30, blue: 0.35),
+    ]
+
+    /// Whether we have a brand colour on file for this app (vs. falling back to gray).
+    static func hasBrand(for sourceApp: String?) -> Bool {
+        guard let sourceApp else { return false }
+        return brandColors[sourceApp] != nil
+    }
+
     static func brand(for sourceApp: String?) -> Color {
-        guard let sourceApp else { return accent }
-        return brandColors[sourceApp] ?? accent
+        guard let sourceApp, let color = brandColors[sourceApp] else { return neutral }
+        return color
     }
 }
 

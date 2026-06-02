@@ -54,6 +54,7 @@ struct ReminderRow: View {
         } else {
             Text(fallbackName)
                 .font(.headline)
+                .textCase(.lowercase)
                 .foregroundStyle(textColor)
         }
     }
@@ -62,8 +63,12 @@ struct ReminderRow: View {
         let gradient = icons.gradients[appName] ?? []
         if gradient.count >= 2 {
             LinearGradient(colors: gradient, startPoint: .topLeading, endPoint: .bottomTrailing)
-        } else {
+        } else if Theme.hasBrand(for: item.sourceApp) {
             Theme.brand(for: item.sourceApp)
+        } else {
+            // No logo and no known brand colour — a gray sweep instead of the amber accent,
+            // which would otherwise blend with the "answered" reveal.
+            LinearGradient(colors: Theme.neutralGradient, startPoint: .topLeading, endPoint: .bottomTrailing)
         }
     }
 
@@ -86,10 +91,12 @@ struct ReminderRow: View {
         Date().timeIntervalSince(item.createdAt)
     }
 
-    /// How many times the repeating notification has nagged you so far.
+    /// How many times the repeating notification has nagged you so far. Time spent under a
+    /// global "pause all" is excluded — nothing fires while paused, so it shouldn't count.
     private var nagCount: Int {
         let interval = TimeInterval(item.notificationIntervalMinutes * 60)
         guard interval > 0 else { return 0 }
-        return max(0, Int(age / interval))
+        let paused = SnoozeStore.pausedSeconds(from: item.createdAt, to: Date())
+        return max(0, Int((age - paused) / interval))
     }
 }

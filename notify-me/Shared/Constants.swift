@@ -1,4 +1,11 @@
 import Foundation
+import os
+
+/// Lightweight logging so storage failures (e.g. a file that no longer decodes after a
+/// schema change) are visible in the Console instead of being silently swallowed.
+enum AppLog {
+    static let storage = Logger(subsystem: AppConstants.appGroupID, category: "storage")
+}
 
 enum AppConstants {
     static let pendingDirectory = "PendingReminders"
@@ -11,6 +18,7 @@ enum AppConstants {
     static let appStrengthsKey = "appSpecificStrengths"        // per-app strength overrides (true = ignore Do Not Disturb)
     static let selectedPlatformsKey = "selectedPlatforms"
     static let customPlatformsKey = "customPlatforms"          // user-added apps (persist independently of slots)
+    static let ignoredSendersKey = "ignoredSenders"            // senders the auto-flag intent drops (spam account, 2FA bots)
     static let lastFeedbackDateKey = "lastFeedbackDate"        // throttles feedback to once per 24h
     static let widgetPageKey = "quickFlagWidgetPage"
     static let widgetFlashAppKey = "quickFlagFlashApp"
@@ -19,6 +27,7 @@ enum AppConstants {
     static let composeDateKey = "composeReminderDate"
     static let globalSnoozeUntilKey = "globalSnoozeUntil"      // timestamp until which all reminders are paused (0 = off)
     static let globalSnoozeOptionKey = "globalSnoozeOption"    // last-picked snooze duration (slider index)
+    static let pauseWindowsKey = "pauseWindows"                // ledger of [start,end] pause windows, to exclude paused time from the nag counter
 
     /// App Group shared between the app, share extension, and widget extension.
     /// Must match the `com.apple.security.application-groups` entitlement in all three targets.
@@ -72,8 +81,13 @@ enum ComposeHandoff {
     static func consume(maxAge: TimeInterval = 15) -> Request? {
         guard let data = try? Data(contentsOf: fileURL) else { return nil }
         try? FileManager.default.removeItem(at: fileURL)
-        guard let request = try? JSONDecoder().decode(Request.self, from: data),
-              Date().timeIntervalSince(request.date) < maxAge else { return nil }
-        return request
+        do {
+            let request = try JSONDecoder().decode(Request.self, from: data)
+            guard Date().timeIntervalSince(request.date) < maxAge else { return nil }
+            return request
+        } catch {
+            AppLog.storage.error("Failed to decode compose hand-off: \(error.localizedDescription, privacy: .public)")
+            return nil
+        }
     }
 }

@@ -1,0 +1,18 @@
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/StatsView.swift":
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/StatsView.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/StatsView.dia"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/StatsView.o"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/StatsView.swiftconstvalues"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/StatsView.d"
+"/Users/shanz/misc-tools/notify-me/AYFM/Theme.swift":
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/Theme.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/Theme.d"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/Theme.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/Theme.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/Theme.swiftdeps"
+"/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/DerivedSources/GeneratedAssetSymbols.swift":
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/GeneratedAssetSymbols.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/GeneratedAssetSymbols.d"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps"

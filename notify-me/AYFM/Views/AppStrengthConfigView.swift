@@ -30,7 +30,7 @@ struct AppStrengthConfigView: View {
             } else {
                 Section {
                     ForEach(platforms) { platform in
-                        Picker(platform.name, selection: binding(for: platform.name)) {
+                        Picker(platform.name.lowercased(), selection: binding(for: platform.name)) {
                             Text("default (\(defaultLabel))").tag(useDefaultTag)
                             Text("ignore dnd").tag(ignoreTag)
                             Text("respect dnd").tag(respectTag)
@@ -43,7 +43,7 @@ struct AppStrengthConfigView: View {
         .scrollContentBackground(.hidden)
         .contentMargins(.top, 8, for: .scrollContent)
         .background(Theme.background.ignoresSafeArea())
-        .navigationTitle("app-specific strength")
+        .navigationTitle("app-specific respect")
         .navigationBarTitleDisplayMode(.inline)
         .tint(Theme.accent)
     }

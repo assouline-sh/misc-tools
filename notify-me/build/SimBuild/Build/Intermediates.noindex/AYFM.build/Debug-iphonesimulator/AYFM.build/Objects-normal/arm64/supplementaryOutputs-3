@@ -1,0 +1,24 @@
+"/Users/shanz/misc-tools/notify-me/Shared/ComposeReminderIntent.swift":
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ComposeReminderIntent.o"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ComposeReminderIntent.swiftconstvalues"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ComposeReminderIntent.swiftdeps"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ComposeReminderIntent.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ComposeReminderIntent.d"
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/ComposeReminderView.swift":
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ComposeReminderView.dia"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ComposeReminderView.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ComposeReminderView.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ComposeReminderView.swiftdeps"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/ComposeReminderView.d"
+"/Users/shanz/misc-tools/notify-me/AYFM/Views/AppStrengthConfigView.swift":
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AppStrengthConfigView.d"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AppStrengthConfigView.o"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AppStrengthConfigView.dia"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AppStrengthConfigView.swiftdeps"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/AppStrengthConfigView.swiftconstvalues"
+"/Users/shanz/misc-tools/notify-me/Shared/Constants.swift":
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/Constants.dia"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/Constants.swiftconstvalues"
+  object: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/Constants.o"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/Constants.d"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/SimBuild/Build/Intermediates.noindex/AYFM.build/Debug-iphonesimulator/AYFM.build/Objects-normal/arm64/Constants.swiftdeps"

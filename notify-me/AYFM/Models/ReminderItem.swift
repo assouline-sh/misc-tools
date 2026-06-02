@@ -17,7 +17,7 @@ final class ReminderItem {
         messageText: String,
         senderName: String? = nil,
         sourceApp: String? = nil,
-        intervalMinutes: Int = 60
+        intervalMinutes: Int = IntervalStore.defaultMinutes
     ) {
         self.id = id
         self.messageText = messageText

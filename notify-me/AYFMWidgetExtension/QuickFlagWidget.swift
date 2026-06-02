@@ -148,7 +148,7 @@ struct QuickFlagWidgetView: View {
     /// "Next page" button, pinned to the widget's bottom-right corner by the caller.
     /// Kept compact so it tucks into the corner without overlapping the last app icon.
     private var pageArrow: some View {
-        Button(intent: QuickFlagPageIntent(forward: true)) {
+        Button(intent: QuickFlagPageIntent(forward: true, pageSize: pageSize)) {
             Image(systemName: "chevron.right")
                 .font(.system(size: 10, weight: .semibold))
                 .foregroundStyle(.secondary)

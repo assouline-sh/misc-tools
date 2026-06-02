@@ -26,9 +26,11 @@ struct AppIntervalConfigView: View {
             } else {
                 Section {
                     ForEach(platforms) { platform in
-                        Picker(platform.name, selection: binding(for: platform.name)) {
-                            Text("global (\(globalLabel))").tag(useGlobalTag)
-                            ForEach(intervalOptions, id: \.minutes) { option in
+                        Picker(platform.name.lowercased(), selection: binding(for: platform.name)) {
+                            Text("default (\(globalLabel))").tag(useGlobalTag)
+                            // Skip the option that equals the current default — it's already
+                            // represented by the "default (…)" row above.
+                            ForEach(intervalOptions.filter { $0.minutes != IntervalStore.global }, id: \.minutes) { option in
                                 Text(option.label).tag(option.minutes)
                             }
                         }

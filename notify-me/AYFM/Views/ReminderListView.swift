@@ -44,7 +44,7 @@ struct ReminderListView: View {
                                     openURL(url)
                                 }
                             }
-                            .onLongPressGesture {
+                            .onLongPressGesture(minimumDuration: 0.25) {
                                 editingItem = item
                             }
                             .transition(.move(edge: .trailing).combined(with: .opacity))

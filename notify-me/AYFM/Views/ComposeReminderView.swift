@@ -28,11 +28,9 @@ struct ComposeReminderView: View {
     /// app you tapped in the widget.
     @State private var badgeIn = false
 
-    /// Reminder cadence choices, in minutes. The value pulled from Settings is always
-    /// included so the pre-filled interval is selectable even when it isn't a standard
-    /// choice (e.g. a 1-minute global default).
+    /// Reminder cadence choices, in minutes — the same standard set offered in Settings.
     private var intervalOptions: [Int] {
-        Set([30, 60, 120, 240, 480, 720, 1440, 2880]).union([intervalMinutes]).sorted()
+        IntervalStore.options.map(\.minutes)
     }
 
     init(sourceApp: String?, prefillAbout: String? = nil) {
@@ -40,7 +38,7 @@ struct ComposeReminderView: View {
         _sourceApp = State(initialValue: sourceApp)
         _messageText = State(initialValue: prefillAbout ?? "")
         // Default to this app's own interval if it has one, else the global interval.
-        _intervalMinutes = State(initialValue: IntervalStore.interval(for: sourceApp))
+        _intervalMinutes = State(initialValue: IntervalStore.normalized(IntervalStore.interval(for: sourceApp)))
     }
 
     /// Edit an existing reminder: pre-fill every field from it and update it in place on
@@ -51,7 +49,7 @@ struct ComposeReminderView: View {
         _sourceApp = State(initialValue: item.sourceApp)
         _senderName = State(initialValue: item.senderName ?? "")
         _messageText = State(initialValue: item.messageText.hasPrefix("Flagged at") ? "" : item.messageText)
-        _intervalMinutes = State(initialValue: item.notificationIntervalMinutes)
+        _intervalMinutes = State(initialValue: IntervalStore.normalized(item.notificationIntervalMinutes))
     }
 
     var body: some View {
@@ -70,8 +68,9 @@ struct ComposeReminderView: View {
                             .padding(.vertical, 6)
                     }
                     .onChange(of: sourceApp) { _, newApp in
-                        // Follow the newly chosen app's configured interval.
-                        intervalMinutes = IntervalStore.interval(for: newApp)
+                        // Follow the newly chosen app's configured interval, snapped to a
+                        // valid option so a retired override can't blank the picker.
+                        intervalMinutes = IntervalStore.normalized(IntervalStore.interval(for: newApp))
                     }
                 }
                 .listRowBackground(Color.clear)
@@ -100,7 +99,7 @@ struct ComposeReminderView: View {
                 Section {
                     Picker("interval", selection: $intervalMinutes) {
                         ForEach(intervalOptions, id: \.self) { minutes in
-                            Text(label(forMinutes: minutes)).tag(minutes)
+                            Text(IntervalStore.label(for: minutes)).tag(minutes)
                         }
                     }
                     .pickerStyle(.menu)
@@ -159,6 +158,7 @@ struct ComposeReminderView: View {
             .shadow(color: brand.opacity(0.5), radius: 12)
 
             Text(app ?? "choose app")
+                .textCase(.lowercase)
                 .font(.system(size: 17, weight: .bold, design: .monospaced))
                 .foregroundStyle(Theme.accent)
 
@@ -200,16 +200,6 @@ struct ComposeReminderView: View {
             .textCase(nil)
             .frame(maxWidth: .infinity, alignment: .leading)
             .listRowInsets(EdgeInsets(top: 14, leading: 0, bottom: 6, trailing: 0))
-    }
-
-    private func label(forMinutes minutes: Int) -> String {
-        switch minutes {
-        case ..<60:  return "\(minutes) min"
-        case 60:     return "1 hour"
-        case 1440:   return "1 day"
-        case 2880:   return "every other day"
-        default:     return "\(minutes / 60) hours"
-        }
     }
 
     private func save() {
