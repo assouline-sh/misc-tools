@@ -12,7 +12,7 @@ struct CustomTabBar: View {
     @State private var statsLit = false
 
     private let items: [(icon: String, label: String)] = [
-        ("tray.full", "shit to do"),
+        ("tray.full", "sh*t to answer"),
         ("chart.bar", "stats"),
         ("slider.horizontal.3", "settings"),
     ]

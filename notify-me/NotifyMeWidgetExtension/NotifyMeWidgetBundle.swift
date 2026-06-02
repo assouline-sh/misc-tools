@@ -5,7 +5,6 @@ import SwiftUI
 struct NotifyMeWidgetBundle: WidgetBundle {
     var body: some Widget {
         QuickFlagWidget()
-        NotifyMeLiveActivity()
         if #available(iOSApplicationExtension 18.0, *) {
             QuickFlagControl()
         }

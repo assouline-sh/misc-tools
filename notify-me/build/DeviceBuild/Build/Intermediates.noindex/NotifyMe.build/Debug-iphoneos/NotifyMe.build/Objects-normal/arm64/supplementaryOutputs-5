@@ -1,18 +1,18 @@
-"/Users/shanz/misc-tools/notify-me/NotifyMe/NotifyMeApp.swift":
-  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/NotifyMeApp.dia"
-  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/NotifyMeApp.d"
-  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/NotifyMeApp.swiftdeps"
-  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/NotifyMeApp.swiftconstvalues"
-  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/NotifyMeApp.o"
-"/Users/shanz/misc-tools/notify-me/Shared/PendingReminder.swift":
-  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/PendingReminder.swiftconstvalues"
-  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/PendingReminder.swiftdeps"
-  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/PendingReminder.dia"
-  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/PendingReminder.o"
-  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/PendingReminder.d"
-"/Users/shanz/misc-tools/notify-me/NotifyMe/Views/PlatformConfigView.swift":
-  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/PlatformConfigView.swiftdeps"
-  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/PlatformConfigView.d"
-  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/PlatformConfigView.dia"
-  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/PlatformConfigView.swiftconstvalues"
-  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/PlatformConfigView.o"
+"/Users/shanz/misc-tools/notify-me/NotifyMe/Views/ComposeReminderView.swift":
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ComposeReminderView.d"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ComposeReminderView.o"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ComposeReminderView.swiftdeps"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ComposeReminderView.swiftconstvalues"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ComposeReminderView.dia"
+"/Users/shanz/misc-tools/notify-me/Shared/ComposeReminderIntent.swift":
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ComposeReminderIntent.swiftdeps"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ComposeReminderIntent.o"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ComposeReminderIntent.dia"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ComposeReminderIntent.d"
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/ComposeReminderIntent.swiftconstvalues"
+"/Users/shanz/misc-tools/notify-me/Shared/QuickFlagPageIntent.swift":
+  const-values: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/QuickFlagPageIntent.swiftconstvalues"
+  dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/QuickFlagPageIntent.d"
+  swift-dependencies: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/QuickFlagPageIntent.swiftdeps"
+  object: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/QuickFlagPageIntent.o"
+  diagnostics: "/Users/shanz/misc-tools/notify-me/build/DeviceBuild/Build/Intermediates.noindex/NotifyMe.build/Debug-iphoneos/NotifyMe.build/Objects-normal/arm64/QuickFlagPageIntent.dia"

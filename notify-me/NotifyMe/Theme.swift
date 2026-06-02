@@ -10,7 +10,7 @@ enum Theme {
     static let card       = surface
     static let text       = Color(red: 0.902, green: 0.902, blue: 0.902)  // #E6E6E6
     static let dim        = Color(red: 0.470, green: 0.470, blue: 0.500)   // #787880
-    static let accent     = Color(red: 0.212, green: 0.827, blue: 0.600)   // #36D399 green
+    static let accent     = Color(red: 0.961, green: 0.651, blue: 0.137)   // #F5A623 amber
     static let warn       = Color(red: 0.961, green: 0.651, blue: 0.137)   // #F5A623 amber
     static let late       = Color(red: 0.878, green: 0.141, blue: 0.106)   // #E0241B red
     static let border     = Color(red: 0.157, green: 0.157, blue: 0.176)   // #28282D
@@ -24,9 +24,12 @@ enum Theme {
 
     /// Coarse age label: under an hour, under 12 hours, otherwise whole days.
     static func ageLabel(_ seconds: TimeInterval) -> String {
-        if seconds < 3_600 { return "< 1 hour" }
-        if seconds < 12 * 3_600 { return "< 12 hours" }
-        let days = max(1, Int((seconds / 86_400).rounded()))
+        let hour: TimeInterval = 3_600
+        if seconds < hour { return "< 1 hour" }
+        if seconds < 6 * hour { return "< 6 hours" }
+        if seconds < 12 * hour { return "< 12 hours" }
+        if seconds < 24 * hour { return "< 1 day" }
+        let days = max(1, Int(seconds / 86_400))
         return days == 1 ? "1 day" : "\(days) days"
     }
 }
@@ -49,10 +52,29 @@ extension Theme {
         "Reddit": Color(hex: 0xFF4500),
         "LinkedIn": Color(hex: 0x0A66C2),
         "Gmail": Color(hex: 0xEA4335),
+        "Facebook": Color(hex: 0x1877F2),
+        "Threads": Color(hex: 0x101010),
+        "WeChat": Color(hex: 0x07C160),
+        "Line": Color(hex: 0x06C755),
+        "Viber": Color(hex: 0x7360F2),
+        "KakaoTalk": Color(hex: 0xFAE100),
+        "Mastodon": Color(hex: 0x6364FF),
+        "BeReal": Color(hex: 0x101010),
+        "Twitch": Color(hex: 0x9146FF),
+        "YouTube": Color(hex: 0xFF0000),
+        "Pinterest": Color(hex: 0xE60023),
+        "Outlook": Color(hex: 0x0078D4),
+        "Tumblr": Color(hex: 0x36465D),
         "Hinge": Color(hex: 0x782E8E),
         "Bumble": Color(hex: 0xFFC629),
         "Tinder": Color(hex: 0xFD5068),
-        "Marketplace": Color(hex: 0x1877F2),
+        "Grindr": Color(hex: 0xF6C915),
+        "eBay": Color(hex: 0xE53238),
+        "Etsy": Color(hex: 0xF1641E),
+        "Depop": Color(hex: 0xFF2300),
+        "Airbnb": Color(hex: 0xFF5A5F),
+        "Venmo": Color(hex: 0x3D95CE),
+        "PayPal": Color(hex: 0x003087),
         "iMessage": Color(hex: 0x0A84FF),
         "Mail": Color(hex: 0x2D7DF6),
     ]

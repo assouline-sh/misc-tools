@@ -10,15 +10,15 @@
 		</data>
 		<key>Metadata.appintents/extract.actionsdata</key>
 		<data>
-		08sWIXH5mrmMNuTWb2R3FZujygg=
+		43aQuh2mmy2PKzhC+RpKaH4ZwXw=
 		</data>
 		<key>Metadata.appintents/version.json</key>
 		<data>
-		Aal8VBywJxgVuGW1TEx1MOOFgyk=
+		+UZz/z5iOYpisP9mi6xHzCIu2qM=
 		</data>
 		<key>NotifyMe.debug.dylib</key>
 		<data>
-		kr7Rv4sZiKdGGb4C2BlbKRyT8Vg=
+		hwvs3ZOtMvA5SMWzTuQxDW6D45s=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/Info.plist</key>
 		<data>
-		EA4IpXbDdd1K8gMqeKYyae7yZuI=
+		xh5JqLCV36XxHnxyLIITQV/Agd4=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/Metadata.appintents/extract.actionsdata</key>
 		<data>
-		AEh8kDjFeYv+Dz+Rz5C1IbuBqeo=
+		tZv7ecnUe2VRVT1itE5FVisAPkk=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/Metadata.appintents/version.json</key>
 		<data>
@@ -38,19 +38,19 @@
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/NotifyMeWidgetExtension</key>
 		<data>
-		jLytwo76Z/+IVV4QN2Zo4ff7Q7g=
+		xE8LL3ALzbug6l+0buPBlXZdBrE=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/NotifyMeWidgetExtension.debug.dylib</key>
 		<data>
-		CINZSIdLcl+XXYpwow7QVDuU2WE=
+		qrqkNMAfq95iWMpNI4xTuyGPxAY=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<data>
-		6UbDcGovjwHzTanJGNGR6QHmrtw=
+		21wES0+XpiJW3vLJ9oAfOuGHBys=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/__preview.dylib</key>
 		<data>
-		uCGrqpEkR4wb60p5zhUMCpYUnJQ=
+		RflCf3jyxLTYDioMUdAGwIo/T7g=
 		</data>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/embedded.mobileprovision</key>
 		<data>
@@ -58,7 +58,7 @@
 		</data>
 		<key>__preview.dylib</key>
 		<data>
-		ATrTXNb2X6w1fNJscgBKZD2QDOw=
+		ONYanu64ZqC5pmeCmEWpNkIhncM=
 		</data>
 		<key>embedded.mobileprovision</key>
 		<data>
@@ -71,35 +71,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SMNWT1G06oa7JWJA6tskn1XBecPLAciATTEniLGugfM=
+			RINBIVBOq0Jp2USlUk7cm1RgcpheG20r8QbL6eLxD24=
 			</data>
 		</dict>
 		<key>Metadata.appintents/version.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			A0QDVV1SRCF+5P9o3nmoma7n1IbHGr9zxr26V81Z6b0=
+			F5xTX3ZY6f6x6ruFf3wRtDVFQb25gm08B6fI8izWcHk=
 			</data>
 		</dict>
 		<key>NotifyMe.debug.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uvqhFH6nji5f8RFSnIXOUzGy5AKJBzQlxIfqElNliME=
+			ppAqp6K+4FGv5H0i4UuJmkDsVkFdcF21oUC1Ch/wjmU=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			2/23odsIcly75Y0x/1V2tRXqAdWlT68ookPdgV2Ldr0=
+			jd/BZkIKB7l9aVb8YtkuN0S2CsfnPTlksidoC8WYneM=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/Metadata.appintents/extract.actionsdata</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZTNNyZvv9Yg0SMq0/0AgWVPqtZrCA5JvWXFT8V5ui50=
+			7xfGjmri9SHjhZpWFhLWD5oSkcw/RWlC1ajM+nRMakE=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/Metadata.appintents/version.json</key>
@@ -113,28 +113,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hrw7URxPv3rmMK9FPs31LtEl/GEQ3xnCln6OpoF1Axg=
+			xx0XSja1HhNJn+e1lvixiQ8nBU5wu98RUvW/8VJehxM=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/NotifyMeWidgetExtension.debug.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ek/jvgAK9SHXIVqCo2+bYHErp4IuUdv40R0p93ZwHZs=
+			VqSJOC8jzaWm79p/JrxjplSBO6IyjClq2iCxxN38jRM=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			bmTRPePMt344V8dFgp3n/hn7ljealMzWpJbZ5JZ8kcE=
+			opC3w8wVgg8S3csAY9BK/X1pDRwRWGsproho+FaYB40=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/__preview.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tQUyFyIzt3cYsbDE6GEEmi1esoCM3ErkM9R3IBK4WpQ=
+			o82MSp0b9ArbUXhPdq3PfBOAtEBzQfWjUM4Gg19u8yI=
 			</data>
 		</dict>
 		<key>PlugIns/NotifyMeWidgetExtension.appex/embedded.mobileprovision</key>
@@ -148,7 +148,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			pvb+ZTHy3ppAe7DQAcfYPF3jK5/tfSlcOQMi0a0E9hE=
+			HSHOUTJk+kzy1mwE2C3fNyGggPEvMi/y7psjbEfGgBk=
 			</data>
 		</dict>
 		<key>embedded.mobileprovision</key>

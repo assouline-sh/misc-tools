@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		00C64E1A944FC770A4AA0534 /* AnswerSwipeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83C7F640DBE40C19E3DD6FA /* AnswerSwipeRow.swift */; };
-		019DE583CD436333C5E67810 /* LiveActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400F22149D715C9AD5DCFC20 /* LiveActivityAttributes.swift */; };
 		09314B49586BEF57532D1552 /* CreateReminderIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48997C3CC321915638FE839 /* CreateReminderIntent.swift */; };
 		0B6B00C0B8C9AE210FD23ABD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0569CBC1E39B667708B68 /* Constants.swift */; };
 		0FA44198AA60E0D3ACD2E58A /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65912C9F93BF0F76D83A333A /* ActivityKit.framework */; };
@@ -22,12 +21,17 @@
 		47087388C9600DC3764BD008 /* NotifyMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 572D54C684934C9125F329A6 /* NotifyMeApp.swift */; };
 		4852AE6000A0CD75E0D5D659 /* QuickFlagWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A253CE614A68D9EB16685B5 /* QuickFlagWidget.swift */; };
 		4E176EE5E5FF2822851FBF1E /* NotifyMeWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 610F27CEFDA308E3E5361216 /* NotifyMeWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		5A8BBFCE0223EC7128CC3030 /* LiveActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684BA179B54973AFCD137D4F /* LiveActivityView.swift */; };
 		6197F564C45A2A3AD0659B31 /* PendingReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6D2D518F21214A587BC9194 /* PendingReminder.swift */; };
 		667ACA9C20CEBCF290564C21 /* ReminderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1932284F5FD9110C8C08CE3 /* ReminderItem.swift */; };
 		6EE41513949A60715A450431 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2EEB2681179BB4EA125898EF /* Assets.xcassets */; };
 		7333436A71A1D701415A2044 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51039E4C611BB710DDD934B3 /* Theme.swift */; };
 		754030697B3271C97144A8D8 /* QuickFlagIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAEBAC0B06B16E136F114D7 /* QuickFlagIntent.swift */; };
+		AAAA0001CCCC0001DDDD0001 /* QuickFlagPageIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0003CCCC0003DDDD0003 /* QuickFlagPageIntent.swift */; };
+		AAAA0002CCCC0002DDDD0002 /* QuickFlagPageIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0003CCCC0003DDDD0003 /* QuickFlagPageIntent.swift */; };
+		AAAA0011CCCC0011DDDD0011 /* ComposeReminderIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0013CCCC0013DDDD0013 /* ComposeReminderIntent.swift */; };
+		AAAA0012CCCC0012DDDD0012 /* ComposeReminderIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0013CCCC0013DDDD0013 /* ComposeReminderIntent.swift */; };
+		AAAA0021CCCC0021DDDD0021 /* ComposeReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0023CCCC0023DDDD0023 /* ComposeReminderView.swift */; };
+		AAAA0031CCCC0031DDDD0031 /* AppIntervalConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0033CCCC0033DDDD0033 /* AppIntervalConfigView.swift */; };
 		7C7B6D09E7DC902C774DDF4F /* NotifyMeWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C87543E3EEC33AF31F1D80 /* NotifyMeWidgetBundle.swift */; };
 		7DAE7B04FE43E079E431F5C5 /* ActivityKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65912C9F93BF0F76D83A333A /* ActivityKit.framework */; };
 		837458B784238E4D97B34DB6 /* AppShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5AA92F3D8ABB1E7F51D65B /* AppShortcuts.swift */; };
@@ -35,7 +39,6 @@
 		8B4B5DAF63D819DED5CEA9A1 /* FlyingLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 066C5DA747E2533F6C4DC868 /* FlyingLogo.swift */; };
 		8D8D541B6BB0E7485E6AC730 /* QuickFlagControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2392B2BCA6259B49F116ABE9 /* QuickFlagControl.swift */; };
 		8FAAE71BD4C979FDE31F9560 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F634E10E76EAA624126DCAE9 /* ContentView.swift */; };
-		9039DE9FD8E04590BEB9C8EC /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75D50BB56326520ABF378A7 /* LiveActivityManager.swift */; };
 		931EF995872E38B8C9809340 /* SharedDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06DCD3043BF9B385766958 /* SharedDataManager.swift */; };
 		9C9378B4B72B4004305A3978 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3990F0D7C4FFBA4F3E3D2045 /* StatsView.swift */; };
 		A4A2E57AA4849FD9D9970C9F /* AppIconStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CAFC0C8003B17E9635FA98 /* AppIconStore.swift */; };
@@ -44,7 +47,6 @@
 		B5217BEF2647C08CAEB18549 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4ACFD602F5A906E3934543 /* WidgetKit.framework */; };
 		BC2B798FF154AA4D2075923E /* ReminderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D28FA4186C25B87BCA06EED /* ReminderListView.swift */; };
 		BD65F52DC220DB09EE6AD129 /* PlatformConfigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83AECDBAEE0BA6AEE70BACF /* PlatformConfigView.swift */; };
-		CCF7E7160BECE7E8B7EE2C12 /* LiveActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400F22149D715C9AD5DCFC20 /* LiveActivityAttributes.swift */; };
 		DFB6FA9621AE75A9C7BC4831 /* AppIconStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CAFC0C8003B17E9635FA98 /* AppIconStore.swift */; };
 		E54EB7C306198AD2A7A8476A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E0569CBC1E39B667708B68 /* Constants.swift */; };
 		E865D55DD8D4A21C70CE8804 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06D67B2D145BF4BA80820E2 /* CustomTabBar.swift */; };
@@ -84,14 +86,12 @@
 		2E5AA92F3D8ABB1E7F51D65B /* AppShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppShortcuts.swift; sourceTree = "<group>"; };
 		2EEB2681179BB4EA125898EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3990F0D7C4FFBA4F3E3D2045 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
-		400F22149D715C9AD5DCFC20 /* LiveActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityAttributes.swift; sourceTree = "<group>"; };
 		4D28FA4186C25B87BCA06EED /* ReminderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListView.swift; sourceTree = "<group>"; };
 		51039E4C611BB710DDD934B3 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		572D54C684934C9125F329A6 /* NotifyMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyMeApp.swift; sourceTree = "<group>"; };
 		5EACC2D8FB1D2DB56D35BD54 /* FlagPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagPlatform.swift; sourceTree = "<group>"; };
 		610F27CEFDA308E3E5361216 /* NotifyMeWidgetExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = NotifyMeWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		65912C9F93BF0F76D83A333A /* ActivityKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ActivityKit.framework; sourceTree = "<group>"; };
-		684BA179B54973AFCD137D4F /* LiveActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityView.swift; sourceTree = "<group>"; };
 		92D118C6CF679821F2E77310 /* AppIconCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconCache.swift; sourceTree = "<group>"; };
 		938AA71B33770C11A0C3D5E6 /* NotifyMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotifyMe.entitlements; sourceTree = "<group>"; };
 		98CAFC0C8003B17E9635FA98 /* AppIconStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconStore.swift; sourceTree = "<group>"; };
@@ -104,13 +104,16 @@
 		C64C956FCC400A0ED60C3F57 /* NotifyMe.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = NotifyMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83C7F640DBE40C19E3DD6FA /* AnswerSwipeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerSwipeRow.swift; sourceTree = "<group>"; };
 		CFAEBAC0B06B16E136F114D7 /* QuickFlagIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFlagIntent.swift; sourceTree = "<group>"; };
+		AAAA0003CCCC0003DDDD0003 /* QuickFlagPageIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFlagPageIntent.swift; sourceTree = "<group>"; };
+		AAAA0013CCCC0013DDDD0013 /* ComposeReminderIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReminderIntent.swift; sourceTree = "<group>"; };
+		AAAA0023CCCC0023DDDD0023 /* ComposeReminderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeReminderView.swift; sourceTree = "<group>"; };
+		AAAA0033CCCC0033DDDD0033 /* AppIntervalConfigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntervalConfigView.swift; sourceTree = "<group>"; };
 		D06D67B2D145BF4BA80820E2 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		D48997C3CC321915638FE839 /* CreateReminderIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderIntent.swift; sourceTree = "<group>"; };
 		E1932284F5FD9110C8C08CE3 /* ReminderItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderItem.swift; sourceTree = "<group>"; };
 		E43165A58F69A012AD8D803F /* AppLinks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLinks.swift; sourceTree = "<group>"; };
 		E5C87543E3EEC33AF31F1D80 /* NotifyMeWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifyMeWidgetBundle.swift; sourceTree = "<group>"; };
 		E6D2D518F21214A587BC9194 /* PendingReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingReminder.swift; sourceTree = "<group>"; };
-		E75D50BB56326520ABF378A7 /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
 		EC06DCD3043BF9B385766958 /* SharedDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedDataManager.swift; sourceTree = "<group>"; };
 		F0F7509DFA21C53E9F9424D0 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F634E10E76EAA624126DCAE9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -142,7 +145,6 @@
 		2E65A99C06C75BE82003FDAE /* NotifyMeWidgetExtension */ = {
 			isa = PBXGroup;
 			children = (
-				684BA179B54973AFCD137D4F /* LiveActivityView.swift */,
 				E5C87543E3EEC33AF31F1D80 /* NotifyMeWidgetBundle.swift */,
 				B6A361B1F208E0433E63335F /* NotifyMeWidgetExtension.entitlements */,
 				2392B2BCA6259B49F116ABE9 /* QuickFlagControl.swift */,
@@ -189,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				92D118C6CF679821F2E77310 /* AppIconCache.swift */,
-				E75D50BB56326520ABF378A7 /* LiveActivityManager.swift */,
 				A93DE6FC6D24FB3DBDE2DCD4 /* NotificationManager.swift */,
 				EC06DCD3043BF9B385766958 /* SharedDataManager.swift */,
 			);
@@ -231,9 +232,10 @@
 				E43165A58F69A012AD8D803F /* AppLinks.swift */,
 				07E0569CBC1E39B667708B68 /* Constants.swift */,
 				5EACC2D8FB1D2DB56D35BD54 /* FlagPlatform.swift */,
-				400F22149D715C9AD5DCFC20 /* LiveActivityAttributes.swift */,
 				E6D2D518F21214A587BC9194 /* PendingReminder.swift */,
 				CFAEBAC0B06B16E136F114D7 /* QuickFlagIntent.swift */,
+				AAAA0003CCCC0003DDDD0003 /* QuickFlagPageIntent.swift */,
+				AAAA0013CCCC0013DDDD0013 /* ComposeReminderIntent.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -242,6 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				C83C7F640DBE40C19E3DD6FA /* AnswerSwipeRow.swift */,
+				AAAA0033CCCC0033DDDD0033 /* AppIntervalConfigView.swift */,
+				AAAA0023CCCC0023DDDD0023 /* ComposeReminderView.swift */,
 				F634E10E76EAA624126DCAE9 /* ContentView.swift */,
 				D06D67B2D145BF4BA80820E2 /* CustomTabBar.swift */,
 				066C5DA747E2533F6C4DC868 /* FlyingLogo.swift */,
@@ -362,13 +366,15 @@
 				E865D55DD8D4A21C70CE8804 /* CustomTabBar.swift in Sources */,
 				17089A375F35FAAB5700A745 /* FlagPlatform.swift in Sources */,
 				8B4B5DAF63D819DED5CEA9A1 /* FlyingLogo.swift in Sources */,
-				019DE583CD436333C5E67810 /* LiveActivityAttributes.swift in Sources */,
-				9039DE9FD8E04590BEB9C8EC /* LiveActivityManager.swift in Sources */,
 				317E2E19FB22B5736D6406D5 /* NotificationManager.swift in Sources */,
 				47087388C9600DC3764BD008 /* NotifyMeApp.swift in Sources */,
 				6197F564C45A2A3AD0659B31 /* PendingReminder.swift in Sources */,
 				BD65F52DC220DB09EE6AD129 /* PlatformConfigView.swift in Sources */,
 				754030697B3271C97144A8D8 /* QuickFlagIntent.swift in Sources */,
+				AAAA0001CCCC0001DDDD0001 /* QuickFlagPageIntent.swift in Sources */,
+				AAAA0011CCCC0011DDDD0011 /* ComposeReminderIntent.swift in Sources */,
+				AAAA0021CCCC0021DDDD0021 /* ComposeReminderView.swift in Sources */,
+				AAAA0031CCCC0031DDDD0031 /* AppIntervalConfigView.swift in Sources */,
 				667ACA9C20CEBCF290564C21 /* ReminderItem.swift in Sources */,
 				BC2B798FF154AA4D2075923E /* ReminderListView.swift in Sources */,
 				12B1B0ED2DFA23ACCEFFF87C /* ReminderRow.swift in Sources */,
@@ -387,12 +393,12 @@
 				EC407ABBB23A3ABFCA52FF3A /* AppLinks.swift in Sources */,
 				E54EB7C306198AD2A7A8476A /* Constants.swift in Sources */,
 				46938C0749544CA639AB683E /* FlagPlatform.swift in Sources */,
-				CCF7E7160BECE7E8B7EE2C12 /* LiveActivityAttributes.swift in Sources */,
-				5A8BBFCE0223EC7128CC3030 /* LiveActivityView.swift in Sources */,
 				7C7B6D09E7DC902C774DDF4F /* NotifyMeWidgetBundle.swift in Sources */,
 				B105D469865AAADD37149AAB /* PendingReminder.swift in Sources */,
 				8D8D541B6BB0E7485E6AC730 /* QuickFlagControl.swift in Sources */,
 				FFE5CCC0FFBB3652A8B810D9 /* QuickFlagIntent.swift in Sources */,
+				AAAA0002CCCC0002DDDD0002 /* QuickFlagPageIntent.swift in Sources */,
+				AAAA0012CCCC0012DDDD0012 /* ComposeReminderIntent.swift in Sources */,
 				4852AE6000A0CD75E0D5D659 /* QuickFlagWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

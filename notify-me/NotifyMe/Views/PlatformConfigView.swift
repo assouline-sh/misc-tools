@@ -11,6 +11,11 @@ struct PlatformConfigView: View {
     @State private var customs: [FlagPlatform] = PlatformConfigView.initialCustoms()
     @State private var customName: String = ""
     @State private var paletteTargeted = false
+    /// Index of the slot a dragged app is currently hovering over (nil = none).
+    @State private var targetedSlot: Int?
+
+    /// A soft "ready to drop" green chosen to sit well next to the amber accent.
+    private let readyGreen = Color(red: 0.46, green: 0.80, blue: 0.45)
 
     private let slotColumns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 4)
     private let paletteColumns = [GridItem(.adaptive(minimum: 68), spacing: 10)]
@@ -21,26 +26,59 @@ struct PlatformConfigView: View {
         return (PlatformCatalog.all + customs).filter { !slotted.contains($0.name) }
     }
 
+    /// Palette groupings, in display order. Names must match catalog entries; any
+    /// available app not listed here (e.g. a custom one) falls under "custom".
+    private static let categories: [(title: String, names: [String])] = [
+        ("messaging", ["WhatsApp", "Telegram", "Signal", "Discord", "Messenger", "Snapchat", "WeChat", "Line", "Viber", "KakaoTalk", "Teams"]),
+        ("work", ["Slack"]),
+        ("social", ["Instagram", "X", "TikTok", "Reddit", "Facebook", "Threads", "Mastodon", "BeReal", "Twitch", "YouTube", "Pinterest", "Tumblr", "LinkedIn"]),
+        ("dating", ["Hinge", "Bumble", "Tinder", "Grindr"]),
+        ("email", ["Gmail", "Outlook", "Mail"]),
+        ("shopping", ["eBay", "Etsy", "Depop", "Airbnb"]),
+        ("payments", ["Venmo", "PayPal"]),
+        ("other", ["Voicemail"]),
+    ]
+
+    /// Available apps grouped by category (empty groups dropped), with anything
+    /// uncategorized collected under "custom" at the end.
+    private var categorizedAvailable: [(title: String, apps: [FlagPlatform])] {
+        let byName = Dictionary(available.map { ($0.name, $0) }, uniquingKeysWith: { first, _ in first })
+        var groups: [(title: String, apps: [FlagPlatform])] = []
+        var categorized = Set<String>()
+
+        for (title, names) in Self.categories {
+            categorized.formUnion(names)
+            let apps = names.compactMap { byName[$0] }
+            if !apps.isEmpty { groups.append((title, apps)) }
+        }
+
+        let leftovers = available.filter { !categorized.contains($0.name) }
+        if !leftovers.isEmpty { groups.append(("custom", leftovers)) }
+        return groups
+    }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
-                Text("Your 8 slots")
+                Text("widget slots")
                     .font(.headline)
                 LazyVGrid(columns: slotColumns, spacing: 10) {
-                    ForEach(0..<8, id: \.self) { slotView($0) }
+                    ForEach(0..<16, id: \.self) { slotView($0) }
                 }
 
                 Divider()
 
-                Text("Drag an app into a slot")
+                Text("drag app into slot")
                     .font(.headline)
                 paletteView
 
                 customAddField
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.top)
+            .padding(.bottom, 80)
         }
-        .navigationTitle("Quick Flag Buttons")
+        .navigationTitle("widget configuration")
         .navigationBarTitleDisplayMode(.inline)
         .screen()
         .onChange(of: slots) { _, _ in persist() }
@@ -71,16 +109,24 @@ struct PlatformConfigView: View {
 
     private func slotView(_ index: Int) -> some View {
         let platform = slots[index]
+        let targeted = targetedSlot == index
+        // Stroke: green when an app is hovering, amber dashed when empty, hidden when filled.
+        let strokeColor: Color = targeted ? readyGreen : (platform == nil ? Theme.accent.opacity(0.7) : .clear)
+        let fillColor: Color = targeted
+            ? readyGreen.opacity(0.18)
+            : (platform == nil ? Color.clear : Color.accentColor.opacity(0.15))
+
         return RoundedRectangle(cornerRadius: 16)
             .strokeBorder(
-                style: StrokeStyle(lineWidth: 2, dash: platform == nil ? [5] : [])
+                style: StrokeStyle(lineWidth: targeted ? 2.5 : 2, dash: (platform == nil && !targeted) ? [5] : [])
             )
-            .foregroundStyle(platform == nil ? Color.secondary.opacity(0.5) : .clear)
+            .foregroundStyle(strokeColor)
             .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(platform == nil ? Color.clear : Color.accentColor.opacity(0.15))
+                RoundedRectangle(cornerRadius: 16).fill(fillColor)
             )
             .frame(height: 76)
+            .shadow(color: targeted ? readyGreen.opacity(0.65) : .clear, radius: targeted ? 8 : 0)
+            .animation(.easeInOut(duration: 0.15), value: targeted)
             .overlay {
                 if let platform {
                     VStack(spacing: 4) {
@@ -107,39 +153,39 @@ struct PlatformConfigView: View {
                 }
             }
             .dropDestination(for: String.self) { items, _ in
+                targetedSlot = nil
                 guard let name = items.first else { return false }
                 drop(name: name, into: index)
                 return true
+            } isTargeted: { isOver in
+                if isOver { targetedSlot = index }
+                else if targetedSlot == index { targetedSlot = nil }
             }
     }
 
     // MARK: - Palette
 
     private var paletteView: some View {
-        Group {
+        VStack(alignment: .leading, spacing: 18) {
             if available.isEmpty {
-                Text("All apps are in slots. Drag one back here to remove it.")
+                Text("all apps are in slots. drag one back here to remove it.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, minHeight: 60)
             } else {
-                LazyVGrid(columns: paletteColumns, spacing: 10) {
-                    ForEach(available) { platform in
-                        VStack(spacing: 4) {
-                            platformIcon(platform, size: 30)
-                            Text(platform.name).font(.caption2).lineLimit(1).minimumScaleFactor(0.7)
+                ForEach(categorizedAvailable, id: \.title) { group in
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(group.title)
+                            .font(.system(.subheadline, design: .monospaced))
+                            .foregroundStyle(.secondary)
+                        LazyVGrid(columns: paletteColumns, spacing: 10) {
+                            ForEach(group.apps) { paletteCell($0) }
                         }
-                        .frame(width: 68, height: 60)
-                        .background(
-                            RoundedRectangle(cornerRadius: 12).fill(Color.secondary.opacity(0.12))
-                        )
-                        .contentShape(RoundedRectangle(cornerRadius: 12))
-                        .draggable(platform.name)
                     }
                 }
             }
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(8)
         .background(
             RoundedRectangle(cornerRadius: 16)
@@ -152,9 +198,22 @@ struct PlatformConfigView: View {
         } isTargeted: { paletteTargeted = $0 }
     }
 
+    /// A single draggable app tile in the palette.
+    private func paletteCell(_ platform: FlagPlatform) -> some View {
+        VStack(spacing: 4) {
+            platformIcon(platform, size: 30)
+            Text(platform.name).font(.caption2).lineLimit(1).minimumScaleFactor(0.7)
+        }
+        .frame(width: 68, height: 60)
+        .background(
+            RoundedRectangle(cornerRadius: 12).fill(Color.secondary.opacity(0.12))
+        )
+        .contentShape(RoundedRectangle(cornerRadius: 12))
+        .draggable(platform.name)
+    }
+
     private var customAddField: some View {
         HStack {
-            Image(systemName: "plus.circle.fill").foregroundStyle(.secondary)
             TextField("Add a custom app…", text: $customName)
                 .textInputAutocapitalization(.words)
             Button("Add", action: addCustom)
@@ -213,8 +272,8 @@ struct PlatformConfigView: View {
     // MARK: - Initial state
 
     private static func initialSlots() -> [FlagPlatform?] {
-        var result: [FlagPlatform?] = PlatformStore.load().prefix(8).map { $0 }
-        while result.count < 8 { result.append(nil) }
+        var result: [FlagPlatform?] = PlatformStore.load().prefix(16).map { $0 }
+        while result.count < 16 { result.append(nil) }
         return result
     }
 

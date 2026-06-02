@@ -1,25 +1,25 @@
 {
+  "version" : 1,
   "tables" : {
-    "Localizable" : [
-      {
-        "key" : "Create a reply reminder"
-      }
-    ],
     "AppShortcuts" : [
       {
-        "location" : {
-          "startingLine" : 4,
-          "startingColumn" : 0
-        },
-        "key" : "Remind me to reply in ${applicationName}",
         "values" : [
           "Remind me to reply in ${applicationName}",
           "Create a reminder in ${applicationName}",
           "${applicationName} remind me to reply"
-        ]
+        ],
+        "key" : "Remind me to reply in ${applicationName}",
+        "location" : {
+          "startingLine" : 4,
+          "startingColumn" : 0
+        }
+      }
+    ],
+    "Localizable" : [
+      {
+        "key" : "Create a reply reminder"
       }
     ]
   },
-  "version" : 1,
   "source" : "\/Users\/shanz\/misc-tools\/notify-me\/NotifyMe\/Intents\/AppShortcuts.swift"
 }

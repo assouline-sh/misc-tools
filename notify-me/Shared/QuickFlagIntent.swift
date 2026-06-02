@@ -1,5 +1,6 @@
 import AppIntents
 import UserNotifications
+import WidgetKit
 
 struct QuickFlagIntent: AppIntent {
     static var title: LocalizedStringResource = "Quick Flag"
@@ -16,8 +17,7 @@ struct QuickFlagIntent: AppIntent {
     }
 
     func perform() async throws -> some IntentResult {
-        let intervalMinutes = AppConstants.sharedDefaults.integer(forKey: AppConstants.defaultIntervalKey)
-        let interval = intervalMinutes > 0 ? intervalMinutes : 60
+        let interval = IntervalStore.interval(for: sourceApp)
 
         let reminder = PendingReminder(
             id: UUID(),
@@ -48,6 +48,14 @@ struct QuickFlagIntent: AppIntent {
         )
 
         try await UNUserNotificationCenter.current().add(request)
+
+        // Record which app was just flagged so the widget can briefly flash it, then
+        // refresh the timeline to show (and shortly after, clear) that confirmation.
+        if let sourceApp {
+            AppConstants.sharedDefaults.set(sourceApp, forKey: AppConstants.widgetFlashAppKey)
+            AppConstants.sharedDefaults.set(Date(), forKey: AppConstants.widgetFlashDateKey)
+        }
+        WidgetCenter.shared.reloadAllTimelines()
 
         return .result()
     }

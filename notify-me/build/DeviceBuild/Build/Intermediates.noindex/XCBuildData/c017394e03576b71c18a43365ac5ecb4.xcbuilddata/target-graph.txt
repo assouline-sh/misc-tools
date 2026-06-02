@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'NotifyMe' in project 'NotifyMe'
+➜ Explicit dependency on target 'NotifyMeWidgetExtension' in project 'NotifyMe'
+Target 'NotifyMeWidgetExtension' in project 'NotifyMe' (no dependencies)

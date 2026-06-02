@@ -16,13 +16,7 @@ struct ReminderListView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("answer your fucking messages")
-                .font(.system(size: 20, weight: .bold, design: .monospaced))
-                .foregroundStyle(Theme.text)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
-                .padding(.horizontal)
-                .padding(.top, 8)
+            ScreenTitle("answer your f****** messages", accent: "f******")
 
             if reminders.isEmpty {
                 Spacer()

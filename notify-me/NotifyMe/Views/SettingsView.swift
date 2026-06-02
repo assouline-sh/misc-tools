@@ -5,9 +5,6 @@ struct SettingsView: View {
     @AppStorage(AppConstants.defaultIntervalKey, store: AppConstants.sharedDefaults)
     private var intervalMinutes: Int = 60
 
-    @State private var notificationStatus: String = "Checking..."
-    @State private var scheduledInfo: String = ""
-
     private let intervalOptions: [(label: String, minutes: Int)] = [
         ("1 min", 1),
         ("15 min", 15),
@@ -19,91 +16,53 @@ struct SettingsView: View {
 
     var body: some View {
         NavigationStack {
-            Form {
-                Section("Reminder Interval") {
-                    Picker("Default interval", selection: $intervalMinutes) {
-                        ForEach(intervalOptions, id: \.minutes) { option in
-                            Text(option.label).tag(option.minutes)
+            VStack(alignment: .leading, spacing: 0) {
+                ScreenTitle("settings", accent: "settings")
+                Form {
+                Section {
+                    VStack(alignment: .leading, spacing: 1) {
+                        Picker("global interval", selection: $intervalMinutes) {
+                            ForEach(intervalOptions, id: \.minutes) { option in
+                                Text(option.label).tag(option.minutes)
+                            }
                         }
-                    }
-                    .pickerStyle(.menu)
+                        .pickerStyle(.menu)
 
-                    Text("New reminders will notify you every \(selectedLabel).")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-
-                Section("Quick Flag") {
-                    NavigationLink {
-                        PlatformConfigView()
-                    } label: {
-                        Label("Configure widget buttons", systemImage: "square.grid.2x2")
-                    }
-                }
-
-                Section("Notifications") {
-                    HStack {
-                        Text("Permission")
-                        Spacer()
-                        Text(notificationStatus)
+                        Text("default if not otherwise specified")
+                            .font(.caption)
                             .foregroundStyle(.secondary)
                     }
 
-                    if notificationStatus == "Denied" {
-                        Button("Open Settings") {
-                            if let url = URL(string: UIApplication.openSettingsURLString) {
-                                UIApplication.shared.open(url)
-                            }
-                        }
+                    NavigationLink {
+                        AppIntervalConfigView(intervalOptions: intervalOptions)
+                    } label: {
+                        Label("app-specific intervals", systemImage: "clock")
                     }
+
+                    NavigationLink {
+                        PlatformConfigView()
+                    } label: {
+                        Label("widget configuration", systemImage: "square.grid.2x2")
+                    }
+                } header: {
+                    sectionHeader("harassment schedule")
                 }
 
-                Section("Debug") {
-                    Button("Send Test Notification (5 seconds)") {
-                        let content = UNMutableNotificationContent()
-                        content.title = "Test Notification"
-                        content.body = "If you see this, notifications are working!"
-                        content.sound = .default
-                        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
-                        let request = UNNotificationRequest(identifier: "test", content: content, trigger: trigger)
-                        UNUserNotificationCenter.current().add(request)
-                    }
-
-                    Button("Check Scheduled Notifications") {
-                        Task {
-                            let pending = await UNUserNotificationCenter.current().pendingNotificationRequests()
-                            scheduledInfo = "Scheduled: \(pending.count)\n"
-                            for req in pending {
-                                if let trigger = req.trigger as? UNTimeIntervalNotificationTrigger {
-                                    scheduledInfo += "- \(req.identifier): every \(Int(trigger.timeInterval))s, repeats: \(trigger.repeats), next: \(trigger.nextTriggerDate()?.description ?? "none")\n"
-                                } else {
-                                    scheduledInfo += "- \(req.identifier): \(req.trigger?.description ?? "no trigger")\n"
-                                }
-                            }
-                        }
-                    }
-
-                    if !scheduledInfo.isEmpty {
-                        Text(scheduledInfo)
-                            .font(.caption)
-                            .monospaced()
-                    }
-                }
-
-                Section("About") {
+                Section {
                     HStack {
-                        Text("Version")
+                        Text("version")
                         Spacer()
                         Text(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0")
                             .foregroundStyle(.secondary)
                     }
+                } header: {
+                    sectionHeader("about")
                 }
             }
-            .navigationTitle("settings")
-            .screen()
-            .task {
-                await checkNotificationStatus()
+            .scrollContentBackground(.hidden)
             }
+            .background(Theme.background.ignoresSafeArea())
+            .toolbar(.hidden, for: .navigationBar)
         }
     }
 
@@ -111,15 +70,15 @@ struct SettingsView: View {
         intervalOptions.first { $0.minutes == intervalMinutes }?.label ?? "\(intervalMinutes) min"
     }
 
-    private func checkNotificationStatus() async {
-        let status = await NotificationManager.shared.authorizationStatus()
-        switch status {
-        case .authorized: notificationStatus = "Authorized"
-        case .denied: notificationStatus = "Denied"
-        case .provisional: notificationStatus = "Provisional"
-        case .notDetermined: notificationStatus = "Not Requested"
-        case .ephemeral: notificationStatus = "Ephemeral"
-        @unknown default: notificationStatus = "Unknown"
-        }
+    /// Section header in the app's monospaced font, with the grouped-list's default
+    /// uppercasing turned off so it reads lowercase like the rest of the UI.
+    private func sectionHeader(_ text: String) -> some View {
+        Text(text)
+            .font(.system(.footnote, design: .monospaced))
+            .textCase(nil)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            // Outdent so the header aligns with the section box's left edge (and the
+            // "settings" title) rather than the indented row content.
+            .listRowInsets(EdgeInsets(top: 14, leading: 0, bottom: 6, trailing: 0))
     }
 }

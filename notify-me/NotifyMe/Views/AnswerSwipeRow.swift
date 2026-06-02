@@ -35,10 +35,7 @@ struct AnswerSwipeRow<Content: View>: View {
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .fill(Theme.accent)
                 .overlay(alignment: .leading) {
-                    HStack(spacing: 6) {
-                        Image(systemName: "checkmark")
-                        Text("answered")
-                    }
+                    Text("answered")
                     .font(.subheadline.weight(.bold))
                     .foregroundStyle(.black)
                     .padding(.leading, 22)
