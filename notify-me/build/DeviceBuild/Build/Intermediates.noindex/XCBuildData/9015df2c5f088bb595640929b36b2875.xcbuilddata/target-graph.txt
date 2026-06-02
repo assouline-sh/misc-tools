@@ -1,6 +1,0 @@
-Target dependency graph (3 targets)
-Target 'AYFM' in project 'AYFM'
-➜ Explicit dependency on target 'AYFMWidgetExtension' in project 'AYFM'
-➜ Explicit dependency on target 'AYFMShareExtension' in project 'AYFM'
-Target 'AYFMShareExtension' in project 'AYFM' (no dependencies)
-Target 'AYFMWidgetExtension' in project 'AYFM' (no dependencies)
